@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">CS2340A_Team11</string>
+<<<<<<< HEAD
     <string name="what_is_your_name">What is your name?</string>
+=======
+    <string name="choose_difficulty">Choose Difficulty:</string>
+    <string name="select_character">Select Character</string>
+    <string name="select_characters">select_character:</string>
+    <string name="select_your_character">Select Your Character:</string>
+>>>>>>> 04e45a7274d50dbe709313351023aa7d205672c6
 </resources>
