@@ -43,7 +43,6 @@ public class Initial_Config_Screen extends AppCompatActivity {
                 player.setDifficulty("Hard");
             }
         });
-
     }
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -51,17 +50,11 @@ public class Initial_Config_Screen extends AppCompatActivity {
 
         // Check which radio button was clicked
         int id = view.getId();
-        if (id == R.id.wizardButton) {
-            if (checked)
-                player.setCharId(id);
-        } else if (id == R.id.assassinButton) {
-            if (checked) {
-                player.setCharId(id);
-            }
-        } else {
-            if (checked) {
+        if (checked) {
+            if (id == R.id.wizardButton || id == R.id.assassinButton || id == R.id.knightButton) {
                 player.setCharId(id);
             }
         }
     }
+
 }
