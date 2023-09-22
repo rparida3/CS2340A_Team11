@@ -1,5 +1,8 @@
 package com.example.cs2340a_team11;
 
+import android.widget.EditText;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 public class Player {
     private double x;
     private double y;
@@ -9,13 +12,15 @@ public class Player {
     private int charId;
 
     private String difficulty;
+    private String name;
     private static Player player;
 
 
-    private Player(int charId) {
-        this(0, 0, charId, "Easy");
+    private Player(int charId, String name) {
+        this(0, 0, charId, "Easy", name);
     }
-    private Player(double x, double y, int charId, String difficulty) {
+    private Player(double x, double y, int charId, String difficulty, String name) {
+        this.name = name;
         this.charId = charId;
 
         this.x = x;
@@ -45,7 +50,7 @@ public class Player {
 
     public static Player getPlayer() {
         if (player == null) {
-            player = new Player(R.id.wizardButton);
+            player = new Player(R.id.wizardButton, "");
         }
         return player;
     }
@@ -117,5 +122,11 @@ public class Player {
     }
     public String getDifficulty() {
         return this.difficulty;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return this.name;
     }
 }
