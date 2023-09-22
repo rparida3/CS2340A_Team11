@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class Initial_Config_Screen extends AppCompatActivity { ;
+public class Initial_Config_Screen extends AppCompatActivity {
+    Player player = Player.getPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +22,46 @@ public class Initial_Config_Screen extends AppCompatActivity { ;
         TextView nameBox = (TextView) findViewById(R.id.nameBox);
 
         nameBox.setText("What is your name?");
+        Button easy = (Button) findViewById(R.id.Easy);
+        Button medium = (Button) findViewById(R.id.Medium);
+        Button hard = (Button) findViewById(R.id.Hard);
+        easy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                player.setDifficulty("Easy");
+            }
+        });
+        medium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player.setDifficulty("Medium");
+            }
+        });
+        hard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player.setDifficulty("Hard");
+            }
+        });
 
+    }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
-        Button medium = new Button(getApplicationContext());
-        Button hard = new Button(getApplicationContext());
-
-
-
+        // Check which radio button was clicked
+        int id = view.getId();
+        if (id == R.id.wizardButton) {
+            if (checked)
+                player.setCharId(id);
+        } else if (id == R.id.assassinButton) {
+            if (checked) {
+                player.setCharId(id);
+            }
+        } else {
+            if (checked) {
+                player.setCharId(id);
+            }
+        }
     }
 }
