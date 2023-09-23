@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">CS2340A_Team11</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="result">You [won/lost]</string>
+    <string name="enemies_killed">Enemies killed: [enemies_killed]</string>
+    <string name="boosts_collected">Boosts collected: [boosts_collected]</string>
+    <string name="total_score">Total score: [score]</string>
     <string name="what_is_your_name">What is your name?</string>
-=======
     <string name="choose_difficulty">Choose Difficulty:</string>
     <string name="select_character">Select Character</string>
     <string name="select_characters">select_character:</string>
     <string name="select_your_character">Select Your Character:</string>
->>>>>>> 04e45a7274d50dbe709313351023aa7d205672c6
 </resources>
