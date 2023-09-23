@@ -5,20 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RatingBar
-        android:id="@+id/playerHealthBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="12dp" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="22dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="94dp" />
 
     <Button
         android:id="@+id/button"
@@ -29,11 +22,27 @@
         tools:layout_editor_absoluteY="659dp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/character_photo"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ProgressBar
+        android:id="@+id/healthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="197dp"
+        android:layout_height="14dp"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="11dp" />
+
+    <TextView
+        android:id="@+id/healthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="228dp"
-        tools:layout_editor_absoluteY="70dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:text="Health"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="11dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
