@@ -1,12 +1,10 @@
 package com.example.cs2340a_team11;
 
-import android.widget.EditText;
-import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
+
 public class Player {
     private double x;
     private double y;
-    private double movement_speed;
+    private double movement;
 
     private int hp;
     private int charId;
@@ -32,20 +30,20 @@ public class Player {
         this.difficulty = difficulty;
 
         if (this.charId == R.id.wizardButton) {
-            this.movement_speed = 5;
+            this.movement = 5;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement_speed = 10;
+            this.movement = 10;
             this.hp = 20;
         } else {
-            this.movement_speed = 8;
+            this.movement = 8;
             this.hp = 50;
         }
         if (difficulty.equals("Medium")) {
-            this.movement_speed *= .80;
+            this.movement *= .80;
             this.hp *= .80;
         } else if (difficulty.equals("Hard")) {
-            this.movement_speed *= .60;
+            this.movement *= .60;
             this.hp *= .60;
         }
     }
@@ -58,22 +56,22 @@ public class Player {
     }
 
     public void moveUp() {
-        setY(Math.max(0, getY() - movement_speed));
+        setY(Math.max(0, getY() - movement));
     }
     public void moveDown() {
-        setY(Math.min(getY() + movement_speed, 720));
+        setY(Math.min(getY() + movement, 720));
     }
     public void moveLeft() {
-        setX(Math.max(0, getX() - movement_speed));
+        setX(Math.max(0, getX() - movement));
     }
     public void moveRight() {
-        setX(Math.min(getX() + movement_speed, 720));
+        setX(Math.min(getX() + movement, 720));
     }
-    public double getMovementSpeed() {
-        return this.movement_speed;
+    public double getMovement() {
+        return this.movement;
     }
-    public void setMovementSpeed(double movement_speed) {
-        this.movement_speed = movement_speed;
+    public void setMovement(double movementSpeed) {
+        this.movement = movementSpeed;
     }
     public double getY() {
         return y;
@@ -96,13 +94,13 @@ public class Player {
     public void setCharId(int charId) {
         this.charId = charId;
         if (this.charId == R.id.wizardButton) {
-            this.movement_speed = 5;
+            this.movement = 5;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement_speed = 10;
+            this.movement = 10;
             this.hp = 20;
         } else {
-            this.movement_speed = 8;
+            this.movement = 8;
             this.hp = 50;
         }
 
@@ -115,10 +113,10 @@ public class Player {
         this.setCharId(this.charId);
         if (difficulty.equals("Medium")) {
             hp *= 0.8;
-            movement_speed *= 0.8;
+            movement *= 0.8;
         } else if (difficulty.equals("Hard")) {
             hp *= 0.6;
-            movement_speed *= 0.6;
+            movement *= 0.6;
         }
 
     }

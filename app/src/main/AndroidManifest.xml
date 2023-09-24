@@ -30,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Initial_Config_Screen"/>
+        <activity android:name=".InitialConfigScreen"/>
         <activity android:name=".GameScreenActivity"/>
         <activity android:name=".EndingActivity"/>
     </application>

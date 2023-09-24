@@ -1,7 +1,5 @@
 package com.example.cs2340a_team11;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,7 +53,7 @@ public class StartScreen extends Activity {
     }
 
     private void startGame() {
-        Intent initialConfigIntent = new Intent(this, Initial_Config_Screen.class);
+        Intent initialConfigIntent = new Intent(this, InitialConfigScreen.class);
         startActivity(initialConfigIntent);
     }
 
