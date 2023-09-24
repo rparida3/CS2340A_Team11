@@ -46,6 +46,17 @@
             android:text="Wizard" />
 
         <RadioButton
+            android:id="@+id/knightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:onClick="onRadioButtonClicked"
+            android:padding="10dp"
+            android:text="Knight"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
             android:id="@+id/assassinButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,16 +67,6 @@
             android:text="Assassin"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioButton
-            android:id="@+id/knightButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:onClick="onRadioButtonClicked"
-            android:padding="10dp"
-            android:text="Knight"
-            app:layout_constraintTop_toTopOf="parent" />
     </RadioGroup>
 
     <ImageView

@@ -19,6 +19,8 @@ public class Player {
     private Player(int charId, String name) {
         this(0, 0, charId, "Easy", name);
     }
+
+    // let 0 = wizard (default), 1 = assassin, 2 = knight
     private Player(double x, double y, int charId, String difficulty, String name) {
         this.name = name;
         this.charId = charId;
@@ -50,7 +52,7 @@ public class Player {
 
     public static Player getPlayer() {
         if (player == null) {
-            player = new Player(R.id.wizardButton, "");
+            player = new Player(0, "");
         }
         return player;
     }
