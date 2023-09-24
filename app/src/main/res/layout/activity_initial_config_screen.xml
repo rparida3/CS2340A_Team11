@@ -3,189 +3,206 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Initial_Config_Screen">
-
-    <TextView
-        android:id="@+id/nameBox"
-        android:layout_width="357dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="174dp"
-        android:background="#FF8080"
-        android:text="Name"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextSizeCheck" />
-
-    <TextView
-        android:id="@+id/nameBox2"
-        android:layout_width="357dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="240dp"
-        android:layout_marginEnd="174dp"
-        android:background="#FF8080"
-        android:text="Difficulty"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextSizeCheck" />
-
-    <Button
-        android:id="@+id/Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Hard"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="172dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="30dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Hard"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
-
-    <Button
-        android:id="@+id/Easy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Easy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Medium"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <Button
-        android:id="@+id/Hard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hard"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="108dp"
-        android:layout_height="113dp"
-        android:layout_marginStart="138dp"
-        android:layout_marginTop="448dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/samurai" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="71dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="444dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wizard" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="404dp"
-        android:text="@string/select_your_character"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="95dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="296dp"
-        android:layout_marginTop="448dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/knight" />
-
-
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:text="Enter name"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupRoles" />
 
     <RadioGroup
-        android:layout_width="wrap_content"
+        android:id="@+id/radioGroupRoles"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/knightImg">
+
         <RadioButton
             android:id="@+id/wizardButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="572dp"
-            android:text="Wizard"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:onClick="onRadioButtonClicked"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="10dp"
+            android:text="Wizard" />
 
         <RadioButton
             android:id="@+id/assassinButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="572dp"
-            android:text="Assassin"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:onClick="onRadioButtonClicked"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="10dp"
+            android:text="Assassin"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <RadioButton
             android:id="@+id/knightButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="572dp"
-            android:text="knight"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:onClick="onRadioButtonClicked"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="10dp"
+            android:text="Knight"
             app:layout_constraintTop_toTopOf="parent" />
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/samuraiImg"
+        android:layout_width="108dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/knightImg"
+        app:layout_constraintTop_toBottomOf="@id/selectCharacterTextView"
+        app:srcCompat="@drawable/samurai" />
 
+    <ImageView
+        android:id="@+id/knightImg"
+        android:layout_width="95dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="22dp"
+        app:layout_constraintEnd_toStartOf="@+id/samuraiImg"
+        app:layout_constraintStart_toEndOf="@+id/wizardImg"
+        app:layout_constraintTop_toBottomOf="@+id/selectCharacterTextView"
+        app:srcCompat="@drawable/knight" />
 
+    <ImageView
+        android:id="@+id/wizardImg"
+        android:layout_width="71dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/knightImg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectCharacterTextView"
+        app:srcCompat="@drawable/wizard" />
+
+    <Button
+        android:id="@+id/Hard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="27dp"
+        android:text="@string/hard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Medium"
+        app:layout_constraintTop_toBottomOf="@+id/difficultyTextView" />
+
+    <Button
+        android:id="@+id/Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="41dp"
+        android:text="@string/medium"
+        app:layout_constraintEnd_toStartOf="@+id/Hard"
+        app:layout_constraintStart_toEndOf="@+id/Easy"
+        app:layout_constraintTop_toBottomOf="@+id/difficultyTextView" />
+
+    <Button
+        android:id="@+id/Easy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/easy"
+        app:layout_constraintEnd_toStartOf="@+id/Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/difficultyTextView" />
+
+    <TextView
+        android:id="@+id/selectCharacterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="191dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/select_your_character"
+        app:layout_constraintBottom_toTopOf="@+id/samuraiImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Medium" />
+
+    <TextView
+        android:id="@+id/difficultyTextView"
+        android:layout_width="357dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="27dp"
+        android:background="#FF8080"
+        android:text="Difficulty"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameBox"
+        tools:ignore="TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/nameBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="25dp"
+        android:ems="10"
+        android:hint="Enter name"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/difficultyTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="357dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FF8080"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/nameBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -9,7 +9,7 @@
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="@string/welcome"
         android:textSize="24sp"
         android:textStyle="bold"
     />
@@ -18,21 +18,20 @@
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Game"
-    />
+        android:text="@string/start_game" />
 
     <Button
         android:id="@+id/endButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="End Game"
+        android:text="@string/end_game"
     />
 
     <Button
         android:id="@+id/quitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quit"
+        android:text="@string/quit"
     />
 
 </LinearLayout>
