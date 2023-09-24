@@ -22,7 +22,7 @@ public class Initial_Config_Screen extends AppCompatActivity {
 
         TextView nameBox = (TextView) findViewById(R.id.nameBox);
 
-        nameBox.setText("What is your name?");
+        //nameBox.setText("What is your name?"); // need to validate
         Button easy = (Button) findViewById(R.id.Easy);
         Button medium = (Button) findViewById(R.id.Medium);
         Button hard = (Button) findViewById(R.id.Hard);
