@@ -12,11 +12,14 @@ import com.example.cs2340a_team11.Player;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameScreenActivity extends AppCompatActivity {
+    Player player = Player.getPlayer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
 
+        int charId = player.getCharId();
         Button endButton = (Button) findViewById(R.id.exitButton);
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
@@ -24,7 +27,14 @@ public class GameScreenActivity extends AppCompatActivity {
 
         healthBar.setProgress(Player.getPlayer().getHP());
         nameView.setText(Player.getPlayer().getName());
-        //characterView.setImageResource();
+        if (charId == 0) {
+            characterView.setImageResource(R.drawable.wizard);
+        } else if (charId == 1) {
+            characterView.setImageResource(R.drawable.samurai);
+        } else if (charId == 2) {
+            characterView.setImageResource(R.drawable.knight);
+        }
+
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +47,7 @@ public class GameScreenActivity extends AppCompatActivity {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         startActivity(progressToEndIntent);
     }
+
 
 
 
