@@ -3,6 +3,7 @@ package com.example.cs2340a_team11;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,9 +27,10 @@ public class StartScreen extends Activity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                welcomeText.setVisibility(View.GONE);
-                startButton.setVisibility(View.GONE);
-                endButton.setVisibility(View.VISIBLE);
+                startGame();
+                //welcomeText.setVisibility(View.GONE);
+                //startButton.setVisibility(View.GONE);
+                //endButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -50,6 +52,11 @@ public class StartScreen extends Activity {
                 finish();
             }
         });
+    }
+
+    private void startGame() {
+        Intent initialConfigIntent = new Intent(this, Initial_Config_Screen.class);
+        startActivity(initialConfigIntent);
     }
 
 }

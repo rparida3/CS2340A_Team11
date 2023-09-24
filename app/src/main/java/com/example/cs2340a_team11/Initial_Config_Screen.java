@@ -3,6 +3,7 @@ package com.example.cs2340a_team11;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ public class Initial_Config_Screen extends AppCompatActivity {
         Button easy = (Button) findViewById(R.id.Easy);
         Button medium = (Button) findViewById(R.id.Medium);
         Button hard = (Button) findViewById(R.id.Hard);
+        Button submitButton = (Button) findViewById(R.id.Submit);
         easy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,13 @@ public class Initial_Config_Screen extends AppCompatActivity {
                 player.setDifficulty("Hard");
             }
         });
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startGame();
+            }
+        });
     }
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
@@ -55,6 +64,11 @@ public class Initial_Config_Screen extends AppCompatActivity {
                 player.setCharId(id);
             }
         }
+    }
+
+    public void startGame() {
+        Intent gameScreenIntent = new Intent(this, GameScreenActivity.class);
+        startActivity(gameScreenIntent);
     }
 
 }
