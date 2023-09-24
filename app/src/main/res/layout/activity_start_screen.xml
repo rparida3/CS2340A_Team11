@@ -1,9 +1,8 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/welcomeText"
@@ -11,8 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:textSize="24sp"
-        android:textStyle="bold"
-    />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/startButton"
@@ -24,14 +22,12 @@
         android:id="@+id/endButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/end_game"
-    />
+        android:text="@string/end_game" />
 
     <Button
         android:id="@+id/quitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/quit"
-    />
+        android:text="@string/quit" />
 
 </LinearLayout>
