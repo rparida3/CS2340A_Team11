@@ -17,5 +17,6 @@ public class EndingActivity extends AppCompatActivity {
         setContentView(R.layout.ending_screen);
         endScreenViewModel = new ViewModelProvider(this).get(EndScreenViewModel.class);
 
+        // DO PLEASE: display end results by fetching info from view-model
     }
 }
