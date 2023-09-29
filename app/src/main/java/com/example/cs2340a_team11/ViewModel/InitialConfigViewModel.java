@@ -1,15 +1,28 @@
 package com.example.cs2340a_team11.ViewModel;
 
+import android.view.View;
+
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.R;
 
 public class InitialConfigViewModel extends ViewModel {
     private Player player = Player.getPlayer();
     public InitialConfigViewModel() {
 
     }
-
+    public void gameSetDifficulty(int id) {
+        if (id == R.id.Easy) {
+            player.setDifficulty("Easy");
+        } else if (id == R.id.Medium) {
+            player.setDifficulty("Medium");
+        } else if (id == R.id.Hard) {
+            player.setDifficulty("Hard");
+        } else {
+            player.setDifficulty("Easy");
+        }
+    }
     public boolean checkName(String playerName) {
         if (playerName.trim().isEmpty() || playerName == null || playerName.equals("")) {
             System.out.println("Input valid name, please!");

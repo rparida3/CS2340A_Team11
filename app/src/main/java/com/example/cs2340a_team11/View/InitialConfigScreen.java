@@ -14,7 +14,7 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
-public class InitialConfigScreen extends AppCompatActivity {
+public class InitialConfigScreen extends AppCompatActivity implements View.OnClickListener {
     private Player player = Player.getPlayer();
     private String playerName = "";
     private InitialConfigViewModel initialConfigViewModel;
@@ -23,32 +23,17 @@ public class InitialConfigScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial_config_screen);
-        // reference the viewmodel
+        // reference the view-model
         initialConfigViewModel = new ViewModelProvider(this).get(InitialConfigViewModel.class);
 
-        Button easy = (Button) findViewById(R.id.Easy);
-        Button medium = (Button) findViewById(R.id.Medium);
-        Button hard = (Button) findViewById(R.id.Hard);
         Button submitButton = (Button) findViewById(R.id.Submit);
 
-        easy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.setDifficulty("Easy");
-            }
-        });
-        medium.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                player.setDifficulty("Medium");
-            }
-        });
-        hard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                player.setDifficulty("Hard");
-            }
-        });
+        Button easy = (Button) findViewById(R.id.Easy);
+        easy.setOnClickListener(this);
+        Button medium = (Button) findViewById(R.id.Medium);
+        medium.setOnClickListener(this);
+        Button hard = (Button) findViewById(R.id.Hard);
+        hard.setOnClickListener(this);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,18 +41,17 @@ public class InitialConfigScreen extends AppCompatActivity {
                 TextView nameBox = (TextView) findViewById(R.id.nameBox);
                 playerName = nameBox.getText().toString();
 
-                if (player.getDifficulty() == null) {
-                    // default is easy in player class? default class is wizard?
-                    System.out.println("Must select difficulty!");
-                    return;
-                }
-
                 if (initialConfigViewModel.checkName(playerName)) {
                     startGame();
                 }
             }
         });
     }
+    @Override
+    public void onClick(View v) {
+        initialConfigViewModel.gameSetDifficulty(v.getId());
+    }
+
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
