@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11;
+package com.example.cs2340a_team11.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.R;
 
 public class GameScreenActivity extends AppCompatActivity {
     private Player player = Player.getPlayer();

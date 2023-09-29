@@ -1,8 +1,10 @@
-package com.example.cs2340a_team11;
+package com.example.cs2340a_team11.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.cs2340a_team11.R;
 
 public class MainActivity extends AppCompatActivity {
 
