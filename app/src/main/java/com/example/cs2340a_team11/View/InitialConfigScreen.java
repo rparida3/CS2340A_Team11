@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.cs2340a_team11.Model.Player;
@@ -16,7 +17,7 @@ import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class InitialConfigScreen extends AppCompatActivity implements View.OnClickListener {
     private Player player = Player.getPlayer();
-    private String playerName = "";
+    private String playerName;
     private InitialConfigViewModel initialConfigViewModel;
 
     @Override
@@ -47,6 +48,7 @@ public class InitialConfigScreen extends AppCompatActivity implements View.OnCli
             }
         });
     }
+
     @Override
     public void onClick(View v) {
         initialConfigViewModel.gameSetDifficulty(v.getId());
@@ -58,21 +60,9 @@ public class InitialConfigScreen extends AppCompatActivity implements View.OnCli
 
         // Check which radio button was clicked
         int id = view.getId();
+
         if (checked) {
-            /*
-            if (id == R.id.wizardButton || id == R.id.assassinButton || id == R.id.knightButton) {
-                player.setCharId(id);
-            }
-             */
-            if (id == R.id.wizardButton) {
-                player.setCharId(0);
-            } else if (id == R.id.assassinButton) {
-                player.setCharId(1);
-            } else if (id == R.id.knightButton) {
-                player.setCharId(2);
-            } else {
-                player.setCharId(0);
-            }
+            initialConfigViewModel.chooseChar(id);
         }
     }
 

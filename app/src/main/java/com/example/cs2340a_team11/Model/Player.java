@@ -52,7 +52,7 @@ public class Player {
 
     public static Player getPlayer() {
         if (player == null) {
-            player = new Player(0, "");
+            player = new Player(R.id.wizardButton, "");
         }
         return player;
     }

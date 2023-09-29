@@ -30,11 +30,11 @@ public class GameScreenActivity extends AppCompatActivity {
 
         healthBar.setProgress(Player.getPlayer().getHP());
         nameView.setText(Player.getPlayer().getName());
-        if (charId == 0) {
+        if (charId == R.id.wizardButton) {
             characterView.setImageResource(R.drawable.wizard);
-        } else if (charId == 1) {
+        } else if (charId == R.id.assassinButton) {
             characterView.setImageResource(R.drawable.samurai);
-        } else if (charId == 2) {
+        } else if (charId == R.id.knightButton) {
             characterView.setImageResource(R.drawable.knight);
         }
 

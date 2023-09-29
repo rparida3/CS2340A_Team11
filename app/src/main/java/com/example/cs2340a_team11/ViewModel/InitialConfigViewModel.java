@@ -23,6 +23,7 @@ public class InitialConfigViewModel extends ViewModel {
             player.setDifficulty("Easy");
         }
     }
+
     public boolean checkName(String playerName) {
         if (playerName.trim().isEmpty() || playerName == null || playerName.equals("")) {
             System.out.println("Input valid name, please!");
@@ -30,5 +31,13 @@ public class InitialConfigViewModel extends ViewModel {
         }
         player.setName(playerName);
         return true;
+    }
+
+    public void chooseChar(int id) {
+        if (id == R.id.wizardButton || id == R.id.assassinButton || id == R.id.knightButton) {
+            player.setCharId(id);
+        } else {
+            System.out.println("error");
+        }
     }
 }
