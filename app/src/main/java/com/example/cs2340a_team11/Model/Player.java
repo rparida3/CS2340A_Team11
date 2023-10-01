@@ -17,7 +17,7 @@ public class Player {
 
 
     private Player(int charId, String name) {
-        this(0, 0, charId, "Easy", name);
+        this(0, 0, R.id.wizardButton, "Easy", name);
     }
 
     // let 0 = wizard (default), 1 = assassin, 2 = knight
