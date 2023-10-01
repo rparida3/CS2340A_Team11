@@ -1,5 +1,7 @@
-package com.example.cs2340a_team11;
+package com.example.cs2340a_team11.Model;
 
+
+import com.example.cs2340a_team11.R;
 
 public class Player {
     private double x;
@@ -15,7 +17,7 @@ public class Player {
 
 
     private Player(int charId, String name) {
-        this(0, 0, charId, "Easy", name);
+        this(0, 0, R.id.wizardButton, "Easy", name);
     }
 
     // let 0 = wizard (default), 1 = assassin, 2 = knight
@@ -50,7 +52,7 @@ public class Player {
 
     public static Player getPlayer() {
         if (player == null) {
-            player = new Player(0, "");
+            player = new Player(R.id.wizardButton, "");
         }
         return player;
     }
