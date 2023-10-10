@@ -1,5 +1,6 @@
 package com.example.cs2340a_team11.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class GameScreenActivity extends AppCompatActivity {
+    private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
 
@@ -25,6 +27,7 @@ public class GameScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_screen);
+        gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
         Button endButton = (Button) findViewById(R.id.exitButton);
@@ -42,6 +45,10 @@ public class GameScreenActivity extends AppCompatActivity {
                 progressToEndScreen();
             }
         });
+    }
+
+    public static Context getGameContext() {
+        return gameContext;
     }
 
     public void progressToEndScreen() {
