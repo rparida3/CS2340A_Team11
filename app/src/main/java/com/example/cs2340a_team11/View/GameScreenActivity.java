@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
@@ -49,8 +50,12 @@ public class GameScreenActivity extends AppCompatActivity {
         });
 
         MapView mapView = new MapView(this);
+        //mapView.setScaleX(0.99f);
         layout.addView(mapView);
+
+        // offset the position of map to show in background AND below the info bar
         mapView.setZ(-1);
+        mapView.setY(BitmapInterface.TILE_SIZE * 2);
 
     }
 

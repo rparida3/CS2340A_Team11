@@ -17,13 +17,18 @@ public enum Background implements BitmapInterface {
         sprites = new Bitmap[tilesInHeight * tilesInWidth];
 
         // find a way to deal with getGameContext()
-        Bitmap spriteSheet = BitmapFactory.decodeResource(GameScreenActivity.getGameContext().getResources(), resID, options);
+        Bitmap spriteSheet = BitmapFactory.decodeResource(
+                GameScreenActivity.getGameContext().getResources(), resID, options);
 
         // generates the map
         for (int j = 0; j < tilesInHeight; j++) {
             for (int i = 0; i < tilesInWidth; i++) {
                 int index = j * tilesInWidth + i;
-                sprites[index] = getScaledBitmap(Bitmap.createBitmap(spriteSheet, pixSize * i, pixSize * j, pixSize, pixSize));
+                sprites[index] = getScaledBitmap(Bitmap.createBitmap(spriteSheet,
+                        PIX_SIZE * i,
+                        PIX_SIZE * j,
+                        PIX_SIZE,
+                        PIX_SIZE));
             }
         }
     }
