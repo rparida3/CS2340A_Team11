@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
+
 
 public class GameScreenActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -34,6 +35,7 @@ public class GameScreenActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
+        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
         healthBar.setProgress(player.getHP());
         nameView.setText(player.getName());
@@ -45,7 +47,13 @@ public class GameScreenActivity extends AppCompatActivity {
                 progressToEndScreen();
             }
         });
+
+        MapView mapView = new MapView(this);
+        layout.addView(mapView);
+        mapView.setZ(-1);
+
     }
+
 
     public static Context getGameContext() {
         return gameContext;
