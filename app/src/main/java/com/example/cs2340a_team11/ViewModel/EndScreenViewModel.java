@@ -2,14 +2,18 @@ package com.example.cs2340a_team11.ViewModel;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.View.GameScreenActivity;
+
 public class EndScreenViewModel extends ViewModel {
+    private Player player = Player.getPlayer();
     public EndScreenViewModel() {
 
     }
 
     // DO PLEASE: fetch results from player and return to view
     public String fetchResult() {
-        return "Won";
+        return "won";
     }
 
     public int fetchKilled() {
@@ -21,6 +25,6 @@ public class EndScreenViewModel extends ViewModel {
     }
 
     public int calcTotalScore() {
-        return 0;
+        return 5;
     }
 }

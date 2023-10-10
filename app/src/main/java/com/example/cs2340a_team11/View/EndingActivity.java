@@ -2,6 +2,7 @@ package com.example.cs2340a_team11.View;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;

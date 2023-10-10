@@ -2,7 +2,10 @@ package com.example.cs2340a_team11.View;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,10 +20,12 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
+import java.util.Locale;
+
 public class GameScreenActivity extends AppCompatActivity {
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
-
+    private int totalScore = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,22 +36,40 @@ public class GameScreenActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-
         healthBar.setProgress(player.getHP());
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
+
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                player.setScore(totalScore);
                 progressToEndScreen();
             }
         });
+        runTimer();
     }
 
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         startActivity(progressToEndIntent);
+    }
+    private void runTimer() {
+        final TextView timeView
+                = (TextView)findViewById(R.id.scoreUpdate);
+
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+
+            public void run() {
+                String score = Integer.toString(totalScore);
+                timeView.setText(score);
+                totalScore++;
+                handler.postDelayed(this, 1000);
+            }
+        });
     }
 }
 
