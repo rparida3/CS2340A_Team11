@@ -45,11 +45,23 @@ public class MapView extends View {
         } else if (mapValue == 2) {
             // SECOND MAP
 
+            mapArray = new int[][]{
+                    {0, 1, 2, 3, 4, 1, 5},
+                    {10, 11, 12, 13, 12, 14, 15},
+                    {20, 21, 71, 72, 73, 24, 25},
+                    {30, 21, 71, 72, 73, 24, 35},
+                    {0, 21, 71, 72, 73, 24, 5},
+                    {10, 21, 71, 72, 73, 24, 15},
+                    {20, 31, 32, 33, 32, 34, 25},
+                    {40, 41, 42, 43, 44, 41, 45}
+            };
+            /*
             for (int i = 0; i < mapArray.length; i++) {
                 for (int j = 0; j < mapArray[i].length; j++) {
                     mapArray[i][j] = 0;
                 }
             }
+             */
         }
 
 
