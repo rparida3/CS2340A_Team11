@@ -25,7 +25,7 @@ import java.util.Locale;
 public class GameScreenActivity extends AppCompatActivity {
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
-    private int totalScore = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,32 +44,16 @@ public class GameScreenActivity extends AppCompatActivity {
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                player.setScore(totalScore);
                 progressToEndScreen();
             }
         });
-        runTimer();
+        TextView timeView = findViewById(R.id.scoreUpdate);
+        gameScreenViewModel.runTimer(timeView);
     }
 
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         startActivity(progressToEndIntent);
-    }
-    private void runTimer() {
-        final TextView timeView
-                = (TextView)findViewById(R.id.scoreUpdate);
-
-        final Handler handler = new Handler();
-        handler.post(new Runnable() {
-            @Override
-
-            public void run() {
-                String score = Integer.toString(totalScore);
-                timeView.setText(score);
-                totalScore++;
-                handler.postDelayed(this, 1000);
-            }
-        });
     }
 }
 
