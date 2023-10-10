@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.GameScreenActivity;
+import com.example.cs2340a_team11.View.MapOneActivity;
 
 public enum Background implements BitmapInterface {
     // reference the tileset spritesheet and its dimensions
@@ -18,7 +19,7 @@ public enum Background implements BitmapInterface {
 
         // find a way to deal with getGameContext()
         Bitmap spriteSheet = BitmapFactory.decodeResource(
-                GameScreenActivity.getGameContext().getResources(), resID, options);
+                MapOneActivity.getGameContext().getResources(), resID, options);
 
         // generates the map
         for (int j = 0; j < tilesInHeight; j++) {
