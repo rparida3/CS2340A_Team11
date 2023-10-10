@@ -18,7 +18,7 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
-public class MapOneActivity extends AppCompatActivity {
+public class MapFinalActivity extends AppCompatActivity {
 
     private static Context gameContext;
     private Player player = Player.getPlayer();
@@ -27,11 +27,11 @@ public class MapOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.map_one);
+        setContentView(R.layout.map_final);
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
-        Button nextButton = (Button) findViewById(R.id.nextBtn);
+        Button endButton = (Button) findViewById(R.id.endBtn);
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
@@ -41,14 +41,15 @@ public class MapOneActivity extends AppCompatActivity {
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressToNextMap();
+                progressToEndScreen();
             }
         });
 
-        MapView mapView = new MapView(this, 1);
+
+        MapView mapView = new MapView(this, 2);
         //mapView.setScaleX(0.99f);
         layout.addView(mapView);
 
@@ -62,8 +63,8 @@ public class MapOneActivity extends AppCompatActivity {
         return gameContext;
     }
 
-    public void progressToNextMap() {
-        Intent progressToMapFinalIntent = new Intent(this, MapFinalActivity.class);
-        startActivity(progressToMapFinalIntent);
+    public void progressToEndScreen() {
+        Intent progressToEndIntent = new Intent(this, EndingActivity.class);
+        startActivity(progressToEndIntent);
     }
 }

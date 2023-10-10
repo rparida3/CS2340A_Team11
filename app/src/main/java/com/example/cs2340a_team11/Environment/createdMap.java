@@ -2,10 +2,10 @@ package com.example.cs2340a_team11.Environment;
 
 import android.graphics.Canvas;
 
-public class FirstMap {
+public class createdMap {
     private int[][] spriteIds;
 
-    public FirstMap(int[][] spriteIds) {
+    public createdMap(int[][] spriteIds) {
         this.spriteIds = spriteIds;
     }
 

@@ -33,6 +33,7 @@
         <activity android:name=".View.InitialConfigScreen"/>
         <activity android:name=".View.GameScreenActivity"/>
         <activity android:name=".View.MapOneActivity"/>
+        <activity android:name=".View.MapFinalActivity"/>
         <activity android:name=".View.EndingActivity"/>
     </application>
 
