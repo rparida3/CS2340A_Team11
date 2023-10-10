@@ -14,9 +14,10 @@ public class MapView extends View {
         super(context);
 
         // the actual 2D array for the map
-        int[][] testArray = new int[10][10];
+        int[][] testArray = new int[10][3];
         for (int j = 0; j < testArray.length; j++) {
-            Arrays.fill(testArray[j], 0);
+            // VAL is the tile we want to select from our tileset
+            Arrays.fill(testArray[j], 67);
         }
 
         testMap = new FirstMap(testArray);
