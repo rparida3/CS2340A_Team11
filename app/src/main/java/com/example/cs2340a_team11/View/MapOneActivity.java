@@ -48,13 +48,15 @@ public class MapOneActivity extends AppCompatActivity {
             }
         });
 
-        MapView mapView = new MapView(this, 1);
-        //mapView.setScaleX(0.99f);
+        MapView mapView = new MapView(this, 2);
+        MapView mapViewItems = new MapView(this, 12);
         layout.addView(mapView);
+        layout.addView(mapViewItems);
 
         // offset the position of map to show in background AND below the info bar
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
+        mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
     }
 
 

@@ -25,6 +25,7 @@ public enum Background implements BitmapInterface {
         for (int j = 0; j < tilesInHeight; j++) {
             for (int i = 0; i < tilesInWidth; i++) {
                 int index = j * tilesInWidth + i;
+
                 sprites[index] = getScaledBitmap(Bitmap.createBitmap(spriteSheet,
                         PIX_SIZE * i,
                         PIX_SIZE * j,

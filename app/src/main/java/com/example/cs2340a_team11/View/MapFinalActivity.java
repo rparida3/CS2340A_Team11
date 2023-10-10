@@ -50,12 +50,15 @@ public class MapFinalActivity extends AppCompatActivity {
 
 
         MapView mapView = new MapView(this, 2);
+        MapView mapViewItem = new MapView(this, 13);
         //mapView.setScaleX(0.99f);
         layout.addView(mapView);
+        layout.addView(mapViewItem);
 
         // offset the position of map to show in background AND below the info bar
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
+        mapViewItem.setY(BitmapInterface.TILE_SIZE * 2);
     }
 
 
