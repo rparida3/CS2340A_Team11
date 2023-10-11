@@ -54,7 +54,7 @@ public class Leaderboard {
      * @return list containing numScoresToDisplay topScores
      */
     public ArrayList<Score> getTopScores(int numScoresToDisplay) {
-        Collections.sort(scores, Collections.reverseOrder());
+        Collections.sort(scores, scoreComparator);
         ArrayList<Score> highestScores = new ArrayList<>();
 
         if (scores.size() < numScoresToDisplay) {
@@ -67,6 +67,13 @@ public class Leaderboard {
 
         return highestScores;
     }
+
+    Comparator<Score> scoreComparator = new Comparator<Score>() {
+        @Override
+        public int compare(Score score1, Score score2) {
+            return score2.getScore() - score1.getScore();
+        }
+    };
 
 
     /**
