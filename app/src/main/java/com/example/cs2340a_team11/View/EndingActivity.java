@@ -23,7 +23,8 @@ public class EndingActivity extends AppCompatActivity {
 
         // DO PLEASE: display end results by fetching info from view-model
         TextView currentScore = findViewById(R.id.curr_score);
-        currentScore.setText(Integer.toString(endScreenViewModel.calcTotalScore()));
+        currentScore.setText("Last attempted score: "
+                + Integer.toString(endScreenViewModel.calcTotalScore()));
 
         TextView scoreList = findViewById(R.id.scoreList);
         scoreList.setText(endScreenViewModel.getScores());

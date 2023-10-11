@@ -11,8 +11,10 @@ public class EndScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
     private Leaderboard leaderboard = Leaderboard.getInstance();
     public EndScreenViewModel() {
+        /*
         leaderboard.addScore(player.getName(), calcTotalScore());
         ArrayList topScores = leaderboard.getTopScores(5);
+         */
     }
 
     // DO PLEASE: fetch results from player and return to view
@@ -33,10 +35,11 @@ public class EndScreenViewModel extends ViewModel {
     }
 
     public String getScores() {
+        leaderboard.addScore(player.getName(), calcTotalScore());
+        ArrayList topScores = leaderboard.getTopScores(5);
         StringBuilder out = new StringBuilder();
-        ArrayList<Leaderboard.Score> scores = leaderboard.getScores();
-        for (int i = 0; i < scores.size(); i++) {
-            out.append(i + 1).append(". ").append(scores.get(i)).append("\n\n");
+        for (int i = 0; i < topScores.size(); i++) {
+            out.append(i + 1).append(". ").append(topScores.get(i)).append("\n\n");
         }
         return out.toString();
     }
