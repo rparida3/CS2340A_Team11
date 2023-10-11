@@ -1,6 +1,5 @@
 package com.example.cs2340a_team11.View;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class EndingActivity extends AppCompatActivity {
     private EndScreenViewModel endScreenViewModel;
@@ -22,8 +20,12 @@ public class EndingActivity extends AppCompatActivity {
         endScreenViewModel = new ViewModelProvider(this).get(EndScreenViewModel.class);
 
         // DO PLEASE: display end results by fetching info from view-model
-        TextView currentScore = findViewById(R.id.score);
+        TextView currentScore = findViewById(R.id.curr_score);
         currentScore.setText(Integer.toString(endScreenViewModel.calcTotalScore()));
+
+        TextView scoreList = findViewById(R.id.scoreList);
+        scoreList.setText(endScreenViewModel.getScores());
+
         Button restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +35,7 @@ public class EndingActivity extends AppCompatActivity {
         });
     }
     public void restartGame() {
-        Intent Restart = new Intent(this, StartScreen.class);
-        startActivity(Restart);
+        Intent restartGameIntent = new Intent(this, StartScreen.class);
+        startActivity(restartGameIntent);
     }
 }

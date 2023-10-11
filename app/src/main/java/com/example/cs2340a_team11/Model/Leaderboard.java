@@ -1,8 +1,7 @@
 package com.example.cs2340a_team11.Model;
 
-
-
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 public class Leaderboard {
 
@@ -36,14 +35,14 @@ public class Leaderboard {
         return uniqueInstance;
     }
 
-
     /**
      * Adds score to list of scores (not sorted)
      * @param playerName playerName
      * @param score player's score on recent attempt
      */
     public void addScore(String playerName, int score) {
-        String dateTime = ""; //FIGURE OUT HOW TO GET DATE/TIME
+        java.util.Date date = new java.util.Date();
+        String dateTime = date.toString();
         scores.add(new Score(playerName, score, dateTime));
     }
 
@@ -93,7 +92,7 @@ public class Leaderboard {
     }
 
 
-    private class Score {
+    public class Score {
         private String playerName;
         private int score;
         private String dateTime;
@@ -135,9 +134,8 @@ public class Leaderboard {
 
         @Override
         public String toString() {
-            return "PlayerName=" + playerName +
-                    ", score=" + score +
-                    ", dateTime=" + dateTime;
+            return "Player: " + playerName
+                    + ", score: " + score + ", date: " + dateTime;
         }
     }
 

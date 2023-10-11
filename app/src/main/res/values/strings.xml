@@ -4,7 +4,7 @@
     <string name="result">You [won/lost]</string>
     <string name="enemies_killed">Enemies killed: [enemies_killed]</string>
     <string name="boosts_collected">Boosts collected: [boosts_collected]</string>
-    <string name="total_score">Total score: [score]</string>
+    <string name="curr_score">Current score: [score]</string>
     <string name="what_is_your_name">What is your name?</string>
     <string name="choose_difficulty">Choose Difficulty:</string>
     <string name="select_character">Select Character</string>
