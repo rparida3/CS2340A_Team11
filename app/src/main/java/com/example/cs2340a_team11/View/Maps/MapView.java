@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11.View;
+package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -17,7 +17,7 @@ public class MapView extends View {
         // chosen int is the tile we want to select from our tileset
 
         if (mapValue == 1) {
-            // FIRST MAP
+            // FIRST MAP (just a square room)
 
             // top walls
             for (int k = 1; k < mapArray[0].length - 1; k++) {
@@ -43,8 +43,7 @@ public class MapView extends View {
             mapArray[mapArray.length - 1][0] = 40; // bottom left corner wall
             mapArray[mapArray.length - 1][mapArray[0].length - 1] = 45; // bottom right corner wall
         } else if (mapValue == 2) {
-            // SECOND MAP
-
+            // SECOND MAP (same as map 1)
             mapArray = new int[][]{
                     {0, 1, 2, 3, 4, 1, 5},
                     {10, 11, 12, 13, 12, 14, 15},
@@ -56,21 +55,21 @@ public class MapView extends View {
                     {40, 41, 42, 43, 44, 41, 45}
             };
         } else if (mapValue == 3) {
-            // THIRD MAP
+            // THIRD MAP (leads down a hallway
             mapArray = new int[][]{
                     {0, 1, 2, 3, 4, 1, 5},
                     {10, 11, 12, 13, 12, 14, 15},
                     {20, 21, 71, 72, 73, 24, 25},
                     {30, 21, 71, 72, 73, 24, 35},
-                    {0, 21, 71, 72, 73, 24, 5},
-                    {10, 21, 71, 72, 73, 24, 15},
-                    {20, 31, 32, 33, 32, 34, 25},
-                    {40, 41, 42, 43, 44, 41, 45}
+                    {40, 41, 42, 53, 73, 24, 5},
+                    {78, 78, 78, 10, 21, 24, 15},
+                    {78, 78, 78, 20, 21, 24, 25},
+                    {78, 78, 78, 30, 21, 24, 5}
             };
         }
 
-        // insert items into map 2
         if (mapValue == 12) {
+            // insert items into square room (like 2)
             for (int i = 0; i < mapArray.length; i++) {
                 for (int j = 0; j < mapArray[i].length; j++) {
                     mapArray[i][j] = -1;
@@ -85,6 +84,7 @@ public class MapView extends View {
             mapArray[6][1] = 64;
             mapArray[6][5] = 94;
         } else if (mapValue == 13) {
+            // insert items into square room (like 2)
             for (int i = 0; i < mapArray.length; i++) {
                 for (int j = 0; j < mapArray[i].length; j++) {
                     mapArray[i][j] = -1;

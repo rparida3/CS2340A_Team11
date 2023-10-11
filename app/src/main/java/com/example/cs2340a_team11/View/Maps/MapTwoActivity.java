@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11.View;
+package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
-public class MapOneActivity extends AppCompatActivity {
+public class MapTwoActivity extends AppCompatActivity {
 
     private static Context gameContext;
     private Player player = Player.getPlayer();
@@ -27,7 +27,7 @@ public class MapOneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.map_one);
+        setContentView(R.layout.map_two);
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
@@ -49,14 +49,14 @@ public class MapOneActivity extends AppCompatActivity {
         });
 
         MapView mapView = new MapView(this, 2);
-        MapView mapViewItems = new MapView(this, 12);
+        MapView mapViewItem = new MapView(this, 13);
         layout.addView(mapView);
-        layout.addView(mapViewItems);
+        layout.addView(mapViewItem);
 
         // offset the position of map to show in background AND below the info bar
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
-        mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
+        mapViewItem.setY(BitmapInterface.TILE_SIZE * 2);
     }
 
 
@@ -69,3 +69,4 @@ public class MapOneActivity extends AppCompatActivity {
         startActivity(progressToMapFinalIntent);
     }
 }
+
