@@ -3,7 +3,10 @@ package com.example.cs2340a_team11.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,6 +21,8 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
+
+import java.util.Locale;
 
 public class GameScreenActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -35,18 +40,24 @@ public class GameScreenActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
+
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
         healthBar.setProgress(player.getHP());
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 progressToMapOne();
             }
         });
+
+        TextView timeView = findViewById(R.id.scoreUpdate);
+        gameScreenViewModel.runTimer(timeView);
 
     }
 

@@ -4,6 +4,7 @@ package com.example.cs2340a_team11.Model;
 import com.example.cs2340a_team11.R;
 
 public class Player {
+    private int score = 0;
     private double x;
     private double y;
     private double movement;
@@ -130,5 +131,12 @@ public class Player {
     }
     public String getName() {
         return this.name;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+    public void setScore(int score) {
+        this.score = score;
     }
 }
