@@ -27,4 +27,5 @@ public class EndScreenViewModel extends ViewModel {
     public int calcTotalScore() {
         return player.getScore();
     }
+    public void resetScore() {player.setScore(0);}
 }

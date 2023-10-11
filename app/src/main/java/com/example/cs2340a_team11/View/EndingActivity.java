@@ -33,6 +33,7 @@ public class EndingActivity extends AppCompatActivity {
         });
     }
     public void restartGame() {
+        endScreenViewModel.resetScore();
         Intent Restart = new Intent(this, StartScreen.class);
         startActivity(Restart);
     }
