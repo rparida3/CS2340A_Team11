@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11.View;
+package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.EndingActivity;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapFinalActivity extends AppCompatActivity {
@@ -48,12 +49,9 @@ public class MapFinalActivity extends AppCompatActivity {
             }
         });
 
-
-        MapView mapView = new MapView(this, 2);
-        //mapView.setScaleX(0.99f);
+        MapView mapView = new MapView(this, 3);
         layout.addView(mapView);
 
-        // offset the position of map to show in background AND below the info bar
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
     }
