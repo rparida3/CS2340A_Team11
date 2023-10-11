@@ -40,4 +40,8 @@ public class EndScreenViewModel extends ViewModel {
         }
         return out.toString();
     }
+
+    public void resetScore() {
+        player.setScore(0);
+    }
 }

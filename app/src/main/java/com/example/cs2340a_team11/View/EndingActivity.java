@@ -22,8 +22,12 @@ public class EndingActivity extends AppCompatActivity {
         endScreenViewModel = new ViewModelProvider(this).get(EndScreenViewModel.class);
 
         // DO PLEASE: display end results by fetching info from view-model
-        TextView currentScore = findViewById(R.id.score);
+        TextView currentScore = findViewById(R.id.curr_score);
         currentScore.setText(Integer.toString(endScreenViewModel.calcTotalScore()));
+
+        TextView scoreList = findViewById(R.id.scoreList);
+        scoreList.setText(endScreenViewModel.getScores());
+
         Button restart = (Button) findViewById(R.id.restart);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
