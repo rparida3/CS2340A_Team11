@@ -13,7 +13,10 @@ public class GameScreenViewModel extends ViewModel {
 
     int charId = player.getCharId();
 
-    public int totalScore = 0;
+    public int totalScore = player.getScore();
+
+    private Handler handler = new Handler();
+    private boolean isTimerRunning = true;
     public GameScreenViewModel() {
 
     }
@@ -30,7 +33,6 @@ public class GameScreenViewModel extends ViewModel {
         return R.drawable.wizard;
     }
     public void runTimer(TextView timeView) {
-        final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
 
@@ -39,9 +41,15 @@ public class GameScreenViewModel extends ViewModel {
                 player.setScore(totalScore);
                 String score = Integer.toString(totalScore);
                 timeView.setText(score);
-                handler.postDelayed(this, 1000);
+                if (isTimerRunning) {
+                    handler.postDelayed(this, 1000);
+                }
             }
         });
+    }
+    public void stopTimer() {
+        isTimerRunning = false;
+        handler.removeCallbacksAndMessages(null);
     }
 
     // DO PLEASE: method to update player health
