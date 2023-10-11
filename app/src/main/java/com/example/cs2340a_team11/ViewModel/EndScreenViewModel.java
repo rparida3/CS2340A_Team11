@@ -25,6 +25,6 @@ public class EndScreenViewModel extends ViewModel {
     }
 
     public int calcTotalScore() {
-        return 5;
+        return player.getScore();
     }
 }

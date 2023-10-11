@@ -19,5 +19,8 @@ public class EndingActivity extends AppCompatActivity {
         endScreenViewModel = new ViewModelProvider(this).get(EndScreenViewModel.class);
 
         // DO PLEASE: display end results by fetching info from view-model
+        TextView currentScore = findViewById(R.id.score);
+        currentScore.setText(Integer.toString(endScreenViewModel.calcTotalScore()));
+
     }
 }
