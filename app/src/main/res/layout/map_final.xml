@@ -19,12 +19,12 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/nextBtn"
+        android:id="@+id/endBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="10dp"
-        android:text="Map One"
+        android:text="To end"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/healthBar"
@@ -55,7 +55,7 @@
         android:layout_marginEnd="10dp"
         android:progress="100"
         android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/nextBtn"
+        app:layout_constraintEnd_toStartOf="@+id/endBtn"
         app:layout_constraintStart_toEndOf="@+id/character_photo"
         app:layout_constraintTop_toBottomOf="@+id/healthText"
         tools:visibility="visible" />
