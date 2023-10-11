@@ -1,7 +1,10 @@
 package com.example.cs2340a_team11.View;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +24,16 @@ public class EndingActivity extends AppCompatActivity {
         // DO PLEASE: display end results by fetching info from view-model
         TextView currentScore = findViewById(R.id.score);
         currentScore.setText(Integer.toString(endScreenViewModel.calcTotalScore()));
-
+        Button restart = (Button) findViewById(R.id.restart);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restartGame();
+            }
+        });
+    }
+    public void restartGame() {
+        Intent Restart = new Intent(this, StartScreen.class);
+        startActivity(Restart);
     }
 }
