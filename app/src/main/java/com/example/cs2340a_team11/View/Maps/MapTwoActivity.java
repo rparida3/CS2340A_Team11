@@ -44,6 +44,7 @@ public class MapTwoActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gameScreenViewModel.stopTimer();
                 progressToNextMap();
             }
         });
@@ -57,6 +58,9 @@ public class MapTwoActivity extends AppCompatActivity {
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
         mapViewItem.setY(BitmapInterface.TILE_SIZE * 2);
+
+        TextView timeView = findViewById(R.id.scoreUpdate);
+        gameScreenViewModel.runTimer(timeView);
     }
 
 

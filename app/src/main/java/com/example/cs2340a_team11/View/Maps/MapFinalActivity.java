@@ -45,6 +45,7 @@ public class MapFinalActivity extends AppCompatActivity {
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gameScreenViewModel.stopTimer();
                 progressToEndScreen();
             }
         });
@@ -54,6 +55,9 @@ public class MapFinalActivity extends AppCompatActivity {
 
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
+
+        TextView timeView = findViewById(R.id.scoreUpdate);
+        gameScreenViewModel.runTimer(timeView);
     }
 
 
