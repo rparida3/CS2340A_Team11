@@ -51,7 +51,7 @@ public class Player {
         }
     }
 
-    public static Player getPlayer() {
+    public static synchronized Player getPlayer() {
         if (player == null) {
             player = new Player(R.id.wizardButton, "");
         }
@@ -106,14 +106,21 @@ public class Player {
             this.movement = 8;
             this.hp = 50;
         }
+        if (difficulty.equals("Medium")) {
+            hp *= 0.8;
+            movement *= 0.8;
+        } else if (difficulty.equals("Hard")) {
+            hp *= 0.6;
+            movement *= 0.6;
+        }
 
     }
     public int getCharId() {
         return this.charId;
     }
     public void setDifficulty(String difficulty) {
+        this.setCharId(charId);
         this.difficulty = difficulty;
-        this.setCharId(this.charId);
         if (difficulty.equals("Medium")) {
             hp *= 0.8;
             movement *= 0.8;

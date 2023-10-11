@@ -52,6 +52,7 @@ public class GameScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                gameScreenViewModel.stopTimer();
                 progressToMapOne();
             }
         });
