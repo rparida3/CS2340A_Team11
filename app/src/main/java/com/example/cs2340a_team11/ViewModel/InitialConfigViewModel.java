@@ -25,7 +25,7 @@ public class InitialConfigViewModel extends ViewModel {
     }
 
     public boolean checkName(String playerName) {
-        if (playerName.trim().isEmpty() || playerName == null || playerName.equals("")) {
+        if (playerName == null || playerName.trim().isEmpty() || playerName.equals("")) {
             System.out.println("Input valid name, please!");
             return false;
         }
