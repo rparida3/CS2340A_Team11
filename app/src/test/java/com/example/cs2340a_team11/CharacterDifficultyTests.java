@@ -1,9 +1,7 @@
 package com.example.cs2340a_team11;
 
 import static org.junit.Assert.assertEquals;
-
 import com.example.cs2340a_team11.Model.Player;
-
 import org.junit.Test;
 
 public class CharacterDifficultyTests {
