@@ -51,7 +51,7 @@ public class Player {
         }
     }
 
-    public static Player getPlayer() {
+    public static synchronized Player getPlayer() {
         if (player == null) {
             player = new Player(R.id.wizardButton, "");
         }
