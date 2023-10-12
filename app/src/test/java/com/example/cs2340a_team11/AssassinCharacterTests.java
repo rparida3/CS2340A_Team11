@@ -9,7 +9,7 @@ public class AssassinCharacterTests {
     @Test
     public void testAssassinMovement() {
         Player.getPlayer().setCharId(R.id.assassinButton);
-        assertEquals(Player.getPlayer().getMovement(), 10, 0);
+        assertEquals(Player.getPlayer().getMovement(), 10, 0.0);
 
         Player.getPlayer().setDifficulty("Hard");
         assertEquals(Player.getPlayer().getHP(), 6, 0);
@@ -21,6 +21,6 @@ public class AssassinCharacterTests {
         assertEquals(Player.getPlayer().getHP(), 20, 0);
 
         Player.getPlayer().setDifficulty("Medium");
-        assertEquals(Player.getPlayer().getHP(), 16, 0);
+        assertEquals(Player.getPlayer().getHP(), 16, 0.0);
     }
 }
