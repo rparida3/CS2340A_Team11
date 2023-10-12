@@ -11,9 +11,9 @@ import com.example.cs2340a_team11.R;
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
 
-    int charId = player.getCharId();
+    private int charId = player.getCharId();
 
-    public int totalScore = player.getScore();
+    private int totalScore = player.getScore();
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;

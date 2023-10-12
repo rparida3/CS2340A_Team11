@@ -13,12 +13,12 @@ public enum Background implements BitmapInterface {
     private Bitmap[] sprites;
 
     Background(int resID, int tilesInWidth, int tilesInHeight) {
-        options.inScaled = false;
+        OPTIONS.inScaled = false;
         sprites = new Bitmap[tilesInHeight * tilesInWidth];
 
         // find a way to deal with getGameContext()
         Bitmap spriteSheet = BitmapFactory.decodeResource(
-                MapOneActivity.getGameContext().getResources(), resID, options);
+                MapOneActivity.getGameContext().getResources(), resID, OPTIONS);
 
         // generates the map
         for (int j = 0; j < tilesInHeight; j++) {

@@ -3,10 +3,7 @@ package com.example.cs2340a_team11.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,8 +18,6 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
-
-import java.util.Locale;
 
 public class GameScreenActivity extends AppCompatActivity {
     private static Context gameContext;

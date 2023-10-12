@@ -4,10 +4,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import com.example.cs2340a_team11.Environment.createdMap;
+import com.example.cs2340a_team11.Environment.CreatedMap;
 
 public class MapView extends View {
-    private createdMap testMap;
+    private CreatedMap testMap;
     public MapView(Context context, int mapValue) {
         super(context);
 
@@ -97,7 +97,7 @@ public class MapView extends View {
             mapArray[1][1] = 39; // ladder
             mapArray[6][5] = 96; // torch
         }
-        testMap = new createdMap(mapArray);
+        testMap = new CreatedMap(mapArray);
     }
 
     protected void onDraw(Canvas canvas) {

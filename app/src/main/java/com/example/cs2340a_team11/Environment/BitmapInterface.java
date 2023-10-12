@@ -8,7 +8,7 @@ public interface BitmapInterface {
     public static final int PIX_SIZE = 16;
     public static final int SCALE_FACTOR = 10;
     public static int TILE_SIZE = PIX_SIZE * SCALE_FACTOR;
-    BitmapFactory.Options options = new BitmapFactory.Options();
+    BitmapFactory.Options OPTIONS = new BitmapFactory.Options();
 
     // scale the size of the map
     default Bitmap getScaledBitmap(Bitmap bitmap) {
