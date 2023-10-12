@@ -8,11 +8,12 @@ public class AssassinCharacterTests {
 
     @Test
     public void testAssassinMovement() {
+        Player.getPlayer().setDifficulty("Easy");
         Player.getPlayer().setCharId(R.id.assassinButton);
         assertEquals(Player.getPlayer().getMovement(), 10, 0.0);
 
         Player.getPlayer().setDifficulty("Hard");
-        assertEquals(Player.getPlayer().getHP(), 6, 0);
+        assertEquals(Player.getPlayer().getMovement(), 6, 0);
     }
 
     @Test

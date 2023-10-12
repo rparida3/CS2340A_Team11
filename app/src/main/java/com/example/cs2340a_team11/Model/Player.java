@@ -119,16 +119,8 @@ public class Player {
         return this.charId;
     }
     public void setDifficulty(String difficulty) {
-        this.setCharId(charId);
         this.difficulty = difficulty;
-        if (difficulty.equals("Medium")) {
-            hp *= 0.8;
-            movement *= 0.8;
-        } else if (difficulty.equals("Hard")) {
-            hp *= 0.6;
-            movement *= 0.6;
-        }
-
+        this.setCharId(charId);
     }
     public String getDifficulty() {
         return this.difficulty;
