@@ -6,9 +6,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
+
+
+
+
 import com.example.cs2340a_team11.Model.Player;
+
 import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
+
+
 
 
 public class UnitTests {
@@ -91,4 +98,15 @@ public class UnitTests {
         player.setCharId(knightId);
         assertEquals(hard * 50, player.getHP(), 0.0);
     }
+    @Test
+    public void validName_returnsTrue() {
+        InitialConfigViewModel sample = new InitialConfigViewModel();
+        assertTrue(sample.checkName("John"));
+    }
+    @Test
+    public void validNameWithSpaces_returnsTrue() {
+        InitialConfigViewModel sample = new InitialConfigViewModel();
+        assertTrue(sample.checkName("Alice Johnson"));
+    }
+
 }
