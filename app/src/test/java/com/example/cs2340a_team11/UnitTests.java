@@ -49,10 +49,10 @@ public class UnitTests {
 
     @Test
     public void healthBasedOnDifficultyAndChar() {
-        int wizId = 2131231240;
-        int assassinId = 2131230806;
-        int knightId = 2131230962;
         Player player = Player.getPlayer();
+        int wizId = R.id.wizardButton;
+        int assassinId = R.id.assassinButton;
+        int knightId = R.id.knightButton;
 
         //Easy
         player.setDifficulty("Easy");
