@@ -59,7 +59,6 @@ public class GameScreenActivity extends AppCompatActivity {
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
-
     }
 
 
