@@ -12,73 +12,25 @@
         android:layout_marginStart="170dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="183dp"
-        android:layout_marginBottom="26dp"
         android:text="@string/leaderboard"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="146dp"
-        android:layout_marginBottom="33dp"
-        android:text="@string/result"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/enemies_killed"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboard" />
-
-    <TextView
-        android:id="@+id/enemies_killed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="54dp"
-        android:text="@string/enemies_killed"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/boosts_collected"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
-
-    <TextView
-        android:id="@+id/boosts_collected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="177dp"
-        android:text="@string/boosts_collected"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enemies_killed" />
-
-    <TextView
-        android:id="@+id/score"
+        android:id="@+id/curr_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="49dp"
         android:layout_marginEnd="181dp"
         android:layout_marginBottom="203dp"
-        android:text="@string/total_score"
+        android:text="@string/curr_score"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boosts_collected" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/restart"
@@ -89,5 +41,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score" />
+        app:layout_constraintTop_toBottomOf="@+id/curr_score" />
+
+    <TextView
+        android:id="@+id/scoreList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="179dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaderboard" />
 </androidx.constraintlayout.widget.ConstraintLayout>
