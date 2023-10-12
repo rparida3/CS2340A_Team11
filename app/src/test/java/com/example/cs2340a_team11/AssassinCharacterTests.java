@@ -9,18 +9,18 @@ public class AssassinCharacterTests {
     @Test
     public void testAssassinMovement() {
         Player.getPlayer().setCharId(R.id.assassinButton);
-        assertEquals(Player.getPlayer().getMovement(), 10);
+        assertEquals(Player.getPlayer().getMovement(), 10, 0);
 
         Player.getPlayer().setDifficulty("Hard");
-        assertEquals(Player.getPlayer().getHP(), 6);
+        assertEquals(Player.getPlayer().getHP(), 6, 0);
     }
 
     @Test
     public void testAssassinHP() {
         Player.getPlayer().setCharId(R.id.assassinButton);
-        assertEquals(Player.getPlayer().getHP(), 20);
+        assertEquals(Player.getPlayer().getHP(), 20, 0);
 
         Player.getPlayer().setDifficulty("Medium");
-        assertEquals(Player.getPlayer().getHP(), 16);
+        assertEquals(Player.getPlayer().getHP(), 16, 0);
     }
 }
