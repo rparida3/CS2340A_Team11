@@ -2,6 +2,7 @@ package com.example.cs2340a_team11.Model;
 
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -144,20 +145,18 @@ public class Player {
         this.score = score;
     }
 
-    public void collisionDetection(double playerX, double playerY, Bitmap map) {
+    public boolean collisionDetection(double playerX, double playerY, Bitmap map) {
         Player player = getPlayer();
         BitmapInterface interfaceInstance = new BitmapInterface() {
             @Override
             public Bitmap getScaledBitmap(Bitmap bitmap) {
                 return BitmapInterface.super.getScaledBitmap(bitmap);
             }
-        }
-
+        };
 
         double playerPositionX = playerX;
         double playerPositionY = playerY;
         Bitmap bitmap = new Bitmap();
-
 
         // Calculate the map coordinates for the player's position
         for (int y = 0; y <= interfaceInstance.PIX_SIZE * bitmap.getHeight(); y++) {
@@ -165,7 +164,22 @@ public class Player {
                 // Ensure the coordinates are within the bounds of the map
                 if (x >= 0 && y >= 0 && x < map.getWidth() && y < map.getHeight()) {
                     // Check if the cell at (x, y) in the map contains a wall
-                    if (map.getPixel(x, y) == wallColor) {
+
+                    // Save the player's current position.
+                    int position = map.getPixel(x, y);
+
+                    // Rough color values for the wall boundary.
+                    int pixelRed = Color.red(position);
+                    int pixelGreen = Color.green(position);
+                    int pixelBlue = Color.blue(position);
+
+                    // Check if the colors of the position match that of the wall.
+                    boolean redTrue = pixelRed == 23;
+                    boolean blueTrue = pixelBlue == 23;
+                    boolean greenTrue = pixelGreen == 14;
+
+                    // If the colors match, there is a collision.
+                    if (redTrue && blueTrue && greenTrue) {
                         // Try to get wall color
                         return true; // Player is touching the wall
                     }
