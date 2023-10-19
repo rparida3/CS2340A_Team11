@@ -156,7 +156,8 @@ public class Player {
 
         double playerPositionX = playerX;
         double playerPositionY = playerY;
-        Bitmap bitmap = new Bitmap();
+        Bitmap bitmap = interfaceInstance.getScaledBitmap(null);
+        // TODO: FIND out how to get or create bitmap object.
 
         // Calculate the map coordinates for the player's position
         for (int y = 0; y <= interfaceInstance.PIX_SIZE * bitmap.getHeight(); y++) {
@@ -174,13 +175,12 @@ public class Player {
                     int pixelBlue = Color.blue(position);
 
                     // Check if the colors of the position match that of the wall.
-                    boolean redTrue = pixelRed == 23;
-                    boolean blueTrue = pixelBlue == 23;
-                    boolean greenTrue = pixelGreen == 14;
+                    boolean redTrue = (pixelRed >= 10) || (pixelRed <= 30); //TRUE RED: 23
+                    boolean blueTrue = (pixelBlue >= 10) || (pixelBlue <= 30); //TRUE BLUE: 23
+                    boolean greenTrue = (pixelGreen >= 0) || (pixelGreen <= 30); //TRUE GREEN: 14
 
                     // If the colors match, there is a collision.
                     if (redTrue && blueTrue && greenTrue) {
-                        // Try to get wall color
                         return true; // Player is touching the wall
                     }
                 }
