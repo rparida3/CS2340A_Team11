@@ -1,7 +1,12 @@
 package com.example.cs2340a_team11.Model;
 
 
+import android.graphics.Bitmap;
+
+
+import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.R;
+
 
 public class Player {
     private int score = 0;
@@ -140,20 +145,33 @@ public class Player {
     }
 
     public void collisionDetection(double playerX, double playerY, Bitmap map) {
+        Player player = getPlayer();
+        BitmapInterface interfaceInstance = new BitmapInterface() {
+            @Override
+            public Bitmap getScaledBitmap(Bitmap bitmap) {
+                return BitmapInterface.super.getScaledBitmap(bitmap);
+            }
+        }
+
+
         double playerPositionX = playerX;
         double playerPositionY = playerY;
+        Bitmap bitmap = new Bitmap();
+
 
         // Calculate the map coordinates for the player's position
-        for (int y = mapY; y <= mapBottom; y++) {
-            for (int x = mapX; x <= mapRight; x++) {
+        for (int y = 0; y <= interfaceInstance.PIX_SIZE * bitmap.getHeight(); y++) {
+            for (int x = 0; x <= interfaceInstance.PIX_SIZE * bitmap.getWidth(); x++) {
                 // Ensure the coordinates are within the bounds of the map
                 if (x >= 0 && y >= 0 && x < map.getWidth() && y < map.getHeight()) {
                     // Check if the cell at (x, y) in the map contains a wall
                     if (map.getPixel(x, y) == wallColor) {
+                        // Try to get wall color
                         return true; // Player is touching the wall
                     }
                 }
             }
         }
+        return false;
     }
 }
