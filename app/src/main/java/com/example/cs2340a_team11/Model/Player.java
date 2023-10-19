@@ -138,4 +138,22 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public void collisionDetection(double playerX, double playerY, Bitmap map) {
+        double playerPositionX = playerX;
+        double playerPositionY = playerY;
+
+        // Calculate the map coordinates for the player's position
+        for (int y = mapY; y <= mapBottom; y++) {
+            for (int x = mapX; x <= mapRight; x++) {
+                // Ensure the coordinates are within the bounds of the map
+                if (x >= 0 && y >= 0 && x < map.getWidth() && y < map.getHeight()) {
+                    // Check if the cell at (x, y) in the map contains a wall
+                    if (map.getPixel(x, y) == wallColor) {
+                        return true; // Player is touching the wall
+                    }
+                }
+            }
+        }
+    }
 }
