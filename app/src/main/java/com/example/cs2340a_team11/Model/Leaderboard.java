@@ -65,7 +65,8 @@ public class Leaderboard {
         return highestScores;
     }
 
-    Comparator<Score> scoreComparator = new Comparator<Score>() {
+
+    private Comparator<Score> scoreComparator = new Comparator<Score>() {
         @Override
         public int compare(Score score1, Score score2) {
             return score2.getScore() - score1.getScore();

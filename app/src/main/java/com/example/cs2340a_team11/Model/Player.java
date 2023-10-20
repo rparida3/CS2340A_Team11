@@ -5,24 +5,21 @@ import com.example.cs2340a_team11.R;
 
 public class Player {
     private int score = 0;
-    private double x;
-    private double y;
-    private double movement;
-
+    private float x;
+    private float y;
+    private float movement;
     private int hp;
     private int charId;
-
     private String difficulty;
     private String name;
     private static Player player;
 
-
+    // set random x, y for now
     private Player(int charId, String name) {
         this(0, 0, R.id.wizardButton, "Easy", name);
     }
 
-    // let 0 = wizard (default), 1 = assassin, 2 = knight
-    private Player(double x, double y, int charId, String difficulty, String name) {
+    private Player(float x, float y, int charId, String difficulty, String name) {
         this.name = name;
         this.charId = charId;
 
@@ -70,22 +67,22 @@ public class Player {
     public void moveRight() {
         setX(Math.min(getX() + movement, 720));
     }
-    public double getMovement() {
+    public float getMovement() {
         return this.movement;
     }
-    public void setMovement(double movementSpeed) {
+    public void setMovement(float movementSpeed) {
         this.movement = movementSpeed;
     }
-    public double getY() {
+    public float getY() {
         return y;
     }
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
-    public double getX() {
+    public float getX() {
         return x;
     }
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
     }
     public void setHP(int hp) {

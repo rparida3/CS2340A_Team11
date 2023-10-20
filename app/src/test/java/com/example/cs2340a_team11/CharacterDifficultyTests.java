@@ -8,7 +8,7 @@ public class CharacterDifficultyTests {
     @Test
     public void testCharacterIdHealth() {
         Player.getPlayer().setCharId(R.id.wizardButton);
-        assertEquals(Player.getPlayer().getHP(), 30);
+        assertEquals(Player.getPlayer().getHP(), 30, 0);
     }
 
     @Test
