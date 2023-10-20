@@ -1,6 +1,8 @@
 package com.example.cs2340a_team11.ViewModel;
 
 import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
@@ -8,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.PlayerView;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
@@ -72,6 +75,22 @@ public class GameScreenViewModel extends ViewModel {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
-
+    public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                player.moveLeft();
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                player.moveRight();
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                player.moveUp();
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                player.moveDown();
+                break;
+        }
+        view.updatePosition(player.getX(), player.getY());
+        return true;
     // DO PLEASE: method to update player health
-}
+}}

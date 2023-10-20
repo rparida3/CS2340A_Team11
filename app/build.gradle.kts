@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
 }
-
+tasks.register("prepareKotlinBuildScriptModel"){}
 android {
     namespace = "com.example.cs2340a_team11"
     compileSdk = 33

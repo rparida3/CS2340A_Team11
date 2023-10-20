@@ -32,6 +32,7 @@ public class PlayerSprite {
         // x and y for now do nothing, but can use them to get location later
         x = 264;
         y = 264;
+
     }
 
     public Bitmap getSprite() {

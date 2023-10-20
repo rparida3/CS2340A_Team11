@@ -30,20 +30,18 @@ public class Player {
         this.difficulty = difficulty;
 
         if (this.charId == R.id.wizardButton) {
-            this.movement = 5;
+            this.movement = 25;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement = 10;
+            this.movement = 50;
             this.hp = 20;
         } else {
-            this.movement = 8;
+            this.movement = 40;
             this.hp = 50;
         }
         if (difficulty.equals("Medium")) {
-            this.movement *= .80;
             this.hp *= .80;
         } else if (difficulty.equals("Hard")) {
-            this.movement *= .60;
             this.hp *= .60;
         }
     }
@@ -56,16 +54,16 @@ public class Player {
     }
 
     public void moveUp() {
-        setY(Math.max(0, getY() - movement));
+        setY(Math.max(350, getY() - movement));
     }
     public void moveDown() {
-        setY(Math.min(getY() + movement, 720));
+        setY(Math.min(getY() + movement, 1250));
     }
     public void moveLeft() {
-        setX(Math.max(0, getX() - movement));
+        setX(Math.max(150, getX() - movement));
     }
     public void moveRight() {
-        setX(Math.min(getX() + movement, 720));
+        setX(Math.min(getX() + movement, 800));
     }
     public float getMovement() {
         return this.movement;
@@ -94,21 +92,19 @@ public class Player {
     public void setCharId(int charId) {
         this.charId = charId;
         if (this.charId == R.id.wizardButton) {
-            this.movement = 5;
+            this.movement = 50;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement = 10;
+            this.movement = 100;
             this.hp = 20;
         } else {
-            this.movement = 8;
+            this.movement = 80;
             this.hp = 50;
         }
         if (difficulty.equals("Medium")) {
             hp *= 0.8;
-            movement *= 0.8;
         } else if (difficulty.equals("Hard")) {
             hp *= 0.6;
-            movement *= 0.6;
         }
 
     }

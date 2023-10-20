@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,12 +20,15 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
+import java.security.Key;
+
 public class MapOneActivity extends AppCompatActivity {
 
     private PlayerView playerView;
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
+    private KeyEvent keyEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,16 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+
+        // player movement
+        //if (keyEvent != null) {
+            //gameScreenViewModel.onKeyDown(keyEvent.getKeyCode(), keyEvent, playerView);
+        //}
+
+    }
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+        gameScreenViewModel.onKeyDown(keycode, event, playerView);
+        return true;
     }
 
     public static Context getGameContext() {

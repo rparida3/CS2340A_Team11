@@ -5,12 +5,14 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import com.example.cs2340a_team11.View.Characters.PlayerSprite;
+import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class PlayerView extends View {
     private float x;
     private float y;
     private PlayerSprite playerSprite;
     private int charId;
+    private GameScreenViewModel gameScreenViewModel;
 
     public PlayerView(Context context, float x, float y, int charId) {
         super(context);
@@ -24,7 +26,6 @@ public class PlayerView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        // DO PLEASE: refactor to take in different selections of character
         canvas.drawBitmap(playerSprite.getSprite(), x, y, null);
     }
 
