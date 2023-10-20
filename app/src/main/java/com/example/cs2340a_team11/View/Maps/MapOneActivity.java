@@ -50,7 +50,7 @@ public class MapOneActivity extends AppCompatActivity {
                 progressToNextMap();
             }
         });
-/*
+
         MapView mapView = new MapView(this, 2);
         MapView mapViewItems = new MapView(this, 12);
         layout.addView(mapView);
@@ -60,12 +60,12 @@ public class MapOneActivity extends AppCompatActivity {
         mapView.setZ(-1);
         mapView.setY(BitmapInterface.TILE_SIZE * 2);
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
-*/
+
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
+        playerView = new PlayerView(this, player.getX() + 300, player.getY() + 500, player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
