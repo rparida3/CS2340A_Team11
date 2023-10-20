@@ -57,20 +57,21 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(mapViewItems);
 
         // offset the position of map to show in background AND below the info bar
+        int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
-        mapView.setY(BitmapInterface.TILE_SIZE * 2);
+        mapView.setY(offsetY);
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        playerView = new PlayerView(this, player.getX() + 300, player.getY() + 500, player.getCharId());
+        gameScreenViewModel.setPlayerStarting(1);
+        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
     }
-
 
     public static Context getGameContext() {
         return gameContext;

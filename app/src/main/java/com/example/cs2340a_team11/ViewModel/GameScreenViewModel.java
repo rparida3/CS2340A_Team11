@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 
@@ -32,6 +33,15 @@ public class GameScreenViewModel extends ViewModel {
         }
         return R.drawable.wizard;
     }
+
+    public void setPlayerStarting(int mapLevel) {
+        if (mapLevel == 1) {
+            // sets in [4][3] of mapView array
+            player.setY(4 * BitmapInterface.TILE_SIZE);
+            player.setX(3 * BitmapInterface.TILE_SIZE);
+        }
+    }
+
     public void runTimer(TextView timeView) {
         handler.post(new Runnable() {
             @Override
