@@ -16,12 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapTwoActivity extends AppCompatActivity {
 
     private static Context gameContext;
     private Player player = Player.getPlayer();
+    private PlayerView playerView;
     private GameScreenViewModel gameScreenViewModel;
 
     @Override
@@ -55,12 +57,20 @@ public class MapTwoActivity extends AppCompatActivity {
         layout.addView(mapViewItem);
 
         // offset the position of map to show in background AND below the info bar
+        int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
-        mapView.setY(BitmapInterface.TILE_SIZE * 2);
-        mapViewItem.setY(BitmapInterface.TILE_SIZE * 2);
+        mapView.setY(offsetY);
+        mapViewItem.setY(offsetY);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
+
+        // render playerView
+        gameScreenViewModel.setPlayerStarting(2);
+        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
+        layout.addView(playerView);
+        System.out.println("Player view added");
+        playerView.bringToFront();
     }
 
 

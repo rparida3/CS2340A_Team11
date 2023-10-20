@@ -6,7 +6,10 @@ import android.graphics.BitmapFactory;
 import com.example.cs2340a_team11.R;
 
 public class PlayerSprite {
-    private int x, y, width, height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
     private Bitmap sprite;
 
     public PlayerSprite(Resources res, int charId) {
@@ -18,13 +21,13 @@ public class PlayerSprite {
             sprite = BitmapFactory.decodeResource(res, R.drawable.samurai);
         }
 
-        width = sprite.getWidth() / 2;
-        height = sprite.getHeight() / 2;
+        width = 160;
+        height = 160;
 
         // create variables for scaling if needed
 
 
-        sprite = Bitmap.createScaledBitmap(sprite, 160, 160, false);
+        sprite = Bitmap.createScaledBitmap(sprite, width, height, false);
 
         // x and y for now do nothing, but can use them to get location later
         x = 264;

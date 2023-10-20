@@ -39,6 +39,17 @@ public class GameScreenViewModel extends ViewModel {
             // sets in [4][3] of mapView array
             player.setY(4 * BitmapInterface.TILE_SIZE);
             player.setX(3 * BitmapInterface.TILE_SIZE);
+        } else if (mapLevel == 2) {
+            // sets in [6][1]
+            player.setY(6 * BitmapInterface.TILE_SIZE);
+            player.setX(BitmapInterface.TILE_SIZE);
+        } else if (mapLevel == 3) {
+            // sets in [1][1]
+            player.setY(BitmapInterface.TILE_SIZE);
+            player.setX(BitmapInterface.TILE_SIZE);
+        } else {
+            player.setY(0);
+            player.setX(0);
         }
     }
 
