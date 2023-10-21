@@ -3,26 +3,28 @@ package com.example.cs2340a_team11.Environment;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class CreatedMap {
     private int[][] spriteIds;
 
+    private ArrayList<Rect> walls = new ArrayList<Rect>();
     public CreatedMap(int[][] spriteIds) {
         this.spriteIds = spriteIds;
     }
 
     // loops through mapArray in MapView and assigns sprites
-    public void draw(Canvas c) {
+    public ArrayList<Rect> draw(Canvas c) {
         for (int j = 0; j < spriteIds.length; j++) {
             for (int i = 0; i < spriteIds[j].length; i++) {
                 // check if wall, then store coords
                 int currSprite = spriteIds[j][i];
-
-                //if (Arrays.asList(BitmapInterface.COLLISIONS).contains(currSprite)) {
                 if (IntStream.of(BitmapInterface.COLLISIONS).anyMatch(n -> n == currSprite)) {
-                    Rect wall = new Rect(j * 160, i * 160, (j + 1) * 160, (i + 1) * 160);
+                    // note: i and j are swapped bc 2D-arrays weird
+                    Rect wall = new Rect(i * 160, j * 160, (i + 1) * 160, (j + 1) * 160);
+                    System.out.println(wall);
+                    walls.add(wall);
                 }
 
                 if (currSprite < 0) {
@@ -35,5 +37,6 @@ public class CreatedMap {
                 }
             }
         }
+        return walls;
     }
 }

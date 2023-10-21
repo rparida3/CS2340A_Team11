@@ -2,12 +2,18 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 
 import com.example.cs2340a_team11.Environment.CreatedMap;
 
+import java.util.ArrayList;
+
 public class MapView extends View {
     private CreatedMap testMap;
+    private ArrayList<Rect> walls;
     public MapView(Context context, int mapValue) {
         super(context);
 
@@ -101,7 +107,13 @@ public class MapView extends View {
     }
 
     protected void onDraw(Canvas canvas) {
+        Paint color = new Paint();
+        color.setColor(Color.BLACK);
+        color.setAlpha(100);
         super.onDraw(canvas);
-        testMap.draw(canvas);
+        walls = testMap.draw(canvas);
+        for (Rect wall : walls) {
+            canvas.drawRect(wall, color);
+        }
     }
 }
