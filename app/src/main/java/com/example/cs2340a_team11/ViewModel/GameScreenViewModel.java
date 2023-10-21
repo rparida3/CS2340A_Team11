@@ -97,7 +97,7 @@ public class GameScreenViewModel extends ViewModel {
         }
         view.updatePosition(player.getX(), player.getY());
         return true;
-        // DO PLEASE: method to update player health
-
     }
+
+    // DO PLEASE: method to update player health
 }

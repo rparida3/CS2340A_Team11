@@ -65,6 +65,7 @@ public class MapOneActivity extends AppCompatActivity {
         int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
         mapView.setY(offsetY);
+        
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);

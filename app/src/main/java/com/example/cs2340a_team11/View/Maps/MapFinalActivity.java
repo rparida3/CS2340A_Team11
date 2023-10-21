@@ -22,7 +22,6 @@ import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapFinalActivity extends AppCompatActivity {
-
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private PlayerView playerView;
