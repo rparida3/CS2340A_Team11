@@ -28,7 +28,6 @@ public class MapOneActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
-    private KeyEvent keyEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,21 +69,16 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        gameScreenViewModel.setPlayerStarting(1);
         playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
+        gameScreenViewModel.setPlayerStarting(1, playerView);
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        // player movement
-        //if (keyEvent != null) {
-            //gameScreenViewModel.onKeyDown(keyEvent.getKeyCode(), keyEvent, playerView);
-        //}
 
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
-        gameScreenViewModel.onKeyDown(keycode, event, playerView);
-        return true;
+        return gameScreenViewModel.onKeyDown(keycode, event, playerView);
     }
 
     public static Context getGameContext() {

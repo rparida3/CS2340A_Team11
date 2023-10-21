@@ -65,8 +65,8 @@ public class MapFinalActivity extends AppCompatActivity {
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        gameScreenViewModel.setPlayerStarting(3);
         playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
+        gameScreenViewModel.setPlayerStarting(3, playerView);
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
@@ -82,7 +82,13 @@ public class MapFinalActivity extends AppCompatActivity {
         startActivity(progressToEndIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
-        gameScreenViewModel.onKeyDown(keycode, event, playerView);
-        return true;
+        if (keycode == KeyEvent.KEYCODE_DPAD_DOWN
+                && player.getY() + player.getMovement() > 825 && player.getX() < 600) {
+            return false;
+        } else if (keycode == KeyEvent.KEYCODE_DPAD_LEFT
+                && player.getY() > 825 && player.getX() - player.getMovement() < 625) {
+            return false;
+        }
+        return gameScreenViewModel.onKeyDown(keycode, event, playerView);
     }
 }

@@ -21,6 +21,7 @@ public class GameScreenViewModel extends ViewModel {
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
+
     public GameScreenViewModel() {
 
     }
@@ -37,23 +38,24 @@ public class GameScreenViewModel extends ViewModel {
         return R.drawable.wizard;
     }
 
-    public void setPlayerStarting(int mapLevel) {
+    public void setPlayerStarting(int mapLevel, PlayerView playerView) {
         if (mapLevel == 1) {
             // sets in [4][3] of mapView array
             player.setY(4 * BitmapInterface.TILE_SIZE);
             player.setX(3 * BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 2) {
             // sets in [6][1]
-            player.setY(6 * BitmapInterface.TILE_SIZE);
+            player.setY(8 * BitmapInterface.TILE_SIZE);
             player.setX(BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 3) {
             // sets in [1][1]
-            player.setY(BitmapInterface.TILE_SIZE);
-            player.setX(BitmapInterface.TILE_SIZE);
+            player.setY(8 * BitmapInterface.TILE_SIZE);
+            player.setX(5 * BitmapInterface.TILE_SIZE);
         } else {
             player.setY(0);
             player.setX(0);
         }
+        playerView.updatePosition(player.getX(), player.getY());
     }
 
     public void runTimer(TextView timeView) {
@@ -71,10 +73,12 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
+
     public void stopTimer() {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -92,5 +96,6 @@ public class GameScreenViewModel extends ViewModel {
         }
         view.updatePosition(player.getX(), player.getY());
         return true;
-    // DO PLEASE: method to update player health
-}}
+    }
+    // DO PLEASE: method to update player health}}
+}
