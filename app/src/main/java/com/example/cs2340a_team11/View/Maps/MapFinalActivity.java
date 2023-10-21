@@ -42,6 +42,10 @@ public class MapFinalActivity extends AppCompatActivity {
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
+
+
+
+
         endButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

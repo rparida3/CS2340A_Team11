@@ -41,6 +41,55 @@ public class MapOneActivity extends AppCompatActivity {
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
+
+        // Begin Movement
+        ImageView player = (ImageView) findViewById(R.id.player);
+        Button upButton = (Button) findViewById(R.id.upButton);
+        Button downButton = (Button) findViewById(R.id.downButton);
+        Button leftButton = (Button) findViewById(R.id.leftButton);
+        Button rightButton = (Button) findViewById(R.id.rightButton);
+
+        final int[] testX = {10};
+        final int[] testY = {10};
+        upButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testY[0] -= 10;
+                player.setY(testY[0]);
+            }
+        });
+
+        downButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testY[0] += 10;
+                player.setY(-10);
+            }
+        });
+
+        leftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testX[0] -= 10;
+                player.setX(testX[0]);
+            }
+        });
+
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testX[0] += 10;
+                player.setX(testX[0]);
+            }
+        });
+
+
+        // End Movement
+
+
+
+
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

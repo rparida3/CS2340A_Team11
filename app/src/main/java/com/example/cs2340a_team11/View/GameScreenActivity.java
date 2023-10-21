@@ -36,6 +36,8 @@ public class GameScreenActivity extends AppCompatActivity {
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
 
+
+
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
         healthBar.setProgress(player.getHP());
