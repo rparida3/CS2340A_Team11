@@ -68,7 +68,7 @@ public class MapTwoActivity extends AppCompatActivity {
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(2);
-        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
+        playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();

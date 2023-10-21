@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.View.Maps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -71,16 +72,10 @@ public class MapOneActivity extends AppCompatActivity {
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
-        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
+        playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
-
-        // player movement
-        //if (keyEvent != null) {
-            //gameScreenViewModel.onKeyDown(keyEvent.getKeyCode(), keyEvent, playerView);
-        //}
-
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView);

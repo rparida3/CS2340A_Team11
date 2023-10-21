@@ -40,20 +40,21 @@ public class GameScreenViewModel extends ViewModel {
     public void setPlayerStarting(int mapLevel) {
         if (mapLevel == 1) {
             // sets in [4][3] of mapView array
-            player.setY(4 * BitmapInterface.TILE_SIZE);
+            player.setY(4 * BitmapInterface.TILE_SIZE + 320);
             player.setX(3 * BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 2) {
             // sets in [6][1]
-            player.setY(6 * BitmapInterface.TILE_SIZE);
+            player.setY(6 * BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 3) {
             // sets in [1][1]
-            player.setY(BitmapInterface.TILE_SIZE);
+            player.setY(BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
         } else {
-            player.setY(0);
+            player.setY(320);
             player.setX(0);
         }
+        player.displayPosition();
     }
 
     public void runTimer(TextView timeView) {
@@ -75,22 +76,28 @@ public class GameScreenViewModel extends ViewModel {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view) {
+        player.displayPosition();
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                player.moveLeft();
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                player.moveRight();
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                player.moveUp();
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                player.moveDown();
-                break;
+        case KeyEvent.KEYCODE_DPAD_LEFT:
+            player.moveLeft();
+            break;
+        case KeyEvent.KEYCODE_DPAD_RIGHT:
+            player.moveRight();
+            break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+            player.moveUp();
+            break;
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+            player.moveDown();
+            break;
+        default:
+            break;
         }
         view.updatePosition(player.getX(), player.getY());
         return true;
-    // DO PLEASE: method to update player health
-}}
+        // DO PLEASE: method to update player health
+
+    }
+}

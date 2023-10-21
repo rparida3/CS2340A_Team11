@@ -54,16 +54,16 @@ public class Player {
     }
 
     public void moveUp() {
-        setY(Math.max(350, getY() - movement));
+        setY(getY() - 160);
     }
     public void moveDown() {
-        setY(Math.min(getY() + movement, 1250));
+        setY(getY() + 160);
     }
     public void moveLeft() {
-        setX(Math.max(150, getX() - movement));
+        setX(getX() - 160);
     }
     public void moveRight() {
-        setX(Math.min(getX() + movement, 800));
+        setX(getX() + 160);
     }
     public float getMovement() {
         return this.movement;
@@ -82,6 +82,9 @@ public class Player {
     }
     public void setX(float x) {
         this.x = x;
+    }
+    public void displayPosition() {
+        System.out.println("X:" + player.getX() + "/ Y:" + player.getY());
     }
     public void setHP(int hp) {
         this.hp = hp;
