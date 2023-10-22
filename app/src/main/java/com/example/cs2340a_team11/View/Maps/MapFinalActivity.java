@@ -2,6 +2,7 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,16 +17,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EndingActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+
+import java.util.ArrayList;
 
 public class MapFinalActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private PlayerView playerView;
     private GameScreenViewModel gameScreenViewModel;
+    private Wall walls = Wall.getWall();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +83,12 @@ public class MapFinalActivity extends AppCompatActivity {
 
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
+        walls.resetWalls();
+        walls.isDrawn = false;
         startActivity(progressToEndIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
-        gameScreenViewModel.onKeyDown(keycode, event, playerView);
+        gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         return true;
     }
 }

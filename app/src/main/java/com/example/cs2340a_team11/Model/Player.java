@@ -14,7 +14,6 @@ public class Player {
     private String name;
     private static Player player;
 
-    // set random x, y for now
     private Player(int charId, String name) {
         this(0, 0, R.id.wizardButton, "Easy", name);
     }
@@ -65,6 +64,7 @@ public class Player {
     public void moveRight() {
         setX(getX() + 160);
     }
+
     public float getMovement() {
         return this.movement;
     }
@@ -84,7 +84,7 @@ public class Player {
         this.x = x;
     }
     public void displayPosition() {
-        System.out.println("X:" + player.getX() + "/ Y:" + player.getY());
+        System.out.println("Player position... X:" + player.getX() + "/ Y:" + player.getY());
     }
     public void setHP(int hp) {
         this.hp = hp;

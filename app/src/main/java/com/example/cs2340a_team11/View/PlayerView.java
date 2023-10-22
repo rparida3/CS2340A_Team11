@@ -24,6 +24,7 @@ public class PlayerView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        System.out.print("onDraw [[PlayerView]]... ");
         super.onDraw(canvas);
 
         canvas.drawBitmap(playerSprite.getSprite(), x, y, null);
@@ -32,7 +33,7 @@ public class PlayerView extends View {
     public void updatePosition(float newX, float newY) {
         x = newX;
         y = newY;
-        invalidate();   // ???????
+        invalidate();
     }
     public float getX() {
         return x;

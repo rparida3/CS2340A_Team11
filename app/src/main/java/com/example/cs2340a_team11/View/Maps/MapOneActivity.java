@@ -2,6 +2,7 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,11 +18,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 import java.security.Key;
+import java.util.ArrayList;
 
 public class MapOneActivity extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class MapOneActivity extends AppCompatActivity {
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
+    private Wall walls = Wall.getWall();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class MapOneActivity extends AppCompatActivity {
         int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
         mapView.setY(offsetY);
-        
+
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
@@ -78,8 +82,10 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
     }
+
     public boolean onKeyDown(int keycode, KeyEvent event) {
-        gameScreenViewModel.onKeyDown(keycode, event, playerView);
+        // System.out.println(walls.getWalls().size());
+        gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         return true;
     }
 
@@ -89,6 +95,9 @@ public class MapOneActivity extends AppCompatActivity {
 
     public void progressToNextMap() {
         Intent progressToMapTwoIntent = new Intent(this, MapTwoActivity.class);
+        walls.resetWalls();
+        walls.isDrawn = false;
         startActivity(progressToMapTwoIntent);
     }
+
 }
