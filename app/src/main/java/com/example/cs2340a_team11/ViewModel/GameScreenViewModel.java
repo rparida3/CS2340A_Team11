@@ -38,7 +38,7 @@ public class GameScreenViewModel extends ViewModel {
         return R.drawable.wizard;
     }
 
-    public void setPlayerStarting(int mapLevel, PlayerView playerView) {
+    public void setPlayerStarting(int mapLevel) {
         if (mapLevel == 1) {
             // sets in [4][3] of mapView array
             player.setY(4 * BitmapInterface.TILE_SIZE);
@@ -55,7 +55,6 @@ public class GameScreenViewModel extends ViewModel {
             player.setY(0);
             player.setX(0);
         }
-        playerView.updatePosition(player.getX(), player.getY());
     }
 
     public void runTimer(TextView timeView) {

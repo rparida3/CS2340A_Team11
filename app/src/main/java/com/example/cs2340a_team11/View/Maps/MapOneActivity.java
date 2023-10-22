@@ -70,7 +70,7 @@ public class MapOneActivity extends AppCompatActivity {
 
         // render playerView
         playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
-        gameScreenViewModel.setPlayerStarting(1, playerView);
+        gameScreenViewModel.setPlayerStarting(1);
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
