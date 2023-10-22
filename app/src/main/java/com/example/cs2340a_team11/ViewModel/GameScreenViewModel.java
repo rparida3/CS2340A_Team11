@@ -20,8 +20,7 @@ public class GameScreenViewModel extends ViewModel {
     private int charId = player.getCharId();
 
     private int totalScore = player.getScore();
-    // private MapView mapView;
-    private ArrayList<Rect> walls = new ArrayList<Rect>();
+    private int currMap;
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
@@ -46,14 +45,17 @@ public class GameScreenViewModel extends ViewModel {
             // sets in [4][3] of mapView array
             player.setY(4 * BitmapInterface.TILE_SIZE + 320);
             player.setX(3 * BitmapInterface.TILE_SIZE);
+            currMap = 1;
         } else if (mapLevel == 2) {
             // sets in [6][1]
             player.setY(6 * BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
+            currMap = 2;
         } else if (mapLevel == 3) {
             // sets in [1][1]
             player.setY(BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
+            currMap = 3;
         } else {
             player.setY(320);
             player.setX(0);
@@ -136,22 +138,24 @@ public class GameScreenViewModel extends ViewModel {
         return false;
     }
 
-    /*
-    public boolean checkCollision(PlayerView view, ArrayList<Rect> walls) {
-        Rect r1 = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-        System.out.println("Player rect: " + r1);
-        System.out.println(walls.size());
-        for (Rect wall : walls) {
-            if (wall.intersects(view.getLeft(), view.getTop(), view.getRight(), view.getBottom())) {
-                System.out.println("Wall rect: " + wall);
-                System.out.println("INTERSECT IS TRUE");
+    public boolean checkDoor() {
+        if (currMap == 1) {
+            if (player.getY() <= 320) {
+                return true;
+            }
+        }
+        if (currMap == 2) {
+            if (player.getX() == 160 && player.getY() == 480) {
+                return true;
+            }
+        }
+        if (currMap == 3) {
+            if (player.getY() >= 1440) {
                 return true;
             }
         }
         return false;
     }
-     */
-
 
     // DO PLEASE: method to update player health
 }
