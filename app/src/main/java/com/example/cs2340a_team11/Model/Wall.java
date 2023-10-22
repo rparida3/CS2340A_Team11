@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Wall {
     private static Wall wall;
-    public static boolean isDrawn = false;
+    private boolean isDrawn = false;
     private ArrayList<Rect> walls;
     private Wall() {
         walls = new ArrayList<Rect>();
@@ -29,5 +29,13 @@ public class Wall {
 
     public void resetWalls() {
         walls = new ArrayList<>();
+    }
+
+    public void setIsDrawn(boolean isDrawn) {
+        this.isDrawn = isDrawn;
+    }
+
+    public boolean getIsDrawn() {
+        return this.isDrawn;
     }
 }

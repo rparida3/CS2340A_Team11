@@ -2,7 +2,6 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,8 +20,6 @@ import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-
-import java.util.ArrayList;
 
 public class MapTwoActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -86,7 +83,7 @@ public class MapTwoActivity extends AppCompatActivity {
     public void progressToNextMap() {
         Intent progressToMapFinalIntent = new Intent(this, MapFinalActivity.class);
         walls.resetWalls();
-        walls.isDrawn = false;
+        walls.setIsDrawn(false);
         startActivity(progressToMapFinalIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {

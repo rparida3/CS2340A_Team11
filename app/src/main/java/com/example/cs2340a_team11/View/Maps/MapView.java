@@ -113,17 +113,17 @@ public class MapView extends View {
     }
 
     protected void onDraw(Canvas canvas) {
-        System.out.print("onDraw [[Mapview]]... ");
+        //System.out.print("onDraw [[Mapview]]... ");
         super.onDraw(canvas);
-        System.out.println("After super.ondraw(Canvas)");
+        // System.out.println("After super.ondraw(Canvas)");
         testMap.draw(canvas);
 
-        System.out.println("MapView onDraw walls: " + walls.getWalls().size());
-        if (!walls.isDrawn) {
+        // System.out.println("MapView onDraw walls: " + walls.getWalls().size());
+        if (!walls.getIsDrawn()) {
             for (Rect wall : walls.getWalls()) {
                 canvas.drawRect(wall, color);
             }
-            walls.isDrawn = true;
+            walls.setIsDrawn(true);
         }
     }
 }

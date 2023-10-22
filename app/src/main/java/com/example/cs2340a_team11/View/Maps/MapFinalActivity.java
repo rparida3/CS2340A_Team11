@@ -2,7 +2,6 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -22,8 +21,6 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EndingActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-
-import java.util.ArrayList;
 
 public class MapFinalActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -84,7 +81,7 @@ public class MapFinalActivity extends AppCompatActivity {
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         walls.resetWalls();
-        walls.isDrawn = false;
+        walls.setIsDrawn(false);
         startActivity(progressToEndIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {

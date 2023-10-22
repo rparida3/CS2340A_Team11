@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.Maps.MapView;
 import com.example.cs2340a_team11.View.PlayerView;
 
 import java.util.ArrayList;
@@ -82,8 +81,8 @@ public class GameScreenViewModel extends ViewModel {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
-        player.displayPosition();
+    public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
+        // player.displayPosition();
         switch (keyCode) {
         case KeyEvent.KEYCODE_DPAD_LEFT:
             player.moveLeft();
@@ -118,7 +117,6 @@ public class GameScreenViewModel extends ViewModel {
             break;
         }
         view.updatePosition(player.getX(), player.getY());
-        return true;
     }
 
     // if collide, collision is true
@@ -138,6 +136,7 @@ public class GameScreenViewModel extends ViewModel {
         return false;
     }
 
+    /*
     public boolean checkCollision(PlayerView view, ArrayList<Rect> walls) {
         Rect r1 = new Rect(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
         System.out.println("Player rect: " + r1);
@@ -151,6 +150,7 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
+     */
 
 
     // DO PLEASE: method to update player health
