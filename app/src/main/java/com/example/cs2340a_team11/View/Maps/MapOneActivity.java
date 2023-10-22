@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.View.Maps;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,14 +16,22 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+
+import java.security.Key;
+import java.util.ArrayList;
 
 public class MapOneActivity extends AppCompatActivity {
 
+    private PlayerView playerView;
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
+    private KeyEvent keyEvent;
+    private Wall walls = Wall.getWall();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +64,38 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(mapViewItems);
 
         // offset the position of map to show in background AND below the info bar
+        int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
-        mapView.setY(BitmapInterface.TILE_SIZE * 2);
+        mapView.setY(offsetY);
+
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
+
+        // render playerView
+        gameScreenViewModel.setPlayerStarting(1);
+        playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
+        layout.addView(playerView);
+        System.out.println("Player view added");
+        playerView.bringToFront();
     }
 
-
+    public boolean onKeyDown(int keycode, KeyEvent event) {
+        gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
+        if (gameScreenViewModel.checkDoor()) {
+            progressToNextMap();
+        }
+        return true;
+    }
     public static Context getGameContext() {
         return gameContext;
     }
 
     public void progressToNextMap() {
         Intent progressToMapTwoIntent = new Intent(this, MapTwoActivity.class);
+        walls.resetWalls();
+        walls.setIsDrawn(false);
         startActivity(progressToMapTwoIntent);
     }
 }

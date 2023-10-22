@@ -5,24 +5,20 @@ import com.example.cs2340a_team11.R;
 
 public class Player {
     private int score = 0;
-    private double x;
-    private double y;
-    private double movement;
-
+    private float x;
+    private float y;
+    private float movement;
     private int hp;
     private int charId;
-
     private String difficulty;
     private String name;
     private static Player player;
-
 
     private Player(int charId, String name) {
         this(0, 0, R.id.wizardButton, "Easy", name);
     }
 
-    // let 0 = wizard (default), 1 = assassin, 2 = knight
-    private Player(double x, double y, int charId, String difficulty, String name) {
+    private Player(float x, float y, int charId, String difficulty, String name) {
         this.name = name;
         this.charId = charId;
 
@@ -33,20 +29,18 @@ public class Player {
         this.difficulty = difficulty;
 
         if (this.charId == R.id.wizardButton) {
-            this.movement = 5;
+            this.movement = 25;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement = 10;
+            this.movement = 50;
             this.hp = 20;
         } else {
-            this.movement = 8;
+            this.movement = 40;
             this.hp = 50;
         }
         if (difficulty.equals("Medium")) {
-            this.movement *= .80;
             this.hp *= .80;
         } else if (difficulty.equals("Hard")) {
-            this.movement *= .60;
             this.hp *= .60;
         }
     }
@@ -59,34 +53,38 @@ public class Player {
     }
 
     public void moveUp() {
-        setY(Math.max(0, getY() - movement));
+        setY(getY() - 160);
     }
     public void moveDown() {
-        setY(Math.min(getY() + movement, 720));
+        setY(getY() + 160);
     }
     public void moveLeft() {
-        setX(Math.max(0, getX() - movement));
+        setX(getX() - 160);
     }
     public void moveRight() {
-        setX(Math.min(getX() + movement, 720));
+        setX(getX() + 160);
     }
-    public double getMovement() {
+
+    public float getMovement() {
         return this.movement;
     }
-    public void setMovement(double movementSpeed) {
+    public void setMovement(float movementSpeed) {
         this.movement = movementSpeed;
     }
-    public double getY() {
+    public float getY() {
         return y;
     }
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
-    public double getX() {
+    public float getX() {
         return x;
     }
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
+    }
+    public void displayPosition() {
+        System.out.println("Player position... X:" + player.getX() + "/ Y:" + player.getY());
     }
     public void setHP(int hp) {
         this.hp = hp;
@@ -97,21 +95,19 @@ public class Player {
     public void setCharId(int charId) {
         this.charId = charId;
         if (this.charId == R.id.wizardButton) {
-            this.movement = 5;
+            this.movement = 50;
             this.hp = 30;
         } else if (this.charId == R.id.assassinButton) {
-            this.movement = 10;
+            this.movement = 100;
             this.hp = 20;
         } else {
-            this.movement = 8;
+            this.movement = 80;
             this.hp = 50;
         }
         if (difficulty.equals("Medium")) {
             hp *= 0.8;
-            movement *= 0.8;
         } else if (difficulty.equals("Hard")) {
             hp *= 0.6;
-            movement *= 0.6;
         }
 
     }

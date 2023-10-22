@@ -20,7 +20,6 @@ public class StartScreen extends Activity {
 
         TextView welcomeText = findViewById(R.id.welcomeText);
         Button startButton = findViewById(R.id.startButton);
-        Button endButton = findViewById(R.id.endButton);
         Button quitButton = findViewById(R.id.quitButton);
 
         // Set text to something better if wanted
@@ -36,21 +35,11 @@ public class StartScreen extends Activity {
             }
         });
 
-        endButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                welcomeText.setVisibility(View.VISIBLE);
-                startButton.setVisibility(View.VISIBLE);
-                endButton.setVisibility(View.GONE);
-            }
-        });
-
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 welcomeText.setVisibility(View.GONE);
                 startButton.setVisibility(View.GONE);
-                endButton.setVisibility(View.GONE);
                 finish();
             }
         });
