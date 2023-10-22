@@ -84,11 +84,4 @@ public class MapOneActivity extends AppCompatActivity {
         Intent progressToMapTwoIntent = new Intent(this, MapTwoActivity.class);
         startActivity(progressToMapTwoIntent);
     }
-    public boolean onKeyDown(int keycode, KeyEvent event) {
-        gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
-        if (gameScreenViewModel.checkDoor()) {
-            progressToNextMap();
-        }
-        return true;
-    }
 }
