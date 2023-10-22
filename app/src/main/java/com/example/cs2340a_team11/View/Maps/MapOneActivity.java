@@ -88,7 +88,6 @@ public class MapOneActivity extends AppCompatActivity {
         }
         return true;
     }
-
     public static Context getGameContext() {
         return gameContext;
     }

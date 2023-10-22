@@ -24,6 +24,7 @@ public class GameScreenViewModel extends ViewModel {
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
+
     public GameScreenViewModel() {
 
     }
@@ -78,6 +79,7 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
+
     public void stopTimer() {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
@@ -158,4 +160,4 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     // DO PLEASE: method to update player health
-}
+
