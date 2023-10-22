@@ -44,20 +44,24 @@ public class GameScreenViewModel extends ViewModel {
     public void setPlayerStarting(int mapLevel) {
         if (mapLevel == 1) {
             // sets in [4][3] of mapView array
-            player.setY(4 * BitmapInterface.TILE_SIZE);
+            player.setY(4 * BitmapInterface.TILE_SIZE + 320);
             player.setX(3 * BitmapInterface.TILE_SIZE);
+            currMap = 1;
         } else if (mapLevel == 2) {
             // sets in [6][1]
             player.setY(6 * BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
+            currMap = 2;
         } else if (mapLevel == 3) {
             // sets in [1][1]
             player.setY(BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
+            currMap = 3;
         } else {
-            player.setY(0);
+            player.setY(320);
             player.setX(0);
         }
+        player.displayPosition();
     }
 
     public void runTimer(TextView timeView) {
@@ -84,18 +88,37 @@ public class GameScreenViewModel extends ViewModel {
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         // player.displayPosition();
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                player.moveLeft();
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
+        case KeyEvent.KEYCODE_DPAD_LEFT:
+            player.moveLeft();
+            if (checkCollision(player, walls)) {
+                System.out.println("Collision!!!");
                 player.moveRight();
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                player.moveUp();
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
+                // cancel left movement by calling moveRight()
+            }
+            break;
+        case KeyEvent.KEYCODE_DPAD_RIGHT:
+            player.moveRight();
+            if (checkCollision(player, walls)) {
+                System.out.println("Collision!!!");
+                player.moveLeft();
+            }
+            break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+            player.moveUp();
+            if (checkCollision(player, walls)) {
+                System.out.println("Collision!!!");
                 player.moveDown();
-                break;
+            }
+            break;
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+            player.moveDown();
+            if (checkCollision(player, walls)) {
+                System.out.println("Collision!!!");
+                player.moveUp();
+            }
+            break;
+        default:
+            break;
         }
         view.updatePosition(player.getX(), player.getY());
     }
@@ -137,4 +160,4 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     // DO PLEASE: method to update player health
-}
+

@@ -2,14 +2,26 @@ package com.example.cs2340a_team11.View.Maps;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 
 import com.example.cs2340a_team11.Environment.CreatedMap;
+import com.example.cs2340a_team11.Model.Wall;
+import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+
+import java.util.ArrayList;
 
 public class MapView extends View {
     private CreatedMap testMap;
+    private Wall walls = Wall.getWall();
+    private Paint color = new Paint();
+    private GameScreenViewModel gameScreenViewModel;
     public MapView(Context context, int mapValue) {
         super(context);
+        color.setColor(Color.BLACK);
+        color.setAlpha(10);
 
         // the actual 2D array for the map
         int[][] mapArray = new int[8][7];
@@ -45,7 +57,7 @@ public class MapView extends View {
         } else if (mapValue == 2) {
             // SECOND MAP (same as map 1)
             mapArray = new int[][]{
-                    {0, 1, 2, 3, 4, 1, 5},
+                    {0, 11, 12, 3, 4, 1, 5},
                     {10, 11, 12, 13, 12, 14, 15},
                     {20, 21, 71, 72, 73, 24, 25},
                     {30, 21, 71, 72, 73, 24, 35},
@@ -96,12 +108,31 @@ public class MapView extends View {
             mapArray[2][5] = 77; // skull
             mapArray[1][1] = 39; // ladder
             mapArray[6][5] = 96; // torch
+        } else if (mapValue == 14) {
+            for (int i = 0; i < mapArray.length; i++) {
+                for (int j = 0; j < mapArray[i].length; j++) {
+                    mapArray[i][j] = -1;
+                }
+            }
+
+            mapArray[7][4] = 36;
+            mapArray[7][5] = 37;
         }
         testMap = new CreatedMap(mapArray);
     }
 
     protected void onDraw(Canvas canvas) {
+        //System.out.print("onDraw [[Mapview]]... ");
         super.onDraw(canvas);
+        // System.out.println("After super.ondraw(Canvas)");
         testMap.draw(canvas);
+
+        // System.out.println("MapView onDraw walls: " + walls.getWalls().size());
+        if (!walls.getIsDrawn()) {
+            for (Rect wall : walls.getWalls()) {
+                canvas.drawRect(wall, color);
+            }
+            walls.setIsDrawn(true);
+        }
     }
 }

@@ -30,8 +30,8 @@ public class PlayerSprite {
         sprite = Bitmap.createScaledBitmap(sprite, width, height, false);
 
         // x and y for now do nothing, but can use them to get location later
-        x = 264;
-        y = 264;
+        // x = 264;
+        // y = 264;
 
     }
 

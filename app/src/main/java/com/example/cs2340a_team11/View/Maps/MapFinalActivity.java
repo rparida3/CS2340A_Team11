@@ -16,17 +16,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EndingActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapFinalActivity extends AppCompatActivity {
-
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private PlayerView playerView;
     private GameScreenViewModel gameScreenViewModel;
+    private Wall walls = Wall.getWall();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +55,15 @@ public class MapFinalActivity extends AppCompatActivity {
         });
 
         MapView mapView = new MapView(this, 3);
+        MapView mapViewItem = new MapView(this, 14);
         layout.addView(mapView);
+        layout.addView(mapViewItem);
 
         // offset the position of map to show in background AND below the info bar
         int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
         mapView.setY(offsetY);
+        mapViewItem.setY(offsetY);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
@@ -79,6 +83,8 @@ public class MapFinalActivity extends AppCompatActivity {
 
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
+        walls.resetWalls();
+        walls.setIsDrawn(false);
         startActivity(progressToEndIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
