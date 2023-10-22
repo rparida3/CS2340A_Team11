@@ -159,5 +159,18 @@ public class GameScreenViewModel extends ViewModel {
         return false;
     }
 
+    /**
+     * The bottom two methods are used ONLY for testing purposes. Do not do anything with them!
+     * @author Raj Parida
+     *
+     */
+    public int getCurrMap() {
+        return this.currMap;
+    }
+
+    public void setCurrMap(int value) {
+        this.currMap = value;
+    }
+
     // DO PLEASE: method to update player health
 }
