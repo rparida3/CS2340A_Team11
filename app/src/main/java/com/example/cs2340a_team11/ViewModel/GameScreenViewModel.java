@@ -3,7 +3,6 @@ package com.example.cs2340a_team11.ViewModel;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
@@ -21,6 +20,7 @@ public class GameScreenViewModel extends ViewModel {
     private int charId = player.getCharId();
 
     private int totalScore = player.getScore();
+    private int currMap;
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
