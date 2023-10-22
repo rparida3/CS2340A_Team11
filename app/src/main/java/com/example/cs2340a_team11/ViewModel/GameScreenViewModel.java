@@ -135,5 +135,6 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
+
     // DO PLEASE: method to update player health
 }
