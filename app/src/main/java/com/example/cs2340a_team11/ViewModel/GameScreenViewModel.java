@@ -99,6 +99,8 @@ public class GameScreenViewModel extends ViewModel {
         }
         view.updatePosition(player.getX(), player.getY());
     }
+
+    // if collide, collision is true
     public boolean checkCollision(Player player, ArrayList<Rect> walls) {
         Rect r1 = new Rect((int) player.getX(),
                 (int) player.getY() - 320,
