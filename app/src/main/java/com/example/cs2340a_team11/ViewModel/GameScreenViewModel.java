@@ -1,5 +1,6 @@
 package com.example.cs2340a_team11.ViewModel;
 
+import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.PlayerView;
+
+import java.util.ArrayList;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
@@ -45,12 +48,12 @@ public class GameScreenViewModel extends ViewModel {
             player.setX(3 * BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 2) {
             // sets in [6][1]
-            player.setY(8 * BitmapInterface.TILE_SIZE);
+            player.setY(6 * BitmapInterface.TILE_SIZE + 320);
             player.setX(BitmapInterface.TILE_SIZE);
         } else if (mapLevel == 3) {
             // sets in [1][1]
-            player.setY(8 * BitmapInterface.TILE_SIZE);
-            player.setX(5 * BitmapInterface.TILE_SIZE);
+            player.setY(BitmapInterface.TILE_SIZE + 320);
+            player.setX(BitmapInterface.TILE_SIZE);
         } else {
             player.setY(0);
             player.setX(0);
@@ -78,7 +81,7 @@ public class GameScreenViewModel extends ViewModel {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view) {
+    public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 player.moveLeft();

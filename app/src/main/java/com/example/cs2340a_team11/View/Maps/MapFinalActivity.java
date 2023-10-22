@@ -66,7 +66,6 @@ public class MapFinalActivity extends AppCompatActivity {
 
         // render playerView
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
-        gameScreenViewModel.setPlayerStarting(3);
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
@@ -80,8 +79,5 @@ public class MapFinalActivity extends AppCompatActivity {
     public void progressToEndScreen() {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         startActivity(progressToEndIntent);
-    }
-    public boolean onKeyDown(int keycode, KeyEvent event) {
-        return gameScreenViewModel.onKeyDown(keycode, event, playerView);
     }
 }

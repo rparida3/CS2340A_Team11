@@ -67,8 +67,8 @@ public class MapTwoActivity extends AppCompatActivity {
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
         gameScreenViewModel.setPlayerStarting(2);
+        playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
@@ -82,9 +82,6 @@ public class MapTwoActivity extends AppCompatActivity {
     public void progressToNextMap() {
         Intent progressToMapFinalIntent = new Intent(this, MapFinalActivity.class);
         startActivity(progressToMapFinalIntent);
-    }
-    public boolean onKeyDown(int keycode, KeyEvent event) {
-        return gameScreenViewModel.onKeyDown(keycode, event, playerView);
     }
 }
 

@@ -69,16 +69,13 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.runTimer(timeView);
 
         // render playerView
-        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
         gameScreenViewModel.setPlayerStarting(1);
+        playerView = new PlayerView(this, player.getX(), player.getY() + offsetY, player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
 
 
-    }
-    public boolean onKeyDown(int keycode, KeyEvent event) {
-        return gameScreenViewModel.onKeyDown(keycode, event, playerView);
     }
 
     public static Context getGameContext() {
