@@ -75,6 +75,9 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+        public boolean onKeyDown(int keycode, KeyEvent event) {
+            return true;
+        }
     }
     public static Context getGameContext() {
         return gameContext;
