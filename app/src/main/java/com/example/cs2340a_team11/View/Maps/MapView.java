@@ -21,7 +21,7 @@ public class MapView extends View {
     public MapView(Context context, int mapValue) {
         super(context);
         color.setColor(Color.BLACK);
-        color.setAlpha(200);
+        color.setAlpha(10);
 
         // the actual 2D array for the map
         int[][] mapArray = new int[8][7];
@@ -108,6 +108,15 @@ public class MapView extends View {
             mapArray[2][5] = 77; // skull
             mapArray[1][1] = 39; // ladder
             mapArray[6][5] = 96; // torch
+        } else if (mapValue == 14) {
+            for (int i = 0; i < mapArray.length; i++) {
+                for (int j = 0; j < mapArray[i].length; j++) {
+                    mapArray[i][j] = -1;
+                }
+            }
+
+            mapArray[7][4] = 36;
+            mapArray[7][5] = 37;
         }
         testMap = new CreatedMap(mapArray);
     }

@@ -55,12 +55,15 @@ public class MapFinalActivity extends AppCompatActivity {
         });
 
         MapView mapView = new MapView(this, 3);
+        MapView mapViewItem = new MapView(this, 14);
         layout.addView(mapView);
+        layout.addView(mapViewItem);
 
         // offset the position of map to show in background AND below the info bar
         int offsetY = BitmapInterface.TILE_SIZE * 2;
         mapView.setZ(-1);
         mapView.setY(offsetY);
+        mapViewItem.setY(offsetY);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
@@ -86,6 +89,9 @@ public class MapFinalActivity extends AppCompatActivity {
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
+        if (gameScreenViewModel.checkDoor()) {
+            progressToEndScreen();
+        }
         return true;
     }
 }

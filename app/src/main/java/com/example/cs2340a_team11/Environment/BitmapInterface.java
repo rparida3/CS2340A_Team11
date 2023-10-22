@@ -12,8 +12,13 @@ public interface BitmapInterface {
     BitmapFactory.Options OPTIONS = new BitmapFactory.Options();
 
     public static int[] COLLISIONS = {
-        0, 1, 2, 3, 4, 5, 10, 20, 30, 15, 25, 35,
-        40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 55
+        0, 1, 2, 3, 4, 5, 10, 20, 30, 15, 25, 35, 49, 59,
+        40, 41, 42, 43, 44, 45, 50, 51, 52, 53, 54, 55,
+        80, 81, 82, 83, 84, 85, 90, 91, 92, 93, 94, 95, 96
+    };
+
+    public static int[] DOORS = {
+        36, 37, 38, 39, 46, 56, 47, 57, 48, 58, 66, 67
     };
 
     // scale the size of the map
