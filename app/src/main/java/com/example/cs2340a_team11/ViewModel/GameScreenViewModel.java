@@ -82,6 +82,7 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
+        // player.displayPosition();
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 player.moveLeft();
@@ -97,6 +98,40 @@ public class GameScreenViewModel extends ViewModel {
                 break;
         }
         view.updatePosition(player.getX(), player.getY());
+    }
+    public boolean checkCollision(Player player, ArrayList<Rect> walls) {
+        Rect r1 = new Rect((int) player.getX(),
+                (int) player.getY() - 320,
+                (int) player.getX() + 160,
+                (int) player.getY() - 160);
+        System.out.println("Player rect: " + r1);
+        for (Rect wall : walls) {
+            if (r1.intersect(wall)) {
+                System.out.println("INTERSECT IS TRUE");
+                System.out.println("Wall rect: " + wall);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkDoor() {
+        if (currMap == 1) {
+            if (player.getY() <= 320) {
+                return true;
+            }
+        }
+        if (currMap == 2) {
+            if (player.getX() == 160 && player.getY() == 480) {
+                return true;
+            }
+        }
+        if (currMap == 3) {
+            if (player.getY() >= 1440) {
+                return true;
+            }
+        }
+        return false;
     }
     // DO PLEASE: method to update player health}}
 }
