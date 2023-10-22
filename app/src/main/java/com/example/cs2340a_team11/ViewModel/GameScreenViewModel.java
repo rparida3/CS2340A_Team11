@@ -81,7 +81,7 @@ public class GameScreenViewModel extends ViewModel {
         handler.removeCallbacksAndMessages(null);
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
+    public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 player.moveLeft();
@@ -97,7 +97,6 @@ public class GameScreenViewModel extends ViewModel {
                 break;
         }
         view.updatePosition(player.getX(), player.getY());
-        return true;
     }
     // DO PLEASE: method to update player health}}
 }

@@ -28,6 +28,7 @@ public class MapOneActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
+    private KeyEvent keyEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,7 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
-
-
     }
-
     public static Context getGameContext() {
         return gameContext;
     }
