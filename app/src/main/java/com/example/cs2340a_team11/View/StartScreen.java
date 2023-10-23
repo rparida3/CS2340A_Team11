@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.InitialConfigScreen;
 
 public class StartScreen extends Activity {
 

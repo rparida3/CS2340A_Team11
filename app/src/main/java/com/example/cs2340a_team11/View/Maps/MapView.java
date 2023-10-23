@@ -11,7 +11,6 @@ import com.example.cs2340a_team11.Environment.CreatedMap;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
-import java.util.ArrayList;
 
 public class MapView extends View {
     private CreatedMap testMap;

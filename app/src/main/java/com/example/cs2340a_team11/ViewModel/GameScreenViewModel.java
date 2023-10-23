@@ -92,20 +92,20 @@ public class GameScreenViewModel extends ViewModel {
 
 
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                movementStrategy = new MoveLeftStrategy();
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                movementStrategy = new MoveRightStrategy();
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                movementStrategy = new MoveDownStrategy();
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                movementStrategy = new MoveUpStrategy();
-                break;
-            default:
-                break;
+        case KeyEvent.KEYCODE_DPAD_LEFT:
+            movementStrategy = new MoveLeftStrategy();
+            break;
+        case KeyEvent.KEYCODE_DPAD_RIGHT:
+            movementStrategy = new MoveRightStrategy();
+            break;
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+            movementStrategy = new MoveDownStrategy();
+            break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+            movementStrategy = new MoveUpStrategy();
+            break;
+        default:
+            break;
         }
 
         if (movementStrategy != null) {
@@ -233,7 +233,7 @@ public class GameScreenViewModel extends ViewModel {
     /**
      * The bottom two methods are used ONLY for testing purposes. Do not do anything with them!
      * @author Raj Parida
-     *
+     * @return current map.
      */
     public int getCurrMap() {
         return this.currMap;

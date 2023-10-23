@@ -1,6 +1,5 @@
 package com.example.cs2340a_team11.View;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class EndingActivity extends AppCompatActivity {
     private EndScreenViewModel endScreenViewModel;
@@ -39,7 +37,7 @@ public class EndingActivity extends AppCompatActivity {
     }
     public void restartGame() {
         endScreenViewModel.resetScore();
-        Intent Restart = new Intent(this, StartScreen.class);
-        startActivity(Restart);
+        Intent restart = new Intent(this, StartScreen.class);
+        startActivity(restart);
     }
 }

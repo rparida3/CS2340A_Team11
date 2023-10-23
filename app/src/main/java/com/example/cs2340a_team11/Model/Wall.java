@@ -2,7 +2,6 @@ package com.example.cs2340a_team11.Model;
 
 import android.graphics.Rect;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Wall {
@@ -28,11 +27,15 @@ public class Wall {
         walls.add(wall);
     }
 
-    public void addDoor(Rect door) { doors.add(door); }
+    public void addDoor(Rect door) {
+        doors.add(door);
+    }
     public ArrayList<Rect> getWalls() {
         return walls;
     }
-    public ArrayList<Rect> getDoors() { return doors; }
+    public ArrayList<Rect> getDoors() {
+        return doors;
+    }
     public void resetWalls() {
         walls = new ArrayList<>();
         doors = new ArrayList<>();
