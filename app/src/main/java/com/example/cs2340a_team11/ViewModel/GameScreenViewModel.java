@@ -87,6 +87,49 @@ public class GameScreenViewModel extends ViewModel {
 
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         // player.displayPosition();
+        MovementStrategy movementStrategy = null;
+        CollisionObserver collisionObserver = new CollisionHandler();
+
+
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                movementStrategy = new MoveLeftStrategy();
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                movementStrategy = new MoveRightStrategy();
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                movementStrategy = new MoveDownStrategy();
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                movementStrategy = new MoveUpStrategy();
+                break;
+            default:
+                break;
+        }
+
+        if (movementStrategy != null) {
+            movementStrategy.move(player);
+
+            for (Rect wall: walls) {
+                if (checkCollision(player, wall)) {
+                    collisionObserver.collision(player, movementStrategy);
+                    break; // do not delete.
+                    // This break statement is vital in implementing observer pattern
+                    // since it makes sure only one collision is dealt with at any given
+                    // time.
+                }
+            }
+
+            view.updatePosition(player.getX(), player.getY());
+        }
+    }
+
+
+
+    // ORIGINAL onKeyDown()
+    /*public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
+        // player.displayPosition();
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 player.moveLeft();
@@ -121,10 +164,38 @@ public class GameScreenViewModel extends ViewModel {
                 break;
         }
         view.updatePosition(player.getX(), player.getY());
+    }*/
+
+
+    /* NEW checkCollision() method
+       Only major change is that instead of taking in an
+       ArrayList of Rect objects, it takes in a single
+       Rect object. As a result, I no longer needed the
+       for-loop (that looped thru the ArrayList).
+       Instead, I have the for-loop in the onKeyDown()
+       method (see above). Let me (yash) know if
+       something doesn't make sense.
+     */
+    public boolean checkCollision(Player player, Rect wall) {
+        Rect r1 = new Rect((int) player.getX(),
+                (int) player.getY() - 320,
+                (int) player.getX() + 160,
+                (int) player.getY() - 160);
+        System.out.println("Player rect: " + r1);
+
+        if (r1.intersect(wall)) {
+            System.out.println("INTERSECT IS TRUE");
+            System.out.println("Wall rect: " + wall);
+            return true;
+        }
+
+        return false;
     }
 
-    // if collide, collision is true
-    public boolean checkCollision(Player player, ArrayList<Rect> walls) {
+
+
+    // ORIGINAL checkCollision() METHOD
+    /*public boolean checkCollision(Player player, ArrayList<Rect> walls) {
         Rect r1 = new Rect((int) player.getX(),
                 (int) player.getY() - 320,
                 (int) player.getX() + 160,
@@ -138,7 +209,7 @@ public class GameScreenViewModel extends ViewModel {
             }
         }
         return false;
-    }
+    }*/
 
     public boolean checkDoor() {
         if (currMap == 1) {

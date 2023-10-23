@@ -35,7 +35,6 @@ public class MapTwoActivity extends AppCompatActivity {
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
-        Button nextButton = (Button) findViewById(R.id.nextBtn);
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
@@ -45,13 +44,7 @@ public class MapTwoActivity extends AppCompatActivity {
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gameScreenViewModel.stopTimer();
-                progressToNextMap();
-            }
-        });
+
 
         MapView mapView = new MapView(this, 1);
         MapView mapViewItem = new MapView(this, 13);
@@ -90,6 +83,7 @@ public class MapTwoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
+            gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
         return true;
