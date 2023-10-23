@@ -3,12 +3,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.graphics.Rect;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
-
-import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
+import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
+
+import java.util.ArrayList;
+
 public class Sprint3_JunitTests {
     @Test
     public void checkMovementLogic() {
@@ -66,5 +68,18 @@ public class Sprint3_JunitTests {
         testModel.setCurrMap(1);
         testModel.setPlayerStarting(1);
         assertEquals(Player.getPlayer().getY(),4 * BitmapInterface.TILE_SIZE + 320, 0);
+    }
+
+    @Test
+    public void testPlayerCollision() {
+        Player player = Player.getPlayer();
+        GameScreenViewModel viewModel = new GameScreenViewModel();
+        player.setX(170);
+        player.setY(480);
+
+        ArrayList<Rect> walls = Wall.getWall().getWalls();
+
+        assertFalse(viewModel.checkCollision(player, walls));
+
     }
 }
