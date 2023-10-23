@@ -53,4 +53,18 @@ public class Sprint3_JunitTests {
         player.setY(480);
         assertTrue(gameScreenViewModel.checkDoor());
     }
+    @Test
+    public void testPlacement1X() {
+        GameScreenViewModel testModel = new GameScreenViewModel();
+        testModel.setCurrMap(1);
+        testModel.setPlayerStarting(1);
+        assertEquals(Player.getPlayer().getX(),3 * BitmapInterface.TILE_SIZE, 0);
+    }
+    @Test
+    public void testPlacement1Y() {
+        GameScreenViewModel testModel = new GameScreenViewModel();
+        testModel.setCurrMap(1);
+        testModel.setPlayerStarting(1);
+        assertEquals(Player.getPlayer().getY(),4 * BitmapInterface.TILE_SIZE + 320, 0);
+    }
 }
