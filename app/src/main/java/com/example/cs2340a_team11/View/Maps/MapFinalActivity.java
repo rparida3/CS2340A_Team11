@@ -36,7 +36,6 @@ public class MapFinalActivity extends AppCompatActivity {
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
-        Button endButton = (Button) findViewById(R.id.endBtn);
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
@@ -46,13 +45,7 @@ public class MapFinalActivity extends AppCompatActivity {
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
-        endButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gameScreenViewModel.stopTimer();
-                progressToEndScreen();
-            }
-        });
+
 
         MapView mapView = new MapView(this, 3);
         MapView mapViewItem = new MapView(this, 14);

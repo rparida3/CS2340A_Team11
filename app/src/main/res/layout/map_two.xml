@@ -18,19 +18,6 @@
         app:layout_constraintTop_toBottomOf="@+id/character_photo"
         tools:visibility="visible" />
 
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="10dp"
-        android:text="Next"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/healthBar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
     <ImageView
         android:id="@+id/character_photo"
         android:layout_width="66dp"
@@ -49,13 +36,13 @@
     <ProgressBar
         android:id="@+id/healthBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="12dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="119dp"
         android:progress="100"
         android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/nextBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/character_photo"
         app:layout_constraintTop_toBottomOf="@+id/healthText"
         tools:visibility="visible" />
