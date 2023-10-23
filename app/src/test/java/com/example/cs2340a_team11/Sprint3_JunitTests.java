@@ -82,4 +82,45 @@ public class Sprint3_JunitTests {
         assertFalse(viewModel.checkCollision(player, walls));
 
     }
+
+    /**
+     * @author Rick Nguyen
+     * Series of tests to see if collision handler works by checking if player position does not
+     * change upon colliding
+     */
+    @Test
+    public void checkHorizontalMovementCollision() {
+        Player player = Player.getPlayer();
+        GameScreenViewModel testModel = new GameScreenViewModel();
+        testModel.setPlayerStarting(1);
+        float prevX = player.getX();
+        float prevY = player.getY();
+        player.moveRight();
+        CollisionHandler cH = new CollisionHandler();
+        cH.collision(player, new MoveRightStrategy());
+        player.moveLeft();
+        cH.collision(player, new MoveLeftStrategy());
+        float postX = player.getX();
+        float postY = player.getY();
+        assertEquals(postX, prevX, 0);
+        assertEquals(postY, prevY, 0);
+    }
+
+    @Test
+    public void checkVerticalMovementCollision() {
+        Player player = Player.getPlayer();
+        GameScreenViewModel testModel = new GameScreenViewModel();
+        testModel.setPlayerStarting(1);
+        float prevX = player.getX();
+        float prevY = player.getY();
+        player.moveUp();
+        CollisionHandler cH = new CollisionHandler();
+        cH.collision(player, new MoveUpStrategy());
+        player.moveDown();
+        cH.collision(player, new MoveDownStrategy());
+        float postX = player.getX();
+        float postY = player.getY();
+        assertEquals(postX, prevX, 0);
+        assertEquals(postY, prevY, 0);
+    }
 }
