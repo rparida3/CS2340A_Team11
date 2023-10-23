@@ -108,5 +108,15 @@ public class UnitTests {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertTrue(sample.checkName("Alice Johnson"));
     }
-
+    @Test
+    public void testInitialPosition() {
+        assertEquals(0.0f, Player.getPlayer().getX(), 0.01); // Tolerance for floating-point comparison
+        assertEquals(0.0f, Player.getPlayer().getY(), 0.01);
+    }
+    @Test
+    public void testMoveUp() {
+        float initialY = Player.getPlayer().getY();
+        Player.getPlayer().moveUp();
+        assertEquals(initialY - 160, Player.getPlayer().getY(), 0.01);
+    }
 }
