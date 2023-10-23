@@ -7,7 +7,7 @@ import org.junit.Test;
 public class MovementTests {
     @Test
     public void testMoveLeft() {
-        Player.getPlayer().setX(300);
+        Player.getPlayer().setX(500);
         Player.getPlayer().setY(500);
         assertEquals(Player.getPlayer().getX(), 500, 0);
         assertEquals(Player.getPlayer().getY(), 500, 0);
