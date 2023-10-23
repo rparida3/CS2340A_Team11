@@ -83,6 +83,7 @@ public class MapTwoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
+            gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
         return true;

@@ -83,6 +83,7 @@ public class MapFinalActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
+            gameScreenViewModel.stopTimer();
             progressToEndScreen();
         }
         return true;
