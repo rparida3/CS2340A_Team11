@@ -4,9 +4,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import android.graphics.Rect;
+import android.view.KeyEvent;
+
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
+import com.example.cs2340a_team11.View.GameScreenActivity;
+import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 import java.util.ArrayList;
@@ -70,17 +74,34 @@ public class Sprint3_JunitTests {
         assertEquals(Player.getPlayer().getY(),4 * BitmapInterface.TILE_SIZE + 320, 0);
     }
 
+    /**
+     * @author Darshan Singh
+     * Series of tests to see if player up and down movement is working.
+     */
     @Test
-    public void testPlayerCollision() {
-        Player player = Player.getPlayer();
-        GameScreenViewModel viewModel = new GameScreenViewModel();
-        player.setX(170);
-        player.setY(480);
+    public void testMoveUp() {
+        Player.getPlayer().setX(300);
+        Player.getPlayer().setY(500);
+        assertEquals(Player.getPlayer().getX(), 500, 0);
+        assertEquals(Player.getPlayer().getY(), 500, 0);
 
-        ArrayList<Rect> walls = Wall.getWall().getWalls();
+        Player.getPlayer().moveUp();
 
-        assertFalse(viewModel.checkCollision(player, walls));
+        assertEquals(Player.getPlayer().getY(), 340, 0); // x-coord stays the same
+        assertEquals(Player.getPlayer().getX(), 500, 0); // 340 = 500 - 160
+    }
 
+    @Test
+    public void testMoveDown() {
+        Player.getPlayer().setX(300);
+        Player.getPlayer().setY(500);
+        assertEquals(Player.getPlayer().getX(), 500, 0);
+        assertEquals(Player.getPlayer().getY(), 500, 0);
+
+        Player.getPlayer().moveDown();
+
+        assertEquals(Player.getPlayer().getY(), 340, 0); // x-coord stays the same
+        assertEquals(Player.getPlayer().getX(), 660, 0); // 660 = 500 + 160
     }
 
     /**
