@@ -11,7 +11,12 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.View.GameScreenActivity;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.ViewModel.CollisionHandler;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+import com.example.cs2340a_team11.ViewModel.MoveDownStrategy;
+import com.example.cs2340a_team11.ViewModel.MoveLeftStrategy;
+import com.example.cs2340a_team11.ViewModel.MoveRightStrategy;
+import com.example.cs2340a_team11.ViewModel.MoveUpStrategy;
 
 import java.util.ArrayList;
 
@@ -82,26 +87,26 @@ public class Sprint3_JunitTests {
     public void testMoveUp() {
         Player.getPlayer().setX(300);
         Player.getPlayer().setY(500);
-        assertEquals(Player.getPlayer().getX(), 500, 0);
+        assertEquals(Player.getPlayer().getX(), 300, 0);
         assertEquals(Player.getPlayer().getY(), 500, 0);
 
         Player.getPlayer().moveUp();
 
         assertEquals(Player.getPlayer().getY(), 340, 0); // x-coord stays the same
-        assertEquals(Player.getPlayer().getX(), 500, 0); // 340 = 500 - 160
+        assertEquals(Player.getPlayer().getX(), 300, 0); // 340 = 500 - 160
     }
 
     @Test
     public void testMoveDown() {
         Player.getPlayer().setX(300);
         Player.getPlayer().setY(500);
-        assertEquals(Player.getPlayer().getX(), 500, 0);
+        assertEquals(Player.getPlayer().getX(), 300, 0);
         assertEquals(Player.getPlayer().getY(), 500, 0);
 
         Player.getPlayer().moveDown();
 
-        assertEquals(Player.getPlayer().getY(), 340, 0); // x-coord stays the same
-        assertEquals(Player.getPlayer().getX(), 660, 0); // 660 = 500 + 160
+        assertEquals(Player.getPlayer().getY(), 660, 0); //660 = 500 + 160
+        assertEquals(Player.getPlayer().getX(), 300, 0); // x-coord stays the same
     }
 
     /**
