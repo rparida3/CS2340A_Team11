@@ -65,6 +65,9 @@ public class MapOneActivity extends AppCompatActivity {
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
 
+        // render Skeleton
+
+
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());

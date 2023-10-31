@@ -4,6 +4,6 @@ public class SkeletonFactory extends EnemyFactory {
 
     @Override
     public Enemy createEnemy() {
-        return null;
+        return new Skeleton();
     }
 }
