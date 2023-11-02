@@ -20,19 +20,19 @@ import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class UnitTests {
     @Test
-    public void blankName_returnsFalse() {
+    public void blankNameReturnsFalse() {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertFalse(sample.checkName(""));
     }
 
     @Test
-    public void whitespaceName_returnsFalse() {
+    public void whitespaceNameReturnsFalse() {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertFalse(sample.checkName("   "));
     }
 
     @Test
-    public void nullName_returnsFalse() {
+    public void nullNameReturnsFalse() {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertFalse(sample.checkName(null));
     }
@@ -99,18 +99,18 @@ public class UnitTests {
         assertEquals(hard * 50, player.getHP(), 0.0);
     }
     @Test
-    public void validName_returnsTrue() {
+    public void validNameReturnsTrue() {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertTrue(sample.checkName("John"));
     }
     @Test
-    public void validNameWithSpaces_returnsTrue() {
+    public void validNameWithSpacesReturnsTrue() {
         InitialConfigViewModel sample = new InitialConfigViewModel();
         assertTrue(sample.checkName("Alice Johnson"));
     }
     @Test
     public void testInitialPosition() {
-        assertEquals(0.0f, Player.getPlayer().getX(), 0.01); // Tolerance for floating-point comparison
+        assertEquals(0.0f, Player.getPlayer().getX(), 0.01);
         assertEquals(0.0f, Player.getPlayer().getY(), 0.01);
     }
     @Test
