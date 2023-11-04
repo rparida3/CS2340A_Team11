@@ -10,7 +10,7 @@ public class BanditView extends View {
     private float x;
     private float y;
     private BanditSprite banditSprite;
-    private int charId;
+
 
     public BanditView(Context context, float x, float y) {
         super(context);

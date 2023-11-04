@@ -11,7 +11,6 @@ public class EvilWizardView extends View {
     private float x;
     private float y;
     private EvilWizardSprite evilWizardSprite;
-    private int charId;
 
     public EvilWizardView(Context context, float x, float y) {
         super(context);
