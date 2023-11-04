@@ -12,11 +12,10 @@ public class BanditView extends View {
     private BanditSprite banditSprite;
     private int charId;
 
-    public BanditView(Context context, float x, float y, int charId) {
+    public BanditView(Context context, float x, float y) {
         super(context);
         this.x = x;
         this.y = y;
-        this.charId = charId;
         banditSprite = new BanditSprite(getResources());
     }
 

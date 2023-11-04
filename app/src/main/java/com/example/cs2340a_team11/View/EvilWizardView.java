@@ -13,11 +13,10 @@ public class EvilWizardView extends View {
     private EvilWizardSprite evilWizardSprite;
     private int charId;
 
-    public EvilWizardView(Context context, float x, float y, int charId) {
+    public EvilWizardView(Context context, float x, float y) {
         super(context);
         this.x = x;
         this.y = y;
-        this.charId = charId;
         evilWizardSprite = new EvilWizardSprite(getResources());
     }
 
