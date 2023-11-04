@@ -51,6 +51,7 @@ public class InitialConfigScreen extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         initialConfigViewModel.gameSetDifficulty(v.getId());
+
     }
 
     public void onRadioButtonClicked(View view) {
