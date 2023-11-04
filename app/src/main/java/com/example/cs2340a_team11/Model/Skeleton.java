@@ -25,21 +25,21 @@ public class Skeleton implements Enemy {
 
     @Override
     public void moveLeft() {
-        this.setX(this.getX() - 150);
+
     }
 
     @Override
     public void moveRight() {
-        this.setX(this.getX() + 150);
+
     }
 
     @Override
     public void moveUp() {
-        this.setY(this.getY() + 150);
+
     }
 
     @Override
     public void moveDown() {
-        this.setY(this.getY() + 150);
+
     }
 }
