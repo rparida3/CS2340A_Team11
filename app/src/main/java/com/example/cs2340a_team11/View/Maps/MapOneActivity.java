@@ -17,7 +17,9 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 
@@ -25,6 +27,11 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 public class MapOneActivity extends AppCompatActivity {
 
     private PlayerView playerView;
+
+    private SkeletonView skellyView;
+
+    private NightborneidleView nbView;
+
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private GameScreenViewModel gameScreenViewModel;
@@ -65,12 +72,27 @@ public class MapOneActivity extends AppCompatActivity {
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
 
+        
+
+
+
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+
+        skellyView = new SkeletonView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        layout.addView(skellyView);
+        System.out.println("Enemy view added");
+        skellyView.bringToFront();
+
+        nbView = new NightborneidleView(this, player.getX(), player.getY() + BitmapInterface.TILE_SIZE);
+        layout.addView(nbView);
+        System.out.println("Enemy view added");
+        nbView.bringToFront();
+
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
