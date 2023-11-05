@@ -83,12 +83,12 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        skellyView = new SkeletonView(this, player.getX() + 150, player.getY());
+        skellyView = new SkeletonView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
         layout.addView(skellyView);
         System.out.println("Enemy view added");
         skellyView.bringToFront();
 
-        nbView = new NightborneidleView(this, player.getX(), player.getY() + 200);
+        nbView = new NightborneidleView(this, player.getX(), player.getY() + BitmapInterface.TILE_SIZE);
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();
