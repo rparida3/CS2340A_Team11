@@ -17,6 +17,7 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
@@ -27,6 +28,8 @@ public class MapOneActivity extends AppCompatActivity {
     private PlayerView playerView;
     private static Context gameContext;
     private Player player = Player.getPlayer();
+
+    private BanditView banditView;
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
@@ -71,6 +74,8 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+
+
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {

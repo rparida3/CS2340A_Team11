@@ -71,12 +71,12 @@ public class MapTwoActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        banView = new BanditView(this, player.getX() + 150, player.getY());
+        banView = new BanditView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
         layout.addView(banView);
         System.out.println("Enemy view added");
         banView.bringToFront();
 
-        evView = new EvilWizardView(this, player.getX() + 150, player.getY());
+        evView = new EvilWizardView(this, player.getX(), player.getY() - BitmapInterface.TILE_SIZE);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
