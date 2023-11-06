@@ -18,7 +18,9 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.BanditView;
+import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 
@@ -26,6 +28,11 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 public class MapOneActivity extends AppCompatActivity {
 
     private PlayerView playerView;
+
+    private SkeletonView skellyView;
+
+    private NightborneidleView nbView;
+
     private static Context gameContext;
     private Player player = Player.getPlayer();
 
@@ -74,6 +81,17 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+
+        skellyView = new SkeletonView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        layout.addView(skellyView);
+        System.out.println("Enemy view added");
+        skellyView.bringToFront();
+
+        nbView = new NightborneidleView(this, player.getX(), player.getY() + BitmapInterface.TILE_SIZE);
+        layout.addView(nbView);
+        System.out.println("Enemy view added");
+        nbView.bringToFront();
+
 
 
     }

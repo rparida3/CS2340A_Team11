@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
 public class InitialConfigScreen extends AppCompatActivity implements View.OnClickListener {
@@ -67,7 +68,7 @@ public class InitialConfigScreen extends AppCompatActivity implements View.OnCli
     }
 
     public void startGame() {
-        Intent gameScreenIntent = new Intent(this, GameScreenActivity.class);
+        Intent gameScreenIntent = new Intent(this, MapOneActivity.class);
         System.out.println(playerName);
         startActivity(gameScreenIntent);
     }
