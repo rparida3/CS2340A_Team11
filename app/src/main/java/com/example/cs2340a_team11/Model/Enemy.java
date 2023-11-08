@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.Model;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 
 public abstract class Enemy {
+    private Player player = Player.getPlayer();
     private float x;
     private float y;
 
@@ -19,8 +20,9 @@ public abstract class Enemy {
         this.y = y;
     }
 
+    // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE
     void attack() {
-
+        player.setHP(player.getHP() - 10);
     }
 
     public void moveLeft() {
