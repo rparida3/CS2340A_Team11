@@ -17,6 +17,7 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.View.SkeletonView;
@@ -34,6 +35,8 @@ public class MapOneActivity extends AppCompatActivity {
 
     private static Context gameContext;
     private Player player = Player.getPlayer();
+
+    private BanditView banditView;
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
@@ -72,10 +75,6 @@ public class MapOneActivity extends AppCompatActivity {
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
 
-        
-
-
-
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
@@ -92,6 +91,8 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();
+
+
 
     }
 
