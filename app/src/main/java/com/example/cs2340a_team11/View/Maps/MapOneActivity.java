@@ -80,6 +80,7 @@ public class MapOneActivity extends AppCompatActivity {
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
+
         playerView.bringToFront();
 
         skellyView = new SkeletonView(this,

@@ -100,6 +100,7 @@ public class GameScreenViewModel extends ViewModel {
                  */
                 view.updatePosition();
                 handler.postDelayed(this, 1000);
+                System.out.println("Nightborne still running");
                 /*
                 for (int i = 0; i < 2; i++) {
                     view.updatePosition(view.getX(), view.getY() + 160);

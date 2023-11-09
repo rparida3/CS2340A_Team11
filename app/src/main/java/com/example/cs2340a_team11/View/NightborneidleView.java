@@ -48,42 +48,6 @@ public class NightborneidleView extends View {
         move++;
         invalidate();
     }
-    /*
-    public void runMovement() throws InterruptedException {
-        for (int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            updatePosition(getX() + 160, getY());
-        }
-        for (int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            updatePosition(getX(), getY() + 160);
-        }
-        for (int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            updatePosition(getX() - 160, getY());
-        }
-        for (int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            updatePosition(getX(), getY() - 160);
-        }
-    }
-    */
 
     public float getX() {
         return x;
