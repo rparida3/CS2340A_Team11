@@ -8,6 +8,9 @@ public abstract class Enemy {
     private float y;
     private Player player = Player.getPlayer();
 
+    int charId; // 0 = Bandit, 1 = EvilWizard,
+                // 2 = Nightborneidle, 3 = Skeleton
+
     float getX() {
         return x;
     }
@@ -19,6 +22,14 @@ public abstract class Enemy {
     }
     void setY(float y) {
         this.y = y;
+    }
+
+    public int getCharId() {
+        return charId;
+    }
+
+    public void setCharId(int charId) {
+        this.charId = charId;
     }
 
     // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE

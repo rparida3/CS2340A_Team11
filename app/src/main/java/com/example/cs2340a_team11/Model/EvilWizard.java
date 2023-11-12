@@ -15,8 +15,7 @@ public class EvilWizard extends Enemy {
         this.stepSize = (int) (Math.random() * 3) + 1;
     }*/
 
-
-
-
-
+    public EvilWizard() {
+        super.setCharId(1);
+    }
 }

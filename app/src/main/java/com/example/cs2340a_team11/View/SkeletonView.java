@@ -10,13 +10,12 @@ public class SkeletonView extends View {
     private float x;
     private float y;
     private SkeletonSprite skeletonSprite;
-    private int charId;
+
 
     public SkeletonView(Context context, float x, float y) {
         super(context);
         this.x = x;
         this.y = y;
-        this.charId = charId;
         skeletonSprite = new SkeletonSprite(getResources());
     }
 
