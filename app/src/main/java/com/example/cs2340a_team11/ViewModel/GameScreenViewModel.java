@@ -122,6 +122,9 @@ public class GameScreenViewModel extends ViewModel {
     public void stopMovement() {
         handler.removeCallbacksAndMessages(null);
     }
+
+
+
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         // player.displayPosition();
         MovementStrategy movementStrategy = null;

@@ -6,6 +6,7 @@ import com.example.cs2340a_team11.R;
 public abstract class Enemy {
     private float x;
     private float y;
+    private Player player = Player.getPlayer();
 
     float getX() {
         return x;
@@ -22,7 +23,7 @@ public abstract class Enemy {
 
     // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE
     void attack() {
-        //enemy.setHP(enemy.getHP() - 10);
+        player.setHP(player.getHP() - 1);
     }
 
     public void moveLeft() {
