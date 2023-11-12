@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModel;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.BanditView;
+import com.example.cs2340a_team11.View.EvilWizardView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.SkeletonView;
 
 import java.util.ArrayList;
 
@@ -118,6 +121,109 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
+
+    public void runMovement(SkeletonView view) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // view.runMovement();
+                //for (int i = 0; i < 2; i++) {
+                /*
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                 */
+                view.updatePosition();
+                handler.postDelayed(this, 1000);
+                System.out.println("Skeleton still running");
+                /*
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() + 160);
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX() - 160, view.getY());
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() - 160);
+                    handler.postDelayed(this, 1000);
+                }
+                 */
+            }
+        });
+    }
+
+    public void runMovement(EvilWizardView view) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // view.runMovement();
+                //for (int i = 0; i < 2; i++) {
+                /*
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                 */
+                view.updatePosition();
+                handler.postDelayed(this, 1000);
+                System.out.println("Skeleton still running");
+                /*
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() + 160);
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX() - 160, view.getY());
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() - 160);
+                    handler.postDelayed(this, 1000);
+                }
+                 */
+            }
+        });
+    }
+
+    public void runMovement(BanditView view) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // view.runMovement();
+                //for (int i = 0; i < 2; i++) {
+                /*
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                 */
+                view.updatePosition();
+                handler.postDelayed(this, 1000);
+                System.out.println("Skeleton still running");
+                /*
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() + 160);
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX() - 160, view.getY());
+                    handler.postDelayed(this, 1000);
+                }
+                for (int i = 0; i < 2; i++) {
+                    view.updatePosition(view.getX(), view.getY() - 160);
+                    handler.postDelayed(this, 1000);
+                }
+                 */
+            }
+        });
+    }
+
 
     public void stopMovement() {
         handler.removeCallbacksAndMessages(null);

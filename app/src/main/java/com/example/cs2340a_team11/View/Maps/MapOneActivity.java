@@ -89,6 +89,7 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();
+        gameScreenViewModel.runMovement(skellyView);
 
         nbView = new NightborneidleView(this,
                 player.getX() - 2 * BitmapInterface.TILE_SIZE,

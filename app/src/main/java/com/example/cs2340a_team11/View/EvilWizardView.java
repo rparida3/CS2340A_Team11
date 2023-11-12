@@ -10,6 +10,8 @@ import com.example.cs2340a_team11.View.Characters.EvilWizardSprite;
 public class EvilWizardView extends View {
     private float x;
     private float y;
+
+    private int move = 0;
     private EvilWizardSprite evilWizardSprite;
 
     public EvilWizardView(Context context, float x, float y) {
@@ -30,6 +32,24 @@ public class EvilWizardView extends View {
         y = newY;
         invalidate();
     }
+
+    public void updatePosition() {
+        if (move >= 16) {
+            move = 0;
+        }
+        if (move < 4) {
+            x += 160;
+        } else if (move < 8) {
+            y += 160;
+        } else if (move < 12) {
+            x -= 160;
+        } else if (move < 16) {
+            y -= 160;
+        }
+        move++;
+        invalidate();
+    }
+
     public float getX() {
         return x;
     }

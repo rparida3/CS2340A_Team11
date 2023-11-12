@@ -9,6 +9,8 @@ import com.example.cs2340a_team11.View.Characters.SkeletonSprite;
 public class SkeletonView extends View {
     private float x;
     private float y;
+
+    private int move = 0;
     private SkeletonSprite skeletonSprite;
     private int charId;
 
@@ -26,9 +28,20 @@ public class SkeletonView extends View {
         canvas.drawBitmap(skeletonSprite.getSprite(), x, y, null);
     }
 
-    public void updatePosition(float newX, float newY) {
-        x = newX;
-        y = newY;
+    public void updatePosition() {
+        if (move >= 16) {
+            move = 0;
+        }
+        if (move < 4) {
+            x += 160;
+        } else if (move < 8) {
+            y += 160;
+        } else if (move < 12) {
+            x -= 160;
+        } else if (move < 16) {
+            y -= 160;
+        }
+        move++;
         invalidate();
     }
     public float getX() {

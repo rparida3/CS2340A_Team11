@@ -26,6 +26,7 @@ public class NightborneidleView extends View {
         canvas.drawBitmap(nbSprite.getSprite(), x, y, null);
     }
 
+    @Deprecated
     public void updatePosition(float newX, float newY) {
         x = newX;
         y = newY;
