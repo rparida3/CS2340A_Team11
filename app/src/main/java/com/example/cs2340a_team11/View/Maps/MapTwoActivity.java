@@ -75,11 +75,13 @@ public class MapTwoActivity extends AppCompatActivity {
         layout.addView(banView);
         System.out.println("Enemy view added");
         banView.bringToFront();
+        gameScreenViewModel.runMovement(banView);
 
         evView = new EvilWizardView(this, player.getX(), player.getY() - BitmapInterface.TILE_SIZE);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
+        gameScreenViewModel.runMovement(evView);
     }
 
 
