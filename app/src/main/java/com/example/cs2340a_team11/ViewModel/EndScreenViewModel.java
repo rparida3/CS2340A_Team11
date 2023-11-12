@@ -17,8 +17,8 @@ public class EndScreenViewModel extends ViewModel {
     }
 
     // DO PLEASE: fetch results from player and return to view
-    public String fetchResult() {
-        return "won";
+    public boolean fetchResult() {
+        return player.getHP() != 0;
     }
 
     public int fetchKilled() {

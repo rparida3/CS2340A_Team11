@@ -18,6 +18,7 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EndingActivity;
+import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
