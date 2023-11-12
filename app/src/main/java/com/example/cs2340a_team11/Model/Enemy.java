@@ -22,7 +22,7 @@ public abstract class Enemy {
 
     // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE
     void attack() {
-        enemy.setHP(enemy.getHP() - 10);
+        //enemy.setHP(enemy.getHP() - 10);
     }
 
     public void moveLeft() {
