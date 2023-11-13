@@ -11,16 +11,16 @@ public abstract class Enemy {
     int charId; // 0 = Bandit, 1 = EvilWizard,
                 // 2 = Nightborneidle, 3 = Skeleton
 
-    float getX() {
+    public float getX() {
         return x;
     }
-    void setX(float x) {
+    public void setX(float x) {
         this.x = x;
     }
-    float getY() {
+    public float getY() {
         return y;
     }
-    void setY(float y) {
+    public void setY(float y) {
         this.y = y;
     }
 

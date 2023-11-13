@@ -84,16 +84,13 @@ public class MapFinalActivity extends AppCompatActivity {
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
         gameScreenViewModel.updatePlayerHealth(healthBar);
-        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer newHealth) {
-                if (newHealth <= 0) {
-                    gameScreenViewModel.stopTimer();
-                    endGame();
-                    finish();
-                }
+        gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
+            if (isGameOver) {
+                gameScreenViewModel.stopTimer();
+                endGame();
             }
         });
+        gameScreenViewModel.checkGameOver();
 
     }
 
@@ -119,5 +116,6 @@ public class MapFinalActivity extends AppCompatActivity {
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         startActivity(progressToGameOverScreen);
+        finish();
     }
 }

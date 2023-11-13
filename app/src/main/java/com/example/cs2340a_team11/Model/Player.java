@@ -134,4 +134,8 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public boolean isGameOver() {
+        return this.hp <= 0;
+    }
 }

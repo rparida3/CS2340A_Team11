@@ -32,10 +32,10 @@ public class GameScreenViewModel extends ViewModel {
 
     private int totalScore = player.getScore();
     private int currMap;
+    private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
-    private MutableLiveData<Integer> playerHealth = new MutableLiveData<>();
     public GameScreenViewModel() {
 
     }
@@ -271,16 +271,21 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                playerHealth.setValue(player.getHP());
                 healthBar.setProgress(player.getHP());
-                handler.postDelayed(this, 1);
-
+                checkGameOver();
+                if (player.getHP() > 0) {
+                    handler.postDelayed(this, 1);
+                }
             }
         });
     }
-    public LiveData<Integer> getPlayerHealth() {
-        return playerHealth;
+    public void checkGameOver() {
+        if (player.isGameOver()) {
+            isGameOver.setValue(true);
+        }
     }
-
+    public LiveData<Boolean> getIsGameOver() {
+        return isGameOver;
+    }
 
 }
