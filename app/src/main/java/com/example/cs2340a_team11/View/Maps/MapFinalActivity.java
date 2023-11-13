@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -71,17 +72,28 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() + 2 * BitmapInterface.TILE_SIZE);
+        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() - 2 * BitmapInterface.TILE_SIZE);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView);
 
-        BanditView banView = new BanditView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
-        layout.addView(banView);
+        NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        layout.addView(nbView);
         System.out.println("Enemy view added");
-        banView.bringToFront();
-        gameScreenViewModel.runMovement(banView);
+        nbView.bringToFront();
+        gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.updatePlayerHealth(healthBar);
+        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer newHealth) {
+                if (newHealth <= 0) {
+                    gameScreenViewModel.stopTimer();
+                    endGame();
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -103,5 +115,9 @@ public class MapFinalActivity extends AppCompatActivity {
             progressToEndScreen();
         }
         return true;
+    }
+    public void endGame() {
+        Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        startActivity(progressToGameOverScreen);
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -85,8 +86,8 @@ public class MapOneActivity extends AppCompatActivity {
         playerView.bringToFront();
 
         skellyView = new SkeletonView(this,
-                player.getX() - BitmapInterface.TILE_SIZE,
-                player.getY() - 3 * BitmapInterface.TILE_SIZE);
+                player.getX() - 3 * BitmapInterface.TILE_SIZE,
+                player.getY() - 2 * BitmapInterface.TILE_SIZE);
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();
@@ -99,6 +100,17 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Nb view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.updatePlayerHealth(healthBar);
+        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer newHealth) {
+                if (newHealth <= 0) {
+                    gameScreenViewModel.stopTimer();
+                    endGame();
+                    finish();
+                }
+            }
+        });
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -120,6 +132,7 @@ public class MapOneActivity extends AppCompatActivity {
         walls.setIsDrawn(false);
         startActivity(progressToMapTwoIntent);
     }
+
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         startActivity(progressToGameOverScreen);

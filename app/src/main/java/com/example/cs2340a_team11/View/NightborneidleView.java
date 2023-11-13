@@ -34,16 +34,16 @@ public class NightborneidleView extends View {
     }
 
     public void updatePosition() {
-        if (move >= 16) {
+        if (move >= 9) {
             move = 0;
         }
-        if (move < 4) {
+        if (move < 3) {
             x += 160;
-        } else if (move < 8) {
+        } else if (move < 5) {
             y += 160;
-        } else if (move < 12) {
+        } else if (move < 7) {
             x -= 160;
-        } else if (move < 16) {
+        } else if (move < 9) {
             y -= 160;
         }
         move++;

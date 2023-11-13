@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
+import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+
 public class GameOverActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();

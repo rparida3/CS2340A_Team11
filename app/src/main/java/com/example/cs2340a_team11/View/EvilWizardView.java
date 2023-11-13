@@ -34,17 +34,12 @@ public class EvilWizardView extends View {
     }
 
     public void updatePosition() {
-        if (move >= 16) {
-            move = 0;
-        }
-        if (move < 4) {
-            x += 160;
-        } else if (move < 8) {
+        if (move < 3) {
             y += 160;
-        } else if (move < 12) {
-            x -= 160;
-        } else if (move < 16) {
+        } else if (move < 5) {
             y -= 160;
+        } else {
+            move = 0;
         }
         move++;
         invalidate();

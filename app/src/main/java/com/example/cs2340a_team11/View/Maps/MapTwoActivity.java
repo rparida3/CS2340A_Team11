@@ -11,12 +11,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EvilWizardView;
@@ -71,17 +73,28 @@ public class MapTwoActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        banView = new BanditView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        banView = new BanditView(this, player.getX(), player.getY() - 4 * BitmapInterface.TILE_SIZE);
         layout.addView(banView);
         System.out.println("Enemy view added");
         banView.bringToFront();
         gameScreenViewModel.runMovement(banView);
 
-        evView = new EvilWizardView(this, player.getX(), player.getY() - BitmapInterface.TILE_SIZE);
+        evView = new EvilWizardView(this, player.getX() + 2 * BitmapInterface.TILE_SIZE, player.getY() - 3 * BitmapInterface.TILE_SIZE);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView);
+        gameScreenViewModel.updatePlayerHealth(healthBar);
+        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer newHealth) {
+                if (newHealth <= 0) {
+                    gameScreenViewModel.stopTimer();
+                    endGame();
+                    finish();
+                }
+            }
+        });
     }
 
 
@@ -103,6 +116,10 @@ public class MapTwoActivity extends AppCompatActivity {
             progressToNextMap();
         }
         return true;
+    }
+    public void endGame() {
+        Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        startActivity(progressToGameOverScreen);
     }
 }
 
