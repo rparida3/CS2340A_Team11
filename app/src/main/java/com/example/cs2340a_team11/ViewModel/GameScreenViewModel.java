@@ -37,6 +37,7 @@ public class GameScreenViewModel extends ViewModel {
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
+    private final int playerHp = player.getInitialHP();
     public GameScreenViewModel() {
 
     }
@@ -266,7 +267,7 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                healthBar.setProgress(player.getHP());
+                healthBar.setProgress((int) (100 * ((float) player.getHP() / playerHp)));
                 checkGameOver();
                 if (player.getHP() > 0) {
                     handler.postDelayed(this, 1);

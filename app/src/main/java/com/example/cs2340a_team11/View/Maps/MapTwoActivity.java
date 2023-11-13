@@ -37,10 +37,10 @@ public class MapTwoActivity extends AppCompatActivity {
     private EvilWizard evilWizard = (EvilWizard) evFactory.createEnemy();
     private PlayerView playerView;
     private BanditView banView;
-
     private EvilWizardView evView;
     private GameScreenViewModel gameScreenViewModel;
     private Wall walls = Wall.getWall();
+    private final int playerInitialHP = player.getInitialHP();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +54,9 @@ public class MapTwoActivity extends AppCompatActivity {
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
-        healthBar.setProgress(player.getHP());
-        nameView.setText(player.getName());
 
+        nameView.setText(player.getName());
+        healthBar.setProgress((int) (100 * ((float) player.getHP() / playerInitialHP)));
         characterView.setImageResource(gameScreenViewModel.getImg());
 
 

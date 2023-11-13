@@ -138,4 +138,13 @@ public class Player {
     public boolean isGameOver() {
         return this.hp <= 0;
     }
+    public int getInitialHP() {
+        if (this.charId == R.id.wizardButton) {
+            return 30;
+        } else if (this.charId == R.id.assassinButton) {
+            return 20;
+        } else {
+            return 50;
+        }
+    }
 }

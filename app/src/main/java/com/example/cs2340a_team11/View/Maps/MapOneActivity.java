@@ -64,7 +64,6 @@ public class MapOneActivity extends AppCompatActivity {
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
-        healthBar.setProgress(player.getHP());
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
