@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
+import com.example.cs2340a_team11.Model.Bandit;
 import com.example.cs2340a_team11.View.Characters.BanditSprite;
 
 public class BanditView extends View {
@@ -12,13 +13,15 @@ public class BanditView extends View {
 
     private int move = 0;
     private BanditSprite banditSprite;
+    private Bandit bandit;
 
 
-    public BanditView(Context context, float x, float y) {
+    public BanditView(Context context, float x, float y, Bandit bandit) {
         super(context);
         this.x = x;
         this.y = y;
         banditSprite = new BanditSprite(getResources());
+        this.bandit = bandit;
     }
 
     @Override
@@ -47,6 +50,8 @@ public class BanditView extends View {
             y -= 160;
         }
         move++;
+        bandit.setX(x);
+        bandit.setY(y);
         invalidate();
     }
 
@@ -56,6 +61,9 @@ public class BanditView extends View {
 
     public float getY() {
         return y;
+    }
+    public Bandit getBandit() {
+        return this.bandit;
     }
 
 }

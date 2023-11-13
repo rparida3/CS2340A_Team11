@@ -134,4 +134,24 @@ public class Player {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public boolean isGameOver() {
+        return this.hp <= 0;
+    }
+    public int getInitialHP() {
+        int initialHP = 0;
+        if (this.charId == R.id.wizardButton) {
+            initialHP = 30;
+        } else if (this.charId == R.id.assassinButton) {
+            initialHP = 20;
+        } else {
+            initialHP = 50;
+        }
+        if (difficulty.equals("Medium")) {
+            initialHP *= .80;
+        } else if (difficulty.equals("Hard")) {
+            initialHP *= .60;
+        }
+        return initialHP;
+    }
 }

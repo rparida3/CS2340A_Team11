@@ -11,11 +11,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.Enemy;
+import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Skeleton;
+import com.example.cs2340a_team11.Model.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.GameOverActivity;
@@ -37,6 +41,10 @@ public class MapOneActivity extends AppCompatActivity {
 
     private static Context gameContext;
     private Player player = Player.getPlayer();
+    private NightborneidleFactory nbFactory = new NightborneidleFactory();
+    private Nightborneidle nightborne = (Nightborneidle) nbFactory.createEnemy();
+    private SkeletonFactory skFactory = new SkeletonFactory();
+    private Skeleton skeleton = (Skeleton) skFactory.createEnemy();
 
     private BanditView banditView;
     private GameScreenViewModel gameScreenViewModel;
@@ -56,7 +64,6 @@ public class MapOneActivity extends AppCompatActivity {
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
-        healthBar.setProgress(player.getHP());
         nameView.setText(player.getName());
 
         characterView.setImageResource(gameScreenViewModel.getImg());
@@ -87,7 +94,7 @@ public class MapOneActivity extends AppCompatActivity {
 
         skellyView = new SkeletonView(this,
                 player.getX() - 3 * BitmapInterface.TILE_SIZE,
-                player.getY() - 2 * BitmapInterface.TILE_SIZE);
+                player.getY() - 2 * BitmapInterface.TILE_SIZE, skeleton);
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();
@@ -95,22 +102,19 @@ public class MapOneActivity extends AppCompatActivity {
 
         nbView = new NightborneidleView(this,
                 player.getX() - 2 * BitmapInterface.TILE_SIZE,
-                player.getY() - 2 * BitmapInterface.TILE_SIZE);
+                player.getY() - 2 * BitmapInterface.TILE_SIZE, nightborne);
         layout.addView(nbView);
         System.out.println("Nb view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
         gameScreenViewModel.updatePlayerHealth(healthBar);
-        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer newHealth) {
-                if (newHealth <= 0) {
-                    gameScreenViewModel.stopTimer();
-                    endGame();
-                    finish();
-                }
+        gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
+            if (isGameOver) {
+                gameScreenViewModel.stopTimer();
+                endGame();
             }
         });
+        gameScreenViewModel.checkGameOver();
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -135,6 +139,9 @@ public class MapOneActivity extends AppCompatActivity {
 
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        walls.resetWalls();
+        walls.setIsDrawn(false);
         startActivity(progressToGameOverScreen);
+        finish();
     }
 }

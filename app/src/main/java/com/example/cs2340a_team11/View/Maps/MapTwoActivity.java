@@ -15,6 +15,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.Bandit;
+import com.example.cs2340a_team11.Model.BanditFactory;
+import com.example.cs2340a_team11.Model.EvilWizard;
+import com.example.cs2340a_team11.Model.EvilWizardFactory;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
@@ -27,12 +31,16 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 public class MapTwoActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
+    private BanditFactory bdFactory = new BanditFactory();
+    private Bandit bandit = (Bandit) bdFactory.createEnemy();
+    private EvilWizardFactory evFactory = new EvilWizardFactory();
+    private EvilWizard evilWizard = (EvilWizard) evFactory.createEnemy();
     private PlayerView playerView;
     private BanditView banView;
-
     private EvilWizardView evView;
     private GameScreenViewModel gameScreenViewModel;
     private Wall walls = Wall.getWall();
+    private final int playerInitialHP = player.getInitialHP();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +54,9 @@ public class MapTwoActivity extends AppCompatActivity {
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
-        healthBar.setProgress(player.getHP());
-        nameView.setText(player.getName());
 
+        nameView.setText(player.getName());
+        healthBar.setProgress((int) (100 * ((float) player.getHP() / playerInitialHP)));
         characterView.setImageResource(gameScreenViewModel.getImg());
 
 
@@ -73,28 +81,25 @@ public class MapTwoActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        banView = new BanditView(this, player.getX(), player.getY() - 4 * BitmapInterface.TILE_SIZE);
+        banView = new BanditView(this, player.getX(), player.getY() - 4 * BitmapInterface.TILE_SIZE, bandit);
         layout.addView(banView);
         System.out.println("Enemy view added");
         banView.bringToFront();
         gameScreenViewModel.runMovement(banView);
 
-        evView = new EvilWizardView(this, player.getX() + 2 * BitmapInterface.TILE_SIZE, player.getY() - 3 * BitmapInterface.TILE_SIZE);
+        evView = new EvilWizardView(this, player.getX() + 2 * BitmapInterface.TILE_SIZE, player.getY() - 3 * BitmapInterface.TILE_SIZE, evilWizard);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView);
         gameScreenViewModel.updatePlayerHealth(healthBar);
-        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer newHealth) {
-                if (newHealth <= 0) {
-                    gameScreenViewModel.stopTimer();
-                    endGame();
-                    finish();
-                }
+        gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
+            if (isGameOver) {
+                gameScreenViewModel.stopTimer();
+                endGame();
             }
         });
+        gameScreenViewModel.checkGameOver();
     }
 
 
@@ -119,7 +124,10 @@ public class MapTwoActivity extends AppCompatActivity {
     }
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        walls.resetWalls();
+        walls.setIsDrawn(false);
         startActivity(progressToGameOverScreen);
+        finish();
     }
 }
 
