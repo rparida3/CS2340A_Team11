@@ -390,4 +390,8 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     // DO PLEASE: method to update player health
+
+    public boolean gameOver() {
+        return player.getHP() == 0;
+    }
 }

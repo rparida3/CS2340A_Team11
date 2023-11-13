@@ -36,6 +36,7 @@
         <activity android:name=".View.Maps.MapTwoActivity"/>
         <activity android:name=".View.Maps.MapFinalActivity"/>
         <activity android:name=".View.EndingActivity"/>
+        <activity android:name=".View.GameOverActivity"/>
     </application>
 
 </manifest>

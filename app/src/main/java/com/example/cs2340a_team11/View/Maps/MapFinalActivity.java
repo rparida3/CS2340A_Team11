@@ -19,6 +19,7 @@ import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EndingActivity;
+import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.EvilWizardView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
