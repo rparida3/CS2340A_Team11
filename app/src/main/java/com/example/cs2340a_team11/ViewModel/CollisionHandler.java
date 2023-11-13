@@ -1,6 +1,7 @@
 package com.example.cs2340a_team11.ViewModel;
 
 
+import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.Player;
 
 import com.example.cs2340a_team11.Model.Skeleton;
@@ -20,18 +21,16 @@ public class CollisionHandler implements CollisionObserver {
         }
     }
 
-    public void collision(Skeleton skeleton, MovementStrategy movementStrategy) {
+    public void collision(Enemy enemy, MovementStrategy movementStrategy) {
         if (movementStrategy instanceof MoveLeftStrategy) {
-            skeleton.moveRight();
+            enemy.moveRight();
         } else if (movementStrategy instanceof MoveRightStrategy) {
-            skeleton.moveLeft();
+            enemy.moveLeft();
         } else if (movementStrategy instanceof MoveUpStrategy) {
-            skeleton.moveDown();
+            enemy.moveDown();
         } else if (movementStrategy instanceof MoveDownStrategy) {
-            skeleton.moveUp();
+            enemy.moveUp();
         }
     }
-
-
 
 }

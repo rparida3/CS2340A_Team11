@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 
 import com.example.cs2340a_team11.R;
 
-public class EvilWizardSprite {
+public class EvilWizardSprite extends EnemySprite {
     private int width;
     private int height;
     private Bitmap sprite;
