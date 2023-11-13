@@ -35,11 +35,11 @@ public abstract class Enemy {
     // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE
     public void enemyAttack() {
         if (player.getDifficulty().equals("Easy")) {
-            player.setHP(player.getHP() - 10);
+            player.setHP(player.getHP() - 5);
         } else if (player.getDifficulty().equals("Medium")) {
-            player.setHP(player.getHP() - 20);
+            player.setHP(player.getHP() - 8);
         } else {
-            player.setHP(player.getHP() - 30);
+            player.setHP(player.getHP() - 12);
         }
     }
 

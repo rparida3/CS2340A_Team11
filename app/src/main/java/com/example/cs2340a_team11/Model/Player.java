@@ -139,12 +139,19 @@ public class Player {
         return this.hp <= 0;
     }
     public int getInitialHP() {
+        int initialHP = 0;
         if (this.charId == R.id.wizardButton) {
-            return 30;
+            initialHP = 30;
         } else if (this.charId == R.id.assassinButton) {
-            return 20;
+            initialHP = 20;
         } else {
-            return 50;
+            initialHP = 50;
         }
+        if (difficulty.equals("Medium")) {
+            initialHP *= .80;
+        } else if (difficulty.equals("Hard")) {
+            initialHP *= .60;
+        }
+        return initialHP;
     }
 }
