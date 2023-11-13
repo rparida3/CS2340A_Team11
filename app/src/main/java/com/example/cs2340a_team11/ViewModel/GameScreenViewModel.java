@@ -3,6 +3,8 @@ package com.example.cs2340a_team11.ViewModel;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
@@ -94,6 +96,9 @@ public class GameScreenViewModel extends ViewModel {
             public void run() {
                 // view.runMovement();
                 view.updatePosition();
+                if (player.getX() == view.getX() && player.getY() == view.getY()) {
+                    enemyAttack();
+                }
                 handler.postDelayed(this, 1000);
                 System.out.println("Nightborne still running");
             }
@@ -134,7 +139,15 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
-
+    public void enemyAttack() {
+        if (player.getDifficulty().equals("Easy")) {
+            player.setHP(player.getHP() - 10);
+        } else if (player.getDifficulty().equals("Medium")) {
+            player.setHP(player.getHP() - 20);
+        } else {
+            player.setHP(player.getHP() - 30);
+        }
+    }
 
     public void stopMovement() {
         handler.removeCallbacksAndMessages(null);
@@ -240,4 +253,13 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     // DO PLEASE: method to update player health
+    public void updatePlayerHealth(ProgressBar healthBar) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                healthBar.setProgress(player.getHP());
+                handler.postDelayed(this, 1000);
+            }
+        });
+    }
 }

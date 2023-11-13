@@ -76,11 +76,11 @@ public class MapFinalActivity extends AppCompatActivity {
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView);
 
-        BanditView banView = new BanditView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
-        layout.addView(banView);
+        NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        layout.addView(nbView);
         System.out.println("Enemy view added");
-        banView.bringToFront();
-        gameScreenViewModel.runMovement(banView);
+        nbView.bringToFront();
+        gameScreenViewModel.runMovement(nbView);
 
     }
 

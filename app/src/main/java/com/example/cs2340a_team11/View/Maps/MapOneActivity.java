@@ -98,6 +98,7 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Nb view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.updatePlayerHealth(healthBar);
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -119,4 +120,5 @@ public class MapOneActivity extends AppCompatActivity {
         walls.setIsDrawn(false);
         startActivity(progressToMapTwoIntent);
     }
+
 }
