@@ -28,17 +28,12 @@ public class SkeletonView extends View {
     }
 
     public void updatePosition() {
-        if (move >= 16) {
-            move = 0;
-        }
-        if (move < 4) {
+        if (move < 5) {
             x += 160;
-        } else if (move < 8) {
-            y += 160;
-        } else if (move < 12) {
+        } else if (move >= 5 && move < 9) {
             x -= 160;
-        } else if (move < 16) {
-            y -= 160;
+        } else {
+            move = 0;
         }
         move++;
         invalidate();

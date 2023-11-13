@@ -84,8 +84,8 @@ public class MapOneActivity extends AppCompatActivity {
         playerView.bringToFront();
 
         skellyView = new SkeletonView(this,
-                player.getX() - BitmapInterface.TILE_SIZE,
-                player.getY() - 3 * BitmapInterface.TILE_SIZE);
+                player.getX() - 3 * BitmapInterface.TILE_SIZE,
+                player.getY() - 2 * BitmapInterface.TILE_SIZE);
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();

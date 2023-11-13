@@ -70,7 +70,7 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() + 2 * BitmapInterface.TILE_SIZE);
+        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() - 2 * BitmapInterface.TILE_SIZE);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
@@ -81,6 +81,7 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Enemy view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.updatePlayerHealth(healthBar);
 
     }
 

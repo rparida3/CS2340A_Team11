@@ -94,11 +94,11 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                // view.runMovement();
-                view.updatePosition();
                 if (player.getX() == view.getX() && player.getY() == view.getY()) {
                     enemyAttack();
                 }
+                // view.runMovement();
+                view.updatePosition();
                 handler.postDelayed(this, 1000);
                 System.out.println("Nightborne still running");
             }
@@ -109,6 +109,9 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (player.getX() == view.getX() && player.getY() == view.getY()) {
+                    enemyAttack();
+                }
                 // view.runMovement();
                 view.updatePosition();
                 handler.postDelayed(this, 1000);
@@ -121,6 +124,9 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (player.getX() == view.getX() && player.getY() == view.getY()) {
+                    enemyAttack();
+                }
                 // view.runMovement();
                 view.updatePosition();
                 handler.postDelayed(this, 1000);
@@ -133,6 +139,9 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                if (player.getX() == view.getX() && player.getY() == view.getY()) {
+                    enemyAttack();
+                }
                 view.updatePosition();
                 handler.postDelayed(this, 1000);
                 System.out.println("Skeleton still running");
@@ -258,7 +267,7 @@ public class GameScreenViewModel extends ViewModel {
             @Override
             public void run() {
                 healthBar.setProgress(player.getHP());
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 10);
             }
         });
     }
