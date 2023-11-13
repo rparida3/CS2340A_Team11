@@ -271,4 +271,8 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
+
+    public boolean gameOver() {
+        return player.getHP() == 0;
+    }
 }

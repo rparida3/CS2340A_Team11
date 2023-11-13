@@ -17,6 +17,7 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
@@ -121,4 +122,8 @@ public class MapOneActivity extends AppCompatActivity {
         startActivity(progressToMapTwoIntent);
     }
 
+    public void endGame() {
+        Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        startActivity(progressToGameOverScreen);
+    }
 }
