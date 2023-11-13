@@ -18,12 +18,17 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.BanditView;
+import com.example.cs2340a_team11.View.EvilWizardView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapTwoActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
     private PlayerView playerView;
+    private BanditView banView;
+
+    private EvilWizardView evView;
     private GameScreenViewModel gameScreenViewModel;
     private Wall walls = Wall.getWall();
 
@@ -65,6 +70,18 @@ public class MapTwoActivity extends AppCompatActivity {
         layout.addView(playerView);
         System.out.println("Player view added");
         playerView.bringToFront();
+
+        banView = new BanditView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        layout.addView(banView);
+        System.out.println("Enemy view added");
+        banView.bringToFront();
+        gameScreenViewModel.runMovement(banView);
+
+        evView = new EvilWizardView(this, player.getX(), player.getY() - BitmapInterface.TILE_SIZE);
+        layout.addView(evView);
+        System.out.println("Enemy view added");
+        evView.bringToFront();
+        gameScreenViewModel.runMovement(evView);
     }
 
 

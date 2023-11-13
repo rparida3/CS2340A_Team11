@@ -43,6 +43,22 @@ public class GameScreenActivity extends AppCompatActivity {
 
         characterView.setImageResource(gameScreenViewModel.getImg());
 
+
+
+        TextView healthText = findViewById(R.id.healthText);
+        TextView healthPercentage = findViewById(R.id.healthPercentage);
+
+        int newHealth = 50;
+        int maxHealth = 100;
+
+        healthBar.setProgress(newHealth);
+
+        healthText.setText("Health: " + newHealth + "/" + maxHealth);
+
+        int percentage = (int) ((newHealth / (float) maxHealth) * 100);
+        healthPercentage.setText(percentage + "%");
+
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
