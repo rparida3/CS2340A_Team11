@@ -1,5 +1,6 @@
 package com.example.cs2340a_team11.ViewModel;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -14,9 +17,11 @@ import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EvilWizardView;
+import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.View.SkeletonView;
+import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 
 import java.util.ArrayList;
 
@@ -30,7 +35,7 @@ public class GameScreenViewModel extends ViewModel {
 
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
-
+    private MutableLiveData<Integer> playerHealth = new MutableLiveData<>();
     public GameScreenViewModel() {
 
     }
@@ -266,13 +271,16 @@ public class GameScreenViewModel extends ViewModel {
         handler.post(new Runnable() {
             @Override
             public void run() {
+                playerHealth.setValue(player.getHP());
                 healthBar.setProgress(player.getHP());
-                handler.postDelayed(this, 10);
+                handler.postDelayed(this, 1);
+
             }
         });
     }
-
-    public boolean gameOver() {
-        return player.getHP() == 0;
+    public LiveData<Integer> getPlayerHealth() {
+        return playerHealth;
     }
+
+
 }

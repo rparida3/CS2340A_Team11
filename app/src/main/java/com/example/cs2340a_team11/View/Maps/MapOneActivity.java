@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -100,6 +101,16 @@ public class MapOneActivity extends AppCompatActivity {
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
         gameScreenViewModel.updatePlayerHealth(healthBar);
+        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer newHealth) {
+                if (newHealth <= 0) {
+                    gameScreenViewModel.stopTimer();
+                    endGame();
+                    finish();
+                }
+            }
+        });
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {

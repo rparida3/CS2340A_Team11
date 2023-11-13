@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
@@ -83,6 +84,16 @@ public class MapFinalActivity extends AppCompatActivity {
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView);
         gameScreenViewModel.updatePlayerHealth(healthBar);
+        gameScreenViewModel.getPlayerHealth().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer newHealth) {
+                if (newHealth <= 0) {
+                    gameScreenViewModel.stopTimer();
+                    endGame();
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -104,5 +115,9 @@ public class MapFinalActivity extends AppCompatActivity {
             progressToEndScreen();
         }
         return true;
+    }
+    public void endGame() {
+        Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        startActivity(progressToGameOverScreen);
     }
 }
