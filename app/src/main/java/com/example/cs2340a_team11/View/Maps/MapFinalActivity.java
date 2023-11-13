@@ -11,14 +11,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.EvilWizard;
+import com.example.cs2340a_team11.Model.EvilWizardFactory;
+import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EndingActivity;
 import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.EvilWizardView;
@@ -29,6 +31,10 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 public class MapFinalActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
+    private NightborneidleFactory nbFactory = new NightborneidleFactory();
+    private Nightborneidle nightborne = (Nightborneidle) nbFactory.createEnemy();
+    private EvilWizardFactory evilWizardFactory = new EvilWizardFactory();
+    private EvilWizard evilWizard = (EvilWizard) evilWizardFactory.createEnemy();
     private PlayerView playerView;
     private GameScreenViewModel gameScreenViewModel;
     private Wall walls = Wall.getWall();
@@ -72,13 +78,13 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() - 2 * BitmapInterface.TILE_SIZE);
+        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() - 2 * BitmapInterface.TILE_SIZE, evilWizard);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView);
 
-        NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY());
+        NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY(), nightborne);
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();
@@ -115,6 +121,8 @@ public class MapFinalActivity extends AppCompatActivity {
     }
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
+        walls.resetWalls();
+        walls.setIsDrawn(false);
         startActivity(progressToGameOverScreen);
         finish();
     }

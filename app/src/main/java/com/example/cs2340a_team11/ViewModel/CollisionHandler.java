@@ -33,4 +33,11 @@ public class CollisionHandler implements CollisionObserver {
         }
     }
 
+    @Override
+    public boolean checkEnemyCollision(Player player, Enemy enemy) {
+        if (player.getX() == enemy.getX() && player.getY() == enemy.getY()) {
+            return true;
+        }
+        return false;
+    }
 }

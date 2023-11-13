@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
+import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.Skeleton;
 import com.example.cs2340a_team11.View.Characters.SkeletonSprite;
 
 public class SkeletonView extends View {
@@ -12,13 +14,15 @@ public class SkeletonView extends View {
 
     private int move = 0;
     private SkeletonSprite skeletonSprite;
+    private Skeleton skeleton;
 
 
-    public SkeletonView(Context context, float x, float y) {
+    public SkeletonView(Context context, float x, float y, Skeleton skeleton) {
         super(context);
         this.x = x;
         this.y = y;
         skeletonSprite = new SkeletonSprite(getResources());
+        this.skeleton = skeleton;
     }
 
     @Override
@@ -36,6 +40,8 @@ public class SkeletonView extends View {
             move = 0;
         }
         move++;
+        skeleton.setX(x);
+        skeleton.setY(y);
         invalidate();
     }
     public float getX() {
@@ -44,5 +50,8 @@ public class SkeletonView extends View {
 
     public float getY() {
         return y;
+    }
+    public Skeleton getSkeleton() {
+        return this.skeleton;
     }
 }

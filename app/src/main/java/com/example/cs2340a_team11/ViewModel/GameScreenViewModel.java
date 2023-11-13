@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.BanditView;
@@ -96,26 +97,28 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     public void runMovement(NightborneidleView view) {
+        CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (player.getX() == view.getX() && player.getY() == view.getY()) {
-                    enemyAttack();
+                if (collisionObserver.checkEnemyCollision(player, view.getNightborne())) {
+                    view.getNightborne().enemyAttack();
                 }
                 // view.runMovement();
                 view.updatePosition();
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 800);
                 System.out.println("Nightborne still running");
             }
         });
     }
 
     public void runMovement(SkeletonView view) {
+        CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (player.getX() == view.getX() && player.getY() == view.getY()) {
-                    enemyAttack();
+                if (collisionObserver.checkEnemyCollision(player, view.getSkeleton())) {
+                    view.getSkeleton().enemyAttack();
                 }
                 // view.runMovement();
                 view.updatePosition();
@@ -126,41 +129,34 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     public void runMovement(EvilWizardView view) {
+        CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (player.getX() == view.getX() && player.getY() == view.getY()) {
-                    enemyAttack();
+                if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
+                    view.getEvilWizard().enemyAttack();
                 }
                 // view.runMovement();
                 view.updatePosition();
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 1200);
                 System.out.println("Skeleton still running");
             }
         });
     }
 
     public void runMovement(BanditView view) {
+        CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (player.getX() == view.getX() && player.getY() == view.getY()) {
-                    enemyAttack();
+                if (collisionObserver.checkEnemyCollision(player, view.getBandit())) {
+                    view.getBandit().enemyAttack();
                 }
                 view.updatePosition();
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 800);
                 System.out.println("Skeleton still running");
             }
         });
-    }
-    public void enemyAttack() {
-        if (player.getDifficulty().equals("Easy")) {
-            player.setHP(player.getHP() - 10);
-        } else if (player.getDifficulty().equals("Medium")) {
-            player.setHP(player.getHP() - 20);
-        } else {
-            player.setHP(player.getHP() - 30);
-        }
     }
 
     public void stopMovement() {
@@ -233,7 +229,6 @@ public class GameScreenViewModel extends ViewModel {
 
         return false;
     }
-
     public boolean checkDoor() {
         if (currMap == 1) {
             if (player.getY() <= 320) {

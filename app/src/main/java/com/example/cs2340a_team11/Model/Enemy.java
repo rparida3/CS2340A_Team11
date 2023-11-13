@@ -33,8 +33,14 @@ public abstract class Enemy {
     }
 
     // MAY WANT TO OVERRIDE THIS IN EACH ENEMY FOR DIFF DAMAGE
-    void attack() {
-        player.setHP(player.getHP() - 1);
+    public void enemyAttack() {
+        if (player.getDifficulty().equals("Easy")) {
+            player.setHP(player.getHP() - 10);
+        } else if (player.getDifficulty().equals("Medium")) {
+            player.setHP(player.getHP() - 20);
+        } else {
+            player.setHP(player.getHP() - 30);
+        }
     }
 
     public void moveLeft() {
@@ -46,7 +52,7 @@ public abstract class Enemy {
     }
 
     public void moveUp() {
-        this.setY(this.getY() + BitmapInterface.TILE_SIZE);
+        this.setY(this.getY() - BitmapInterface.TILE_SIZE);
     }
 
     public void moveDown() {
