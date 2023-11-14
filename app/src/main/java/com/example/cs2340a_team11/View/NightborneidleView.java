@@ -37,7 +37,7 @@ public class NightborneidleView extends View {
 
     public void updatePosition() {
         if (move >= 9) {
-            move = 0;
+            move = 1;
         }
         if (move < 3) {
             x += 160;
