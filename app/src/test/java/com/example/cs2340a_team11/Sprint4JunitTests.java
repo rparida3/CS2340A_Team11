@@ -2,10 +2,6 @@ package com.example.cs2340a_team11;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
-import android.graphics.Rect;
-import android.view.KeyEvent;
-
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Bandit;
 import com.example.cs2340a_team11.Model.BanditFactory;
@@ -13,22 +9,11 @@ import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.EvilWizard;
 import com.example.cs2340a_team11.Model.EvilWizardFactory;
 import com.example.cs2340a_team11.Model.Nightborneidle;
-import com.example.cs2340a_team11.Model.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Skeleton;
-import com.example.cs2340a_team11.Model.Wall;
-import com.example.cs2340a_team11.View.GameScreenActivity;
-import com.example.cs2340a_team11.View.NightborneidleView;
-import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.ViewModel.CollisionHandler;
-import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.MoveDownStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveLeftStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveRightStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveUpStrategy;
 public class Sprint4JunitTests {
     @Test
-    public void EnemyMovementDownLeftTest() {
+    public void enemyMovementDownLeftTest() {
         Nightborneidle nb = new Nightborneidle();
         nb.moveDown();
         nb.moveLeft();
@@ -38,14 +23,14 @@ public class Sprint4JunitTests {
         assertEquals(3 * BitmapInterface.TILE_SIZE, nb.getY(), 0);
     }
     @Test
-    public void EnemyMovementRightLeftTest() {
+    public void enemyMovementRightLeftTest() {
         Skeleton sk = new Skeleton();
         for (int i = 0; i < 10; i++) {
             sk.moveRight();
             sk.moveLeft();
         }
         assertEquals(0, sk.getY(), 0);
-        assertEquals(0, sk.getX(), 0 );
+        assertEquals(0, sk.getX(), 0);
     }
     @Test
     public void wizardDeathTest() {
@@ -86,7 +71,7 @@ public class Sprint4JunitTests {
         assertTrue(player.isGameOver());
     }
     @Test
-    public void EnemyFactoryPatternTest() {
+    public void enemyFactoryPatternTest() {
         BanditFactory bd = new BanditFactory();
         Enemy random = bd.createEnemy();
         assertTrue(random instanceof Bandit);
