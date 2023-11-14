@@ -94,4 +94,24 @@ public class Sprint4JunitTests {
         random = ev.createEnemy();
         assertTrue(random instanceof EvilWizard);
     }
+    @Test
+    public void EnemyAttackAndPlayerDamageTest() {
+        Player player = Player.getPlayer();
+        player.setDifficulty("Medium");
+        Skeleton skeleton = new Skeleton();
+        skeleton.enemyAttack();
+        assertEquals(player.getHP(), player.getInitialHP() - 8, 0);
+
+    }
+    @Test
+    public void EnemyAttackTest() {
+        Player player = Player.getPlayer();
+        player.setCharId(R.id.knightButton);
+        player.setDifficulty("Easy");
+
+        EvilWizard ew = new EvilWizard();
+        ew.enemyAttack();
+
+        assertEquals(player.getHP(), player.getInitialHP() - 5, 0);
+    }
 }
