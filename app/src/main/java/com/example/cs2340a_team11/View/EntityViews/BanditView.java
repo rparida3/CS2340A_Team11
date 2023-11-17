@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11.View;
+package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
