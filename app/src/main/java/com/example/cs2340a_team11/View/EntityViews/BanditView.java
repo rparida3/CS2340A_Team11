@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import com.example.cs2340a_team11.Model.Bandit;
+import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.View.Characters.BanditSprite;
 
 public class BanditView extends View {

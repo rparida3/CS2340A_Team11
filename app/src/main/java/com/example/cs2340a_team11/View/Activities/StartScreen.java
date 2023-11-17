@@ -1,4 +1,4 @@
-package com.example.cs2340a_team11.View;
+package com.example.cs2340a_team11.View.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.Activities.InitialConfigScreen;
 
 public class StartScreen extends Activity {
 

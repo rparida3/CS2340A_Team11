@@ -1,6 +1,7 @@
-package com.example.cs2340a_team11.Model;
+package com.example.cs2340a_team11.Model.Enemies;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 
 public abstract class Enemy {

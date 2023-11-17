@@ -1,10 +1,8 @@
 package com.example.cs2340a_team11.ViewModel;
 
 
-import com.example.cs2340a_team11.Model.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Player;
-
-import com.example.cs2340a_team11.Model.Skeleton;
 
 public class CollisionHandler implements CollisionObserver {
     @Override

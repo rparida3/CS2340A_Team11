@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.Model.Enemy;
 
 public class EnemySprite {
 

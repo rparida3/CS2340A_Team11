@@ -3,14 +3,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Bandit;
-import com.example.cs2340a_team11.Model.BanditFactory;
-import com.example.cs2340a_team11.Model.Enemy;
-import com.example.cs2340a_team11.Model.EvilWizard;
-import com.example.cs2340a_team11.Model.EvilWizardFactory;
-import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.Enemies.Bandit;
+import com.example.cs2340a_team11.Model.Factories.BanditFactory;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
+import com.example.cs2340a_team11.Model.Factories.EvilWizardFactory;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.Model.Skeleton;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
 public class Sprint4JunitTests {
     @Test
     public void enemyMovementDownLeftTest() {
