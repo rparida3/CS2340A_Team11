@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.ViewModel.CollisionHandler;
+import com.example.cs2340a_team11.ViewModel.Collisions.CollisionHandler;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-import com.example.cs2340a_team11.ViewModel.MoveDownStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveLeftStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveRightStrategy;
-import com.example.cs2340a_team11.ViewModel.MoveUpStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveDownStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveLeftStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveRightStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveUpStrategy;
 
 public class Sprint3_JunitTests {
     @Test

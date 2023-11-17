@@ -1,34 +1,33 @@
-package com.example.cs2340a_team11.ViewModel;
+package com.example.cs2340a_team11.ViewModel.Collisions;
 
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
 
-public class MoveLeftStrategy implements MovementStrategy {
+public class MoveRightStrategy implements MovementStrategy {
 
     @Override
     public void move(Player player) {
-        player.moveLeft();
+        player.moveRight();
     }
     @Override
     public void move(Bandit bandit) {
-        bandit.moveLeft();
+        bandit.moveRight();
     }
 
     @Override
     public void move(Skeleton skeleton) {
-        skeleton.moveLeft();
+        skeleton.moveRight();
     }
 
     @Override
-    public void move(Nightborneidle nightborneidle) {
-        nightborneidle.moveLeft();
-    }
+    public void move(Nightborneidle nightborneidle) {nightborneidle.moveRight();}
 
     @Override
     public void move(EvilWizard evilWizard) {
-        evilWizard.moveLeft();
+        evilWizard.moveRight();
     }
 }

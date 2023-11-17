@@ -18,6 +18,13 @@ import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
+import com.example.cs2340a_team11.ViewModel.Collisions.CollisionHandler;
+import com.example.cs2340a_team11.ViewModel.Collisions.CollisionObserver;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveDownStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveLeftStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveRightStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MoveUpStrategy;
+import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
 
 import java.util.ArrayList;
 
