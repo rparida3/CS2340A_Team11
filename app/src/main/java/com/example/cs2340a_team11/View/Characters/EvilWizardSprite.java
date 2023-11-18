@@ -6,12 +6,9 @@ import android.graphics.BitmapFactory;
 
 import com.example.cs2340a_team11.R;
 
-public class EvilWizardSprite {
-    private int width;
-    private int height;
-    private Bitmap sprite;
-
+public class EvilWizardSprite extends EnemySprite {
     public EvilWizardSprite(Resources res) {
+        super(res, "evilwizard");
         sprite = BitmapFactory.decodeResource(res, R.drawable.evilwizardidle);
         width = 160;
         height = 160;

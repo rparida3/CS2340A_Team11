@@ -43,7 +43,7 @@ public abstract class Enemy {
             player.setHP(player.getHP() - 12);
         }
     }
-
+    /*
     public void moveLeft() {
         this.setX(this.getX() - BitmapInterface.TILE_SIZE);
     }
@@ -58,5 +58,23 @@ public abstract class Enemy {
 
     public void moveDown() {
         this.setY(this.getY() + BitmapInterface.TILE_SIZE);
+    }
+    */
+
+    public void moveUp() {
+        setY(getY() - 160);
+    }
+    public void moveDown() {
+        setY(getY() + 160);
+    }
+    public void moveLeft() {
+        setX(getX() - 160);
+    }
+    public void moveRight() {
+        setX(getX() + 160);
+    }
+
+    public void displayPosition() {
+        System.out.println("X: " + x + ". Y: " + y);
     }
 }

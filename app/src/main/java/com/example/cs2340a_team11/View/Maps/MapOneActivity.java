@@ -133,6 +133,7 @@ public class MapOneActivity extends AppCompatActivity {
         Intent progressToMapTwoIntent = new Intent(this, MapTwoActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToMapTwoIntent);
     }
 
@@ -140,6 +141,7 @@ public class MapOneActivity extends AppCompatActivity {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToGameOverScreen);
         finish();
     }

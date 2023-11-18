@@ -6,7 +6,7 @@ import android.view.View;
 import com.example.cs2340a_team11.View.Characters.PlayerSprite;
 import com.example.cs2340a_team11.View.Characters.EnemySprite;
 
-public class EnemyView extends View {
+public abstract class EnemyView extends View {
     private float x;
     private float y;
     private EnemySprite enemySprite;
@@ -20,4 +20,11 @@ public class EnemyView extends View {
         enemySprite = new EnemySprite(getResources(), charId);
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
 }
