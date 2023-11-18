@@ -7,10 +7,10 @@ import com.example.cs2340a_team11.View.Characters.PlayerSprite;
 import com.example.cs2340a_team11.View.Characters.EnemySprite;
 
 public abstract class EnemyView extends View {
-    private float x;
-    private float y;
-    private EnemySprite enemySprite;
-    private String charId;
+    protected float x;
+    protected float y;
+    protected EnemySprite enemySprite;
+    protected String charId;
 
     public EnemyView(Context context, float x, float y, String charId) {
         super(context);

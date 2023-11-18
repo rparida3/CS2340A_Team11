@@ -9,30 +9,27 @@ import android.view.View;
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.View.Characters.BanditSprite;
 
-public class BanditView extends View {
-    private float x;
-    private float y;
+public class BanditView extends EnemyView {
     private String dir = "R";
     private int move = 0;
-    private BanditSprite banditSprite;
+    // private BanditSprite banditSprite;
     private Bandit bandit;
 
-
     public BanditView(Context context, float x, float y, Bandit bandit) {
-        super(context);
-        this.x = x;
-        this.y = y;
-        banditSprite = new BanditSprite(getResources());
+        super(context, x, y, "bandit");
+        //this.x = x;
+        //this.y = y;
+        //banditSprite = new BanditSprite(getResources());
         this.bandit = bandit;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
+        // Paint paint = new Paint();
+        // paint.setColor(Color.GREEN);
         super.onDraw(canvas);
-        canvas.drawBitmap(banditSprite.getSprite(), x, y, null);
-        canvas.drawRect(bandit.getX(), bandit.getY(), bandit.getX() + 160, bandit.getY() + 160, paint);
+        canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
+        // canvas.drawRect(bandit.getX(), bandit.getY(), bandit.getX() + 160, bandit.getY() + 160, null);
     }
 
     public void updatePosition(float newX, float newY) {
@@ -83,15 +80,7 @@ public class BanditView extends View {
         return dir;
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
     public Bandit getBandit() {
         return this.bandit;
     }
-
 }
