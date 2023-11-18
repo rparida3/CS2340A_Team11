@@ -79,13 +79,17 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        EvilWizardView evView = new EvilWizardView(this, player.getX(), player.getY() - 2 * BitmapInterface.TILE_SIZE, evilWizard);
+        evilWizard.setX(player.getX());
+        evilWizard.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
+        EvilWizardView evView = new EvilWizardView(this, evilWizard.getX(), evilWizard.getY(), evilWizard);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
         gameScreenViewModel.runMovement(evView, walls.getWalls(), evilWizard);
 
-        NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY(), nightborne);
+        nightborne.setX(player.getX() + BitmapInterface.TILE_SIZE);
+        nightborne.setY(player.getY());
+        NightborneidleView nbView = new NightborneidleView(this, nightborne.getX(), nightborne.getY(), nightborne);
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();
@@ -110,6 +114,7 @@ public class MapFinalActivity extends AppCompatActivity {
         Intent progressToEndIntent = new Intent(this, EndingActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToEndIntent);
     }
     public boolean onKeyDown(int keycode, KeyEvent event) {

@@ -114,6 +114,7 @@ public class MapTwoActivity extends AppCompatActivity {
         Intent progressToMapFinalIntent = new Intent(this, MapFinalActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToMapFinalIntent);
     }
 

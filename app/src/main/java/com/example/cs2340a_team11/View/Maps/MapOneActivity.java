@@ -91,17 +91,17 @@ public class MapOneActivity extends AppCompatActivity {
 
         playerView.bringToFront();
 
-        skellyView = new SkeletonView(this,
-                player.getX() - 3 * BitmapInterface.TILE_SIZE,
-                player.getY() - 2 * BitmapInterface.TILE_SIZE, skeleton);
+        skeleton.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
+        skeleton.setX(player.getX() - 3 * BitmapInterface.TILE_SIZE);
+        skellyView = new SkeletonView(this, skeleton.getX(), skeleton.getY(), skeleton);
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();
         gameScreenViewModel.runMovement(skellyView, walls.getWalls(), skeleton);
 
-        nbView = new NightborneidleView(this,
-                player.getX() - 2 * BitmapInterface.TILE_SIZE,
-                player.getY() - 2 * BitmapInterface.TILE_SIZE, nightborne);
+        nightborne.setX(player.getX() - 2 * BitmapInterface.TILE_SIZE);
+        nightborne.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
+        nbView = new NightborneidleView(this, nightborne.getX(), nightborne.getY(), nightborne);
         layout.addView(nbView);
         System.out.println("Nb view added");
         nbView.bringToFront();
@@ -120,7 +120,6 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
             gameScreenViewModel.stopTimer();
-            // gameScreenViewModel.stopMovement();
             progressToNextMap();
         }
         return true;
