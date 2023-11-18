@@ -83,7 +83,7 @@ public class MapFinalActivity extends AppCompatActivity {
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
-        gameScreenViewModel.runMovement(evView);
+        gameScreenViewModel.runMovement(evView, walls.getWalls(), evilWizard);
 
         NightborneidleView nbView = new NightborneidleView(this, player.getX() + BitmapInterface.TILE_SIZE, player.getY(), nightborne);
         layout.addView(nbView);

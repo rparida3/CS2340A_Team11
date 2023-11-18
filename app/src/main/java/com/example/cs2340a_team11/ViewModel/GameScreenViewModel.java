@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
@@ -133,33 +134,17 @@ public class GameScreenViewModel extends ViewModel {
         });
     }
 
-    public void runMovement(EvilWizardView view) {
-        CollisionObserver collisionObserver = new CollisionHandler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
-                    view.getEvilWizard().enemyAttack();
-                }
-                // view.runMovement();
-                view.updatePosition();
-                handler.postDelayed(this, 1200);
-                // System.out.println("Wizard still running");
-            }
-        });
-    }
-
-    public void runMovement(BanditView view, ArrayList<Rect> walls, Bandit bandit) {
+    public void runMovement(EvilWizardView view, ArrayList<Rect> walls, EvilWizard wiza) {
         CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
             @Override
             public void run() {
                 MovementStrategy ms = null;
-                //if (collisionObserver.checkEnemyCollision(player, view.getBandit())) {
-                //    view.getBandit().enemyAttack();
-                //}
-                // bandit.displayPosition();
                 String dir = view.getDir();
+                // if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
+                //     view.getEvilWizard().enemyAttack();
+                // }
+                // view.runMovement();
                 switch (dir) {
                     case "L":
                         ms = new MoveLeftStrategy();
@@ -183,11 +168,64 @@ public class GameScreenViewModel extends ViewModel {
                 }
 
                 if (ms != null) {
+                    ms.move(wiza);
+
+                    for (Rect wall: walls) {
+                        if (checkCollision(wiza, wall)) {
+                            System.out.println("Wizard collide with wall?");
+                            collisionObserver.collision(wiza, ms);
+                            break;
+                        }
+                    }
+                    // view.updatePosition();
+                    view.updatePosition(wiza.getX(), wiza.getY());
+                }
+                // view.updatePosition();
+                handler.postDelayed(this, 1200);
+                // System.out.println("Wizard still running");
+            }
+        });
+    }
+
+    public void runMovement(BanditView view, ArrayList<Rect> walls, Bandit bandit) {
+        CollisionObserver collisionObserver = new CollisionHandler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                MovementStrategy ms = null;
+                //if (collisionObserver.checkEnemyCollision(player, view.getBandit())) {
+                //    view.getBandit().enemyAttack();
+                //}
+                // bandit.displayPosition();
+                String dir = view.getDir();
+                switch (dir) {
+                    case "L":
+                        ms = new MoveLeftStrategy();
+                        //System.out.println("Left");
+                        break;
+                    case "R":
+                        ms = new MoveRightStrategy();
+                        //System.out.println("Right");
+                        break;
+                    case "D":
+                        //System.out.println("Down");
+                        ms = new MoveDownStrategy();
+                        break;
+                    case "U":
+                        ms = new MoveUpStrategy();
+                        //System.out.println("Up");
+                        break;
+                    default:
+                        System.out.println("Nope");
+                        break;
+                }
+
+                if (ms != null) {
                     ms.move(bandit);
 
                     for (Rect wall: walls) {
                         if (checkCollision(bandit, wall)) {
-                            System.out.println("Bandit collide with wall?");
+                            //System.out.println("Bandit collide with wall?");
                             collisionObserver.collision(bandit, ms);
                             break;
                         }
@@ -196,7 +234,7 @@ public class GameScreenViewModel extends ViewModel {
                     view.updatePosition(bandit.getX(), bandit.getY());
                 }
                 handler.postDelayed(this, 800);
-                System.out.println("Bandit still running!!!!!!!!!");
+                //System.out.println("Bandit still running!!!!!!!!!");
             }
         });
     }

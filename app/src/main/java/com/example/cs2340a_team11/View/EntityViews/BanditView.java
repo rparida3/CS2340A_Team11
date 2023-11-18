@@ -25,11 +25,11 @@ public class BanditView extends EnemyView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        // Paint paint = new Paint();
-        // paint.setColor(Color.GREEN);
         super.onDraw(canvas);
         canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
-        // canvas.drawRect(bandit.getX(), bandit.getY(), bandit.getX() + 160, bandit.getY() + 160, null);
+        // Paint paint = new Paint();
+        // paint.setColor(Color.GREEN);
+        // canvas.drawRect(bandit.getX(), bandit.getY(), bandit.getX() + 160, bandit.getY() + 160, paint);
     }
 
     public void updatePosition(float newX, float newY) {

@@ -2,35 +2,44 @@ package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.View;
 
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.View.Characters.EvilWizardSprite;
 
 
-public class EvilWizardView extends View {
-    private float x;
-    private float y;
+public class EvilWizardView extends EnemyView {
 
     private int move = 0;
-    private EvilWizardSprite evilWizardSprite;
     private EvilWizard evilWizard;
+    private String dir = "D";
 
     public EvilWizardView(Context context, float x, float y, EvilWizard evilWizard) {
-        super(context);
-        this.x = x;
-        this.y = y;
-        evilWizardSprite = new EvilWizardSprite(getResources());
+        super(context, x, y, "evilwizard");
         this.evilWizard = evilWizard;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(evilWizardSprite.getSprite(), x, y, null);
+        canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+        canvas.drawRect(evilWizard.getX(), evilWizard.getY(), evilWizard.getX() + 160, evilWizard.getY() + 160, paint);
     }
 
     public void updatePosition(float newX, float newY) {
+        if (move < 3) {
+            dir = "D";
+        } else if (move < 5) {
+            dir = "U";
+        } else {
+            move = 0;
+            dir = "D";
+        }
+        move++;
         x = newX;
         y = newY;
         invalidate();
@@ -50,14 +59,12 @@ public class EvilWizardView extends View {
         invalidate();
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
+    public String getDir() {
+        return dir;
     }
     public EvilWizard getEvilWizard() {
         return this.evilWizard;
     }
+
+
 }

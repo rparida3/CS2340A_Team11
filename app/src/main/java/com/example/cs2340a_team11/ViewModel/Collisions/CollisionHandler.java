@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.ViewModel.Collisions;
 
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Player;
 
 public class CollisionHandler implements CollisionObserver {
@@ -21,6 +22,19 @@ public class CollisionHandler implements CollisionObserver {
     }
 
     public void collision(Bandit enemy, MovementStrategy movementStrategy) {
+        //System.out.println("Enemy collides");
+        if (movementStrategy instanceof MoveLeftStrategy) {
+            enemy.moveRight();
+        } else if (movementStrategy instanceof MoveRightStrategy) {
+            enemy.moveLeft();
+        } else if (movementStrategy instanceof MoveUpStrategy) {
+            enemy.moveDown();
+        } else if (movementStrategy instanceof MoveDownStrategy) {
+            enemy.moveUp();
+        }
+    }
+
+    public void collision(EvilWizard enemy, MovementStrategy movementStrategy) {
         System.out.println("Enemy collides");
         if (movementStrategy instanceof MoveLeftStrategy) {
             System.out.println("Moved right");
