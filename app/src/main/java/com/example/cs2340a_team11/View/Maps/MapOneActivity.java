@@ -18,6 +18,7 @@ import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.Nightborneidle;
 import com.example.cs2340a_team11.Model.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
 import com.example.cs2340a_team11.Model.Skeleton;
 import com.example.cs2340a_team11.Model.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
@@ -26,6 +27,7 @@ import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.HealthIncreaseView;
 import com.example.cs2340a_team11.View.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
@@ -47,6 +49,10 @@ public class MapOneActivity extends AppCompatActivity {
     private Skeleton skeleton = (Skeleton) skFactory.createEnemy();
 
     private BanditView banditView;
+
+    private HealthIncrease healthIncrease;
+    private HealthIncreaseView healthIncreaseView;
+
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
@@ -100,6 +106,19 @@ public class MapOneActivity extends AppCompatActivity {
         skellyView.bringToFront();
         gameScreenViewModel.runMovement(skellyView);
 
+         healthIncreaseView = new HealthIncreaseView(this,
+                player.getX() + 1 * BitmapInterface.TILE_SIZE,
+                player.getY() + 1 * BitmapInterface.TILE_SIZE, healthIncrease);
+        layout.addView(healthIncreaseView);
+        healthIncreaseView.bringToFront();
+
+
+
+
+
+
+
+
         nbView = new NightborneidleView(this,
                 player.getX() - 2 * BitmapInterface.TILE_SIZE,
                 player.getY() - 2 * BitmapInterface.TILE_SIZE, nightborne);
@@ -124,6 +143,11 @@ public class MapOneActivity extends AppCompatActivity {
             // gameScreenViewModel.stopMovement();
             progressToNextMap();
         }
+
+        if (gameScreenViewModel.checkPowerUp(healthIncreaseView)) {
+            player.setHP(player.getHP() + 10);
+        }
+
         return true;
     }
     public static Context getGameContext() {

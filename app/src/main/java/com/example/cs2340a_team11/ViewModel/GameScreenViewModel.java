@@ -21,6 +21,7 @@ import com.example.cs2340a_team11.View.EvilWizardView;
 import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.HealthIncreaseView;
 import com.example.cs2340a_team11.View.SkeletonView;
 import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 
@@ -96,6 +97,9 @@ public class GameScreenViewModel extends ViewModel {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
+
+
+
 
     public void runMovement(NightborneidleView view) {
         CollisionObserver collisionObserver = new CollisionHandler();
@@ -248,6 +252,14 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
+
+    public boolean checkPowerUp(HealthIncreaseView healthIncreaseView) {
+        if (player.getX() == healthIncreaseView.getX() && player.getY() == healthIncreaseView.getY()) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * The bottom two methods are used ONLY for testing purposes. Do not do anything with them!
