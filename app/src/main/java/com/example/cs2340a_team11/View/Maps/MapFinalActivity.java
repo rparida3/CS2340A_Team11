@@ -89,7 +89,7 @@ public class MapFinalActivity extends AppCompatActivity {
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();
-        gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {

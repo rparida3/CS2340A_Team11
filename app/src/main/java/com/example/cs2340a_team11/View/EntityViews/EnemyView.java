@@ -7,6 +7,7 @@ import com.example.cs2340a_team11.View.Characters.PlayerSprite;
 import com.example.cs2340a_team11.View.Characters.EnemySprite;
 
 public abstract class EnemyView extends View {
+    protected String dir = "R";
     protected float x;
     protected float y;
     protected EnemySprite enemySprite;
@@ -27,4 +28,10 @@ public abstract class EnemyView extends View {
     public float getY() {
         return y;
     }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public abstract void updatePosition(float x, float y);
 }

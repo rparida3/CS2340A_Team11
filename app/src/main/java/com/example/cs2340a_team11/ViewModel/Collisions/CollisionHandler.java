@@ -21,6 +21,19 @@ public class CollisionHandler implements CollisionObserver {
         }
     }
 
+    public void collision(Enemy enemy, MovementStrategy movementStrategy) {
+        //System.out.println("Enemy collides");
+        if (movementStrategy instanceof MoveLeftStrategy) {
+            enemy.moveRight();
+        } else if (movementStrategy instanceof MoveRightStrategy) {
+            enemy.moveLeft();
+        } else if (movementStrategy instanceof MoveUpStrategy) {
+            enemy.moveDown();
+        } else if (movementStrategy instanceof MoveDownStrategy) {
+            enemy.moveUp();
+        }
+    }
+
     public void collision(Bandit enemy, MovementStrategy movementStrategy) {
         //System.out.println("Enemy collides");
         if (movementStrategy instanceof MoveLeftStrategy) {

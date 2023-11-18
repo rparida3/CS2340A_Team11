@@ -43,35 +43,18 @@ public abstract class Enemy {
             player.setHP(player.getHP() - 12);
         }
     }
-    /*
-    public void moveLeft() {
-        this.setX(this.getX() - BitmapInterface.TILE_SIZE);
-    }
-
-    public void moveRight() {
-        this.setX(this.getX() + BitmapInterface.TILE_SIZE);
-    }
 
     public void moveUp() {
-        this.setY(this.getY() - BitmapInterface.TILE_SIZE);
-    }
-
-    public void moveDown() {
-        this.setY(this.getY() + BitmapInterface.TILE_SIZE);
-    }
-    */
-
-    public void moveUp() {
-        setY(getY() - 160);
+        setY(getY() - BitmapInterface.TILE_SIZE);
     }
     public void moveDown() {
-        setY(getY() + 160);
+        setY(getY() + BitmapInterface.TILE_SIZE);
     }
     public void moveLeft() {
-        setX(getX() - 160);
+        setX(getX() - BitmapInterface.TILE_SIZE);
     }
     public void moveRight() {
-        setX(getX() + 160);
+        setX(getX() + BitmapInterface.TILE_SIZE);
     }
 
     public void displayPosition() {

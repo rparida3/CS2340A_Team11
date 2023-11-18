@@ -97,7 +97,7 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(skellyView);
         System.out.println("Skelly view added");
         skellyView.bringToFront();
-        gameScreenViewModel.runMovement(skellyView);
+        gameScreenViewModel.runMovement(skellyView, walls.getWalls(), skeleton);
 
         nbView = new NightborneidleView(this,
                 player.getX() - 2 * BitmapInterface.TILE_SIZE,
@@ -105,7 +105,7 @@ public class MapOneActivity extends AppCompatActivity {
         layout.addView(nbView);
         System.out.println("Nb view added");
         nbView.bringToFront();
-        gameScreenViewModel.runMovement(nbView);
+        gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {

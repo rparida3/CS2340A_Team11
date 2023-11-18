@@ -2,13 +2,7 @@ package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.view.View;
-
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
-import com.example.cs2340a_team11.View.Characters.EvilWizardSprite;
-
 
 public class EvilWizardView extends EnemyView {
 
@@ -25,9 +19,9 @@ public class EvilWizardView extends EnemyView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
-        canvas.drawRect(evilWizard.getX(), evilWizard.getY(), evilWizard.getX() + 160, evilWizard.getY() + 160, paint);
+        //Paint paint = new Paint();
+        //paint.setColor(Color.GREEN);
+        //canvas.drawRect(evilWizard.getX(), evilWizard.getY(), evilWizard.getX() + 160, evilWizard.getY() + 160, paint);
     }
 
     public void updatePosition(float newX, float newY) {

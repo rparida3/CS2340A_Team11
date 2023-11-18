@@ -17,6 +17,7 @@ import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EnemyView;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
@@ -101,7 +102,7 @@ public class GameScreenViewModel extends ViewModel {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
-
+    /*
     public void runMovement(NightborneidleView view) {
         CollisionObserver collisionObserver = new CollisionHandler();
         handler.post(new Runnable() {
@@ -238,7 +239,7 @@ public class GameScreenViewModel extends ViewModel {
             }
         });
     }
-
+*/
     public void stopMovement() {
         handler.removeCallbacksAndMessages(null);
     }
@@ -280,6 +281,59 @@ public class GameScreenViewModel extends ViewModel {
 
             view.updatePosition(player.getX(), player.getY());
         }
+    }
+
+    public void runMovement(EnemyView view, ArrayList<Rect> walls, Enemy enemy) {
+        CollisionObserver collisionObserver = new CollisionHandler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                MovementStrategy ms = null;
+                String dir = view.getDir();
+                // if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
+                //     view.getEvilWizard().enemyAttack();
+                // }
+                // view.runMovement();
+                switch (dir) {
+                    case "L":
+                        ms = new MoveLeftStrategy();
+                        System.out.println("Left");
+                        break;
+                    case "R":
+                        ms = new MoveRightStrategy();
+                        System.out.println("Right");
+                        break;
+                    case "D":
+                        System.out.println("Down");
+                        ms = new MoveDownStrategy();
+                        break;
+                    case "U":
+                        ms = new MoveUpStrategy();
+                        System.out.println("Up");
+                        break;
+                    default:
+                        System.out.println("Nope");
+                        break;
+                }
+
+                if (ms != null) {
+                    ms.move(enemy);
+
+                    for (Rect wall: walls) {
+                        if (checkCollision(enemy, wall)) {
+                            System.out.println("Enemy collide with wall?");
+                            collisionObserver.collision(enemy, ms);
+                            break;
+                        }
+                    }
+                    // view.updatePosition();
+                    view.updatePosition(enemy.getX(), enemy.getY());
+                }
+                // view.updatePosition();
+                handler.postDelayed(this, 1200);
+                // System.out.println("Enemy still running");
+            }
+        });
     }
 
     /* NEW checkCollision() method

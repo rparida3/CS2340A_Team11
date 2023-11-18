@@ -2,12 +2,8 @@ package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.view.View;
 
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
-import com.example.cs2340a_team11.View.Characters.BanditSprite;
 
 public class BanditView extends EnemyView {
     private String dir = "R";
@@ -74,10 +70,6 @@ public class BanditView extends EnemyView {
         bandit.setX(x);
         bandit.setY(y);
         invalidate();
-    }
-
-    public String getDir() {
-        return dir;
     }
 
     public Bandit getBandit() {
