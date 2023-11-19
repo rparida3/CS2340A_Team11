@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,6 +16,7 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
+import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
@@ -43,6 +45,7 @@ public class GameScreenViewModel extends ViewModel {
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
     private final int playerHp = player.getInitialHP();
+    private EnemyList eList = EnemyList.getEList();
     public GameScreenViewModel() {
 
     }
@@ -423,11 +426,27 @@ public class GameScreenViewModel extends ViewModel {
         return isGameOver;
     }
 
-    public void attackAdj() {
+    public boolean attackAdj(Enemy view) {
         Rect r1 = new Rect((int) player.getX() - 160,
                 (int) player.getY() - 320 - 160,
                 (int) player.getX() + 160 + 160,
                 (int) player.getY() - 160 - 160);
+        Rect r2 = new Rect((int) view.getX(),
+                (int) view.getY() - 320,
+                (int) view.getX() + 160,
+                (int) view.getY() - 160);
+        return r1.intersect(r2);
+    }
 
+    public void checkAttackCollision(ConstraintLayout gameLayout) {
+        ArrayList<Enemy> eListEnemies = eList.getEnemies();
+        for (int i = 0; i < eListEnemies.size(); i++) {
+            Enemy dot = eListEnemies.get(i);
+            if (attackAdj(dot)) {
+                gameLayout.removeView(eList.enemyViewMap.get(dot));
+                eListEnemies.remove(i);
+
+            }
+        }
     }
 }

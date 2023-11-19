@@ -51,7 +51,6 @@ public class MapOneActivity extends AppCompatActivity {
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
     private EnemyList eList = EnemyList.getEList();
-
     ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +124,7 @@ public class MapOneActivity extends AppCompatActivity {
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // gameScreenViewModel.attack();
+                gameScreenViewModel.checkAttackCollision(gameLayout);
             }
         });
 

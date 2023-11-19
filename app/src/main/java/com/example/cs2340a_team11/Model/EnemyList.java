@@ -10,7 +10,7 @@ import java.util.Map;
 public class EnemyList {
     private static EnemyList eList;
     private ArrayList<Enemy> enemies;
-    private Map<Enemy, EnemyView> enemyViewMap = new HashMap<>();
+    public Map<Enemy, EnemyView> enemyViewMap = new HashMap<>();
     private EnemyList() {
         enemies = new ArrayList<Enemy>();
     }
@@ -30,8 +30,10 @@ public class EnemyList {
         return enemies;
     }
 
-
     public void resetEnemies() {
+        // gameLayout.removeView(enemyViewMap.get(enemy));
+        // eList.getEnemies().remove(enemy); // or i
+
         for (Enemy enemy : enemies) {
             enemies.remove(enemy);
             enemy = null;
