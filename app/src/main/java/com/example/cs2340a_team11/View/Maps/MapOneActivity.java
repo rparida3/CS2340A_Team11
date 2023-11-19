@@ -14,19 +14,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemy;
-import com.example.cs2340a_team11.Model.Nightborneidle;
-import com.example.cs2340a_team11.Model.NightborneidleFactory;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
+import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.Model.Skeleton;
-import com.example.cs2340a_team11.Model.SkeletonFactory;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.GameOverActivity;
-import com.example.cs2340a_team11.View.BanditView;
-import com.example.cs2340a_team11.View.NightborneidleView;
-import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.View.SkeletonView;
+import com.example.cs2340a_team11.View.Activities.GameOverActivity;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 

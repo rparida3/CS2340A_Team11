@@ -1,11 +1,11 @@
-package com.example.cs2340a_team11.ViewModel;
+package com.example.cs2340a_team11.ViewModel.Collisions;
 
-import com.example.cs2340a_team11.Model.Bandit;
-import com.example.cs2340a_team11.Model.Enemy;
-import com.example.cs2340a_team11.Model.EvilWizard;
-import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.Enemies.Bandit;
+import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.Model.Skeleton;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
 
 public class MoveUpStrategy implements MovementStrategy {
     @Override

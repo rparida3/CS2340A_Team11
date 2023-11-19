@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CS2340A_Team11"
         tools:targetApi="31">
         <activity
-            android:name=".View.StartScreen"
+            android:name=".View.Activities.StartScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.MainActivity"
+            android:name=".View.Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,13 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.InitialConfigScreen"/>
-        <activity android:name=".View.GameScreenActivity"/>
+        <activity android:name=".View.Activities.InitialConfigScreen"/>
+        <activity android:name=".View.Activities.GameScreenActivity"/>
         <activity android:name=".View.Maps.MapOneActivity"/>
         <activity android:name=".View.Maps.MapTwoActivity"/>
         <activity android:name=".View.Maps.MapFinalActivity"/>
-        <activity android:name=".View.EndingActivity"/>
-        <activity android:name=".View.GameOverActivity"/>
+        <activity android:name=".View.Activities.EndingActivity"/>
+        <activity android:name=".View.Activities.GameOverActivity"/>
     </application>
 
 </manifest>

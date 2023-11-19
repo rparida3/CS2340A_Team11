@@ -1,7 +1,6 @@
-package com.example.cs2340a_team11.ViewModel;
-import android.view.View;
+package com.example.cs2340a_team11.ViewModel.Collisions;
 
-import com.example.cs2340a_team11.Model.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Player;
 
 
