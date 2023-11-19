@@ -7,35 +7,25 @@ import android.view.View;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.View.Characters.NightborneidleSprite;
 
-public class NightborneidleView extends View {
-    private float x;
-    private float y;
+public class NightborneidleView extends EnemyView {
     private NightborneidleSprite nbSprite;
     private Nightborneidle nightborne;
+    private String dir = "D";
     private int move = 0;
 
     public NightborneidleView(Context context, float x, float y, Nightborneidle nightborne) {
-        super(context);
-        this.x = x;
-        this.y = y;
+        super(context, x, y, "night");
         this.nightborne = nightborne;
-        nbSprite = new NightborneidleSprite(getResources());
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(nbSprite.getSprite(), x, y, null);
+        canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
     }
 
     @Deprecated
     public void updatePosition(float newX, float newY) {
-        x = newX;
-        y = newY;
-        invalidate();
-    }
-
-    public void updatePosition() {
         if (move >= 9) {
             move = 1;
         }
@@ -49,18 +39,11 @@ public class NightborneidleView extends View {
             y -= 160;
         }
         move++;
-        nightborne.setX(x);
-        nightborne.setY(y);
+        x = newX;
+        y = newY;
         invalidate();
     }
 
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
     public Nightborneidle getNightborne() {
         return this.nightborne;
     }

@@ -1,5 +1,6 @@
 package com.example.cs2340a_team11.ViewModel.Collisions;
 import com.example.cs2340a_team11.Model.Enemies.Bandit;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
@@ -7,6 +8,7 @@ import com.example.cs2340a_team11.Model.Enemies.Skeleton;
 
 public interface MovementStrategy {
     void move(Player player);
+    void move(Enemy enemy);
     void move(Bandit enemy);
 
     void move(Skeleton skeleton);

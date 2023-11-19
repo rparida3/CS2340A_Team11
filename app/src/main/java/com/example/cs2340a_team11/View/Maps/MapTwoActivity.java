@@ -80,17 +80,21 @@ public class MapTwoActivity extends AppCompatActivity {
         System.out.println("Player view added");
         playerView.bringToFront();
 
-        banView = new BanditView(this, player.getX(), player.getY() - 4 * BitmapInterface.TILE_SIZE, bandit);
+        bandit.setX(player.getX());
+        bandit.setY(player.getY() - 3 * BitmapInterface.TILE_SIZE);
+        banView = new BanditView(this, bandit.getX(), bandit.getY(), bandit);
         layout.addView(banView);
         System.out.println("Enemy view added");
         banView.bringToFront();
-        gameScreenViewModel.runMovement(banView);
+        gameScreenViewModel.runMovement(banView, walls.getWalls(), bandit);
 
-        evView = new EvilWizardView(this, player.getX() + 2 * BitmapInterface.TILE_SIZE, player.getY() - 3 * BitmapInterface.TILE_SIZE, evilWizard);
+        evilWizard.setX(player.getX() + 2 * BitmapInterface.TILE_SIZE);
+        evilWizard.setY(player.getY() - 3 * BitmapInterface.TILE_SIZE);
+        evView = new EvilWizardView(this, evilWizard.getX(), evilWizard.getY(), evilWizard);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
-        gameScreenViewModel.runMovement(evView);
+        gameScreenViewModel.runMovement(evView, walls.getWalls(), evilWizard);
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
@@ -110,6 +114,7 @@ public class MapTwoActivity extends AppCompatActivity {
         Intent progressToMapFinalIntent = new Intent(this, MapFinalActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToMapFinalIntent);
     }
 

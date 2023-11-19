@@ -44,19 +44,20 @@ public abstract class Enemy {
         }
     }
 
-    public void moveLeft() {
-        this.setX(this.getX() - BitmapInterface.TILE_SIZE);
-    }
-
-    public void moveRight() {
-        this.setX(this.getX() + BitmapInterface.TILE_SIZE);
-    }
-
     public void moveUp() {
-        this.setY(this.getY() - BitmapInterface.TILE_SIZE);
+        setY(getY() - BitmapInterface.TILE_SIZE);
+    }
+    public void moveDown() {
+        setY(getY() + BitmapInterface.TILE_SIZE);
+    }
+    public void moveLeft() {
+        setX(getX() - BitmapInterface.TILE_SIZE);
+    }
+    public void moveRight() {
+        setX(getX() + BitmapInterface.TILE_SIZE);
     }
 
-    public void moveDown() {
-        this.setY(this.getY() + BitmapInterface.TILE_SIZE);
+    public void displayPosition() {
+        System.out.println("X: " + x + ". Y: " + y);
     }
 }

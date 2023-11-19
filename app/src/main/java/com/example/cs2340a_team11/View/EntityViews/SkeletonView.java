@@ -7,49 +7,37 @@ import android.view.View;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
 import com.example.cs2340a_team11.View.Characters.SkeletonSprite;
 
-public class SkeletonView extends View {
-    private float x;
-    private float y;
-
+public class SkeletonView extends EnemyView {
+    private String dir = "R";
     private int move = 0;
-    private SkeletonSprite skeletonSprite;
     private Skeleton skeleton;
 
 
     public SkeletonView(Context context, float x, float y, Skeleton skeleton) {
-        super(context);
-        this.x = x;
-        this.y = y;
-        skeletonSprite = new SkeletonSprite(getResources());
+        super(context, x, y, "skeleton");
         this.skeleton = skeleton;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(skeletonSprite.getSprite(), x, y, null);
+        canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
     }
 
-    public void updatePosition() {
+    public void updatePosition(float newX, float newY) {
         if (move < 5) {
-            x += 160;
+            dir = "R";
         } else if (move >= 5 && move < 9) {
-            x -= 160;
+            dir = "L";
         } else {
             move = 0;
         }
         move++;
-        skeleton.setX(x);
-        skeleton.setY(y);
+        x = newX;
+        y = newY;
         invalidate();
     }
-    public float getX() {
-        return x;
-    }
 
-    public float getY() {
-        return y;
-    }
     public Skeleton getSkeleton() {
         return this.skeleton;
     }
