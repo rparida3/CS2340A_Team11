@@ -1,5 +1,6 @@
 package com.example.cs2340a_team11.ViewModel;
 
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -34,9 +35,7 @@ import java.util.ArrayList;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
-
     private int charId = player.getCharId();
-
     private int totalScore = player.getScore();
     private int currMap;
     private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
@@ -424,4 +423,11 @@ public class GameScreenViewModel extends ViewModel {
         return isGameOver;
     }
 
+    public void attackAdj() {
+        Rect r1 = new Rect((int) player.getX() - 160,
+                (int) player.getY() - 320 - 160,
+                (int) player.getX() + 160 + 160,
+                (int) player.getY() - 160 - 160);
+
+    }
 }

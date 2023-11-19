@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,7 +16,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
+import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
@@ -23,33 +27,32 @@ import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EnemyView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MapOneActivity extends AppCompatActivity {
-
-    private PlayerView playerView;
-
-    private SkeletonView skellyView;
-
-    private NightborneidleView nbView;
-
     private static Context gameContext;
+    private PlayerView playerView;
     private Player player = Player.getPlayer();
+    private SkeletonView skellyView;
+    private NightborneidleView nbView;
     private NightborneidleFactory nbFactory = new NightborneidleFactory();
     private Nightborneidle nightborne = (Nightborneidle) nbFactory.createEnemy();
     private SkeletonFactory skFactory = new SkeletonFactory();
     private Skeleton skeleton = (Skeleton) skFactory.createEnemy();
-
-    private BanditView banditView;
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
+    private EnemyList eList = EnemyList.getEList();
 
+    ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,16 +60,13 @@ public class MapOneActivity extends AppCompatActivity {
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
 
-
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
 
         nameView.setText(player.getName());
-
         characterView.setImageResource(gameScreenViewModel.getImg());
-
 
         MapView mapView = new MapView(this, 2);
         MapView mapViewItems = new MapView(this, 12);
@@ -98,6 +98,7 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Skelly view added");
         skellyView.bringToFront();
         gameScreenViewModel.runMovement(skellyView, walls.getWalls(), skeleton);
+        eList.addEnemy(skeleton, skellyView);
 
         nightborne.setX(player.getX() - 2 * BitmapInterface.TILE_SIZE);
         nightborne.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
@@ -106,6 +107,11 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Nb view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
+        eList.addEnemy(nightborne, nbView);
+
+        // gameLayout.removeView(enemyViewMap.get(enemy));
+        // eList.getEnemies().remove(enemy); // or i
+
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
@@ -114,6 +120,15 @@ public class MapOneActivity extends AppCompatActivity {
             }
         });
         gameScreenViewModel.checkGameOver();
+
+        Button attackBtn = (Button) findViewById(R.id.attackBtn);
+        attackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // gameScreenViewModel.attack();
+            }
+        });
+
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
