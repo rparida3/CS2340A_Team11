@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
+import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Factories.EvilWizardFactory;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
@@ -39,6 +42,7 @@ public class MapFinalActivity extends AppCompatActivity {
     private GameScreenViewModel gameScreenViewModel;
     private Wall walls = Wall.getWall();
     private final int playerInitialHP = player.getInitialHP();
+    private EnemyList eList = EnemyList.getEList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +98,10 @@ public class MapFinalActivity extends AppCompatActivity {
         System.out.println("Enemy view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
+
+        eList.addEnemy(nightborne, nbView);
+        eList.addEnemy(evilWizard, evView);
+
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
@@ -103,6 +111,13 @@ public class MapFinalActivity extends AppCompatActivity {
         });
         gameScreenViewModel.checkGameOver();
 
+        Button attackBtn = (Button) findViewById(R.id.attackBtn);
+        attackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameScreenViewModel.checkAttackCollision(layout, playerView);
+            }
+        });
     }
 
 

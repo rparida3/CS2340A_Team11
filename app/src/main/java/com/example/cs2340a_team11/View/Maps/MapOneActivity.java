@@ -95,7 +95,6 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Skelly view added");
         skellyView.bringToFront();
         gameScreenViewModel.runMovement(skellyView, walls.getWalls(), skeleton);
-        eList.addEnemy(skeleton, skellyView);
 
         nightborne.setX(player.getX() - 2 * BitmapInterface.TILE_SIZE);
         nightborne.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
@@ -104,7 +103,9 @@ public class MapOneActivity extends AppCompatActivity {
         System.out.println("Nb view added");
         nbView.bringToFront();
         gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
+
         eList.addEnemy(nightborne, nbView);
+        eList.addEnemy(skeleton, skellyView);
 
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
@@ -122,7 +123,6 @@ public class MapOneActivity extends AppCompatActivity {
                 gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });
-
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -133,6 +133,8 @@ public class MapOneActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    // still not sure what this does lol
     public static Context getGameContext() {
         return gameContext;
     }
