@@ -23,6 +23,7 @@ public class EnemyList {
     }
 
     public void addEnemy(Enemy enemy, EnemyView view) {
+        enemies.add(enemy);
         enemyViewMap.put(enemy, view);
     }
 
@@ -30,10 +31,11 @@ public class EnemyList {
         return enemies;
     }
 
+    public void destroyEnemy(Enemy enemy) {
+        enemies.remove(enemy);
+        enemy = null;
+    }
     public void resetEnemies() {
-        // gameLayout.removeView(enemyViewMap.get(enemy));
-        // eList.getEnemies().remove(enemy); // or i
-
         for (Enemy enemy : enemies) {
             enemies.remove(enemy);
             enemy = null;

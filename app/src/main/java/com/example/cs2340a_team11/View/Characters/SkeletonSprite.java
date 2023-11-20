@@ -18,9 +18,6 @@ public class SkeletonSprite {
         width = 160;
         height = 160;
         sprite = Bitmap.createScaledBitmap(sprite, width, height, false);
-
-
-
     }
 
     public Bitmap getSprite() {

@@ -51,7 +51,6 @@ public class MapOneActivity extends AppCompatActivity {
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
     private EnemyList eList = EnemyList.getEList();
-    ConstraintLayout gameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,6 @@ public class MapOneActivity extends AppCompatActivity {
         playerView = new PlayerView(this, player.getX(), player.getY(), player.getCharId());
         layout.addView(playerView);
         System.out.println("Player view added");
-
         playerView.bringToFront();
 
         skeleton.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
@@ -108,9 +106,6 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.runMovement(nbView, walls.getWalls(), nightborne);
         eList.addEnemy(nightborne, nbView);
 
-        // gameLayout.removeView(enemyViewMap.get(enemy));
-        // eList.getEnemies().remove(enemy); // or i
-
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
@@ -124,7 +119,7 @@ public class MapOneActivity extends AppCompatActivity {
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameScreenViewModel.checkAttackCollision(gameLayout);
+                gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });
 
