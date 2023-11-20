@@ -33,6 +33,7 @@ public class EnemyList {
 
     public void destroyEnemy(Enemy enemy) {
         enemies.remove(enemy);
+        System.out.println("Removing: " + enemy);
         enemy = null;
     }
     public void resetEnemies() {

@@ -155,10 +155,12 @@ public class GameScreenViewModel extends ViewModel {
             public void run() {
                 MovementStrategy ms = null;
                 String dir = view.getDir();
-                // if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
-                //     view.getEvilWizard().enemyAttack();
-                // }
+
+                if (collisionObserver.checkEnemyCollision(player, enemy) && eList.getEnemies().contains(enemy)) {
+                     enemy.enemyAttack();
+                }
                 // view.runMovement();
+
                 switch (dir) {
                     case "L":
                         ms = new MoveLeftStrategy();
@@ -202,13 +204,10 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     /* NEW checkCollision() method
-       Only major change is that instead of taking in an
-       ArrayList of Rect objects, it takes in a single
-       Rect object. As a result, I no longer needed the
-       for-loop (that looped thru the ArrayList).
-       Instead, I have the for-loop in the onKeyDown()
-       method (see above). Let me (yash) know if
-       something doesn't make sense.
+       Only major change is that instead of taking in an arrayList of Rect objects, it takes in a
+       single Rect object. As a result, I no longer needed the for-loop (that looped thru the
+       ArrayList). Instead, I have the for-loop in the onKeyDown() method (see above). Let Yash
+       know if something doesn't make sense.
      */
     public boolean checkCollision(Player player, Rect wall) {
         Rect r1 = new Rect((int) player.getX(),
