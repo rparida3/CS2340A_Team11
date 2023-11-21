@@ -29,12 +29,13 @@ public class PlayerView extends View {
     protected void onDraw(Canvas canvas) {
         System.out.println("onDraw [[PlayerView]]... ");
         super.onDraw(canvas);
+        canvas.drawBitmap(playerSprite.getSprite(), x, y, null);
 
         Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
+        paint.setColor(Color.WHITE);
         paint.setAlpha(40);
-        canvas.drawBitmap(playerSprite.getSprite(), x, y, null);
         if (attacking) {
+            System.out.println("Drawing in PlayerView");
             canvas.drawRect(player.getX() - 160,
                     player.getY() - 160,
                     player.getX() + 320,
@@ -55,6 +56,8 @@ public class PlayerView extends View {
         return y;
     }
     public void setAttacking(boolean val) {
+        System.out.println("Setting bool to: " + val);
         this.attacking = val;
+        invalidate();
     }
 }

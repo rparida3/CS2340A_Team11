@@ -37,6 +37,7 @@ public class EnemyList {
         enemy = null;
     }
     public void resetEnemies() {
+        // cannot use for loop during thread
         // for (Enemy enemy : enemies) {
         //    enemies.remove(enemy);
             // enemy = null;

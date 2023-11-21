@@ -96,10 +96,10 @@ public class GameScreenViewModel extends ViewModel {
     public void stopTimer() {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
-        eList.resetEnemies();
     }
 
     public void stopMovement() {
+        eList.resetEnemies();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -303,24 +303,27 @@ public class GameScreenViewModel extends ViewModel {
     public void checkAttackCollision(ConstraintLayout gameLayout, PlayerView view) {
         System.out.println("Check attack collision");
         attack(view);
+        // view.setAttacking(true);
+        // view.invalidate();
+        // view.setAttacking(false);
+
         handler.post(new Runnable() {
             @Override
             public void run() {
                 // System.out.println("ATTACKING");
-
                 ArrayList<Enemy> eListEnemies = eList.getEnemies();
                 for (int i = 0; i < eListEnemies.size(); i++) {
-                    Enemy dot = eListEnemies.get(i);
+                    Enemy enemy = eListEnemies.get(i);
                     // System.out.print("In checkAttack: ");
-                    dot.displayPosition();
-                    if (attackAdj(dot)) {
+                    enemy.displayPosition();
+                    if (attackAdj(enemy)) {
                         // System.out.println("TRYING TO DELETE");
                         // System.out.println(eList.getEnemyViewMap().values());
-                        // System.out.println(eList.getEnemyViewMap().get(dot));
-                        gameLayout.removeView(eList.getEnemyViewMap().get(dot));
-                        // System.out.println("Removing: " + dot);
+                        // System.out.println(eList.getEnemyViewMap().get(enemy));
+                        gameLayout.removeView(eList.getEnemyViewMap().get(enemy));
+                        // System.out.println("Removing: " + enemy);
                         // eListEnemies.remove(i);
-                        eList.destroyEnemy(dot);
+                        eList.destroyEnemy(enemy);
                         handler.postDelayed(this, 100);
                     }
                 }
@@ -328,21 +331,24 @@ public class GameScreenViewModel extends ViewModel {
         });
     }
 
-    public void attack(PlayerView view) {
-        Runnable attack = new Runnable() {
-            @Override
-            public void run() {
-                // Alternatively, just render a new attack view around player-view
-                view.setAttacking(true);
 
-                handler.postDelayed(this, 500);
+    public void attack(PlayerView view) {
+        System.out.println("Attacking");
+        Runnable attacks = new Runnable() {
+            public void run() {
+                try {
+                    System.out.println("Invalidating");
+                    view.setAttacking(true);
+                    view.invalidate();
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
                 view.setAttacking(false);
-                System.out.println("Attack done");
             }
         };
-        handler.post(attack);
-        handler.postDelayed(attack, 1000);
-        // handler.removeCallbacks(attack);
+        Thread att = new Thread(attacks);
+        att.start();
     }
 
 }

@@ -84,7 +84,7 @@ public class MapFinalActivity extends AppCompatActivity {
         playerView.bringToFront();
 
         evilWizard.setX(player.getX());
-        evilWizard.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
+        evilWizard.setY(player.getY() + BitmapInterface.TILE_SIZE);
         EvilWizardView evView = new EvilWizardView(this,
                 evilWizard.getX(),
                 evilWizard.getY(), evilWizard);
