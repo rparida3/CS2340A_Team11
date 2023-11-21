@@ -1,6 +1,5 @@
 package com.example.cs2340a_team11.ViewModel;
 
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -13,18 +12,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.Enemy;
-import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.EntityViews.BanditView;
 import com.example.cs2340a_team11.View.EntityViews.EnemyView;
-import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
-import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
-import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.Collisions.CollisionHandler;
 import com.example.cs2340a_team11.ViewModel.Collisions.CollisionObserver;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveDownStrategy;
@@ -156,8 +149,10 @@ public class GameScreenViewModel extends ViewModel {
                 MovementStrategy ms = null;
                 String dir = view.getDir();
 
-                if (collisionObserver.checkEnemyCollision(player, enemy) && eList.getEnemies().contains(enemy)) {
-                     enemy.enemyAttack();
+                // may want to change checkEnemyCollision to take player/enemyview intersections
+                if (collisionObserver.checkEnemyCollision(player, enemy)
+                        && eList.getEnemies().contains(enemy)) {
+                    enemy.enemyAttack();
                 }
                 // view.runMovement();
 
@@ -316,9 +311,9 @@ public class GameScreenViewModel extends ViewModel {
                     if (attackAdj(dot)) {
                         view.setAttacking(true);
                         System.out.println("TRYING TO DELETE");
-                        System.out.println(eList.enemyViewMap.values());
-                        System.out.println(eList.enemyViewMap.get(dot));
-                        gameLayout.removeView(eList.enemyViewMap.get(dot));
+                        System.out.println(eList.getEnemyViewMap().values());
+                        System.out.println(eList.getEnemyViewMap().get(dot));
+                        gameLayout.removeView(eList.getEnemyViewMap().get(dot));
                         System.out.println("Removing: " + dot);
                         // eListEnemies.remove(i);
                         eList.destroyEnemy(dot);

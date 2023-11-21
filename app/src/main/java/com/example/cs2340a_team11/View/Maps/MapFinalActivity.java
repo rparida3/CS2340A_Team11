@@ -85,7 +85,9 @@ public class MapFinalActivity extends AppCompatActivity {
 
         evilWizard.setX(player.getX());
         evilWizard.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
-        EvilWizardView evView = new EvilWizardView(this, evilWizard.getX(), evilWizard.getY(), evilWizard);
+        EvilWizardView evView = new EvilWizardView(this,
+                evilWizard.getX(),
+                evilWizard.getY(), evilWizard);
         layout.addView(evView);
         System.out.println("Enemy view added");
         evView.bringToFront();
@@ -93,7 +95,9 @@ public class MapFinalActivity extends AppCompatActivity {
 
         nightborne.setX(player.getX() + BitmapInterface.TILE_SIZE);
         nightborne.setY(player.getY());
-        NightborneidleView nbView = new NightborneidleView(this, nightborne.getX(), nightborne.getY(), nightborne);
+        NightborneidleView nbView = new NightborneidleView(this,
+                nightborne.getX(),
+                nightborne.getY(), nightborne);
         layout.addView(nbView);
         System.out.println("Enemy view added");
         nbView.bringToFront();

@@ -16,7 +16,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemies.Enemy;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
@@ -26,16 +25,10 @@ import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
-import com.example.cs2340a_team11.View.EntityViews.BanditView;
-import com.example.cs2340a_team11.View.EntityViews.EnemyView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class MapOneActivity extends AppCompatActivity {
     private static Context gameContext;

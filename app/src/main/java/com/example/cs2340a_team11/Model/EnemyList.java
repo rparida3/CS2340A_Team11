@@ -10,7 +10,7 @@ import java.util.Map;
 public class EnemyList {
     private static EnemyList eList;
     private ArrayList<Enemy> enemies;
-    public Map<Enemy, EnemyView> enemyViewMap = new HashMap<>();
+    private Map<Enemy, EnemyView> enemyViewMap = new HashMap<>();
     private EnemyList() {
         enemies = new ArrayList<Enemy>();
     }
@@ -42,5 +42,9 @@ public class EnemyList {
             enemy = null;
         }
         enemies = new ArrayList<>();
+    }
+
+    public Map<Enemy, EnemyView> getEnemyViewMap() {
+        return this.enemyViewMap;
     }
 }
