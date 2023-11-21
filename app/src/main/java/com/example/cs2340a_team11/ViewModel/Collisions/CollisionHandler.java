@@ -9,7 +9,7 @@ import com.example.cs2340a_team11.Model.Player;
 public class CollisionHandler implements CollisionObserver {
     @Override
     public void collision(Player player, MovementStrategy movementStrategy) {
-        System.out.println("Collision!");
+        // System.out.println("Collision!");
         if (movementStrategy instanceof MoveLeftStrategy) {
             player.moveRight();
         } else if (movementStrategy instanceof MoveRightStrategy) {

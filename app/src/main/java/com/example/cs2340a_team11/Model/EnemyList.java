@@ -37,10 +37,10 @@ public class EnemyList {
         enemy = null;
     }
     public void resetEnemies() {
-        for (Enemy enemy : enemies) {
-            enemies.remove(enemy);
-            enemy = null;
-        }
+        // for (Enemy enemy : enemies) {
+        //    enemies.remove(enemy);
+            // enemy = null;
+        // }
         enemies = new ArrayList<>();
     }
 

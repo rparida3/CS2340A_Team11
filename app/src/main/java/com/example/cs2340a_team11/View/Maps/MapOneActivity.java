@@ -113,6 +113,7 @@ public class MapOneActivity extends AppCompatActivity {
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // gameScreenViewModel.attack(playerView);
                 gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });

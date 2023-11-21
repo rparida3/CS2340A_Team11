@@ -27,19 +27,19 @@ public class PlayerView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        System.out.print("onDraw [[PlayerView]]... ");
+        System.out.println("onDraw [[PlayerView]]... ");
         super.onDraw(canvas);
 
         Paint paint = new Paint();
         paint.setColor(Color.GREEN);
         paint.setAlpha(40);
         canvas.drawBitmap(playerSprite.getSprite(), x, y, null);
-        // if (attacking) {
+        if (attacking) {
             canvas.drawRect(player.getX() - 160,
                     player.getY() - 160,
                     player.getX() + 320,
                     player.getY() + 320, paint);
-        //}
+        }
     }
 
     public void updatePosition(float newX, float newY) {

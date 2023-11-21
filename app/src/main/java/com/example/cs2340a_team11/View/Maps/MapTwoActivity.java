@@ -146,6 +146,7 @@ public class MapTwoActivity extends AppCompatActivity {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();
         walls.setIsDrawn(false);
+        gameScreenViewModel.stopMovement();
         startActivity(progressToGameOverScreen);
         finish();
     }
