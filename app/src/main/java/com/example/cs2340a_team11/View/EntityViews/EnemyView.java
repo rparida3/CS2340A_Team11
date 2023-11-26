@@ -2,8 +2,6 @@ package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.view.View;
-
-import com.example.cs2340a_team11.View.Characters.PlayerSprite;
 import com.example.cs2340a_team11.View.Characters.EnemySprite;
 
 public abstract class EnemyView extends View {
@@ -32,6 +30,5 @@ public abstract class EnemyView extends View {
     public String getDir() {
         return dir;
     }
-
     public abstract void updatePosition(float x, float y);
 }

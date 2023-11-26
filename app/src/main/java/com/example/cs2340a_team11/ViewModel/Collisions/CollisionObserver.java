@@ -9,7 +9,5 @@ import com.example.cs2340a_team11.Model.Player;
 public interface CollisionObserver {
     void collision(Player player, MovementStrategy movementStrategy);
     void collision(Enemy enemy, MovementStrategy movementStrategy);
-    void collision(EvilWizard enemy, MovementStrategy movementStrategy);
-
     boolean checkEnemyCollision(Player player, Enemy enemy);
 }

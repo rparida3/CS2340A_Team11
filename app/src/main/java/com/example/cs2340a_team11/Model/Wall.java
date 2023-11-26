@@ -30,16 +30,21 @@ public class Wall {
     public void addDoor(Rect door) {
         doors.add(door);
     }
+
+
     public ArrayList<Rect> getWalls() {
         return walls;
     }
     public ArrayList<Rect> getDoors() {
         return doors;
     }
+
+
     public void resetWalls() {
         walls = new ArrayList<>();
         doors = new ArrayList<>();
     }
+
 
     public void setIsDrawn(boolean isDrawn) {
         this.isDrawn = isDrawn;

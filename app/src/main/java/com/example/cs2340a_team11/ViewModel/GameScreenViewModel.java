@@ -6,22 +6,18 @@ import android.view.KeyEvent;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemies.Bandit;
 import com.example.cs2340a_team11.Model.Enemies.Enemy;
-import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
+import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
-import com.example.cs2340a_team11.View.EntityViews.BanditView;
 import com.example.cs2340a_team11.View.EntityViews.EnemyView;
-import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
-import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
-import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.Collisions.CollisionHandler;
 import com.example.cs2340a_team11.ViewModel.Collisions.CollisionObserver;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveDownStrategy;
@@ -34,9 +30,7 @@ import java.util.ArrayList;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
-
     private int charId = player.getCharId();
-
     private int totalScore = player.getScore();
     private int currMap;
     private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
@@ -44,6 +38,7 @@ public class GameScreenViewModel extends ViewModel {
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
     private final int playerHp = player.getInitialHP();
+    private EnemyList eList = EnemyList.getEList();
     public GameScreenViewModel() {
 
     }
@@ -102,145 +97,9 @@ public class GameScreenViewModel extends ViewModel {
         isTimerRunning = false;
         handler.removeCallbacksAndMessages(null);
     }
-    /*
-    public void runMovement(NightborneidleView view) {
-        CollisionObserver collisionObserver = new CollisionHandler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (collisionObserver.checkEnemyCollision(player, view.getNightborne())) {
-                    view.getNightborne().enemyAttack();
-                }
-                // view.runMovement();
-                view.updatePosition();
-                handler.postDelayed(this, 800);
-                System.out.println("Nightborne still running");
-            }
-        });
-    }
 
-    public void runMovement(SkeletonView view) {
-        CollisionObserver collisionObserver = new CollisionHandler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (collisionObserver.checkEnemyCollision(player, view.getSkeleton())) {
-                    view.getSkeleton().enemyAttack();
-                }
-                // view.runMovement();
-                view.updatePosition();
-                handler.postDelayed(this, 1000);
-                System.out.println("Skeleton still running");
-            }
-        });
-    }
-
-    public void runMovement(EvilWizardView view, ArrayList<Rect> walls, EvilWizard wiza) {
-        CollisionObserver collisionObserver = new CollisionHandler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                MovementStrategy ms = null;
-                String dir = view.getDir();
-                // if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
-                //     view.getEvilWizard().enemyAttack();
-                // }
-                // view.runMovement();
-                switch (dir) {
-                    case "L":
-                        ms = new MoveLeftStrategy();
-                        System.out.println("Left");
-                        break;
-                    case "R":
-                        ms = new MoveRightStrategy();
-                        System.out.println("Right");
-                        break;
-                    case "D":
-                        System.out.println("Down");
-                        ms = new MoveDownStrategy();
-                        break;
-                    case "U":
-                        ms = new MoveUpStrategy();
-                        System.out.println("Up");
-                        break;
-                    default:
-                        System.out.println("Nope");
-                        break;
-                }
-
-                if (ms != null) {
-                    ms.move(wiza);
-
-                    for (Rect wall: walls) {
-                        if (checkCollision(wiza, wall)) {
-                            System.out.println("Wizard collide with wall?");
-                            collisionObserver.collision(wiza, ms);
-                            break;
-                        }
-                    }
-                    // view.updatePosition();
-                    view.updatePosition(wiza.getX(), wiza.getY());
-                }
-                // view.updatePosition();
-                handler.postDelayed(this, 1200);
-                // System.out.println("Wizard still running");
-            }
-        });
-    }
-
-    public void runMovement(BanditView view, ArrayList<Rect> walls, Bandit bandit) {
-        CollisionObserver collisionObserver = new CollisionHandler();
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                MovementStrategy ms = null;
-                //if (collisionObserver.checkEnemyCollision(player, view.getBandit())) {
-                //    view.getBandit().enemyAttack();
-                //}
-                // bandit.displayPosition();
-                String dir = view.getDir();
-                switch (dir) {
-                    case "L":
-                        ms = new MoveLeftStrategy();
-                        //System.out.println("Left");
-                        break;
-                    case "R":
-                        ms = new MoveRightStrategy();
-                        //System.out.println("Right");
-                        break;
-                    case "D":
-                        //System.out.println("Down");
-                        ms = new MoveDownStrategy();
-                        break;
-                    case "U":
-                        ms = new MoveUpStrategy();
-                        //System.out.println("Up");
-                        break;
-                    default:
-                        System.out.println("Nope");
-                        break;
-                }
-
-                if (ms != null) {
-                    ms.move(bandit);
-
-                    for (Rect wall: walls) {
-                        if (checkCollision(bandit, wall)) {
-                            //System.out.println("Bandit collide with wall?");
-                            collisionObserver.collision(bandit, ms);
-                            break;
-                        }
-                    }
-                    // view.updatePosition();
-                    view.updatePosition(bandit.getX(), bandit.getY());
-                }
-                handler.postDelayed(this, 800);
-                //System.out.println("Bandit still running!!!!!!!!!");
-            }
-        });
-    }
-*/
     public void stopMovement() {
+        eList.resetEnemies();
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -290,26 +149,30 @@ public class GameScreenViewModel extends ViewModel {
             public void run() {
                 MovementStrategy ms = null;
                 String dir = view.getDir();
-                // if (collisionObserver.checkEnemyCollision(player, view.getEvilWizard())) {
-                //     view.getEvilWizard().enemyAttack();
-                // }
+
+                // may want to change checkEnemyCollision to take player/enemyview intersections
+                if (collisionObserver.checkEnemyCollision(player, enemy)
+                        && eList.getEnemies().contains(enemy)) {
+                    enemy.enemyAttack();
+                }
                 // view.runMovement();
+
                 switch (dir) {
                     case "L":
                         ms = new MoveLeftStrategy();
-                        System.out.println("Left");
+                        //System.out.println("Left");
                         break;
                     case "R":
                         ms = new MoveRightStrategy();
-                        System.out.println("Right");
+                        //System.out.println("Right");
                         break;
                     case "D":
-                        System.out.println("Down");
+                        //System.out.println("Down");
                         ms = new MoveDownStrategy();
                         break;
                     case "U":
                         ms = new MoveUpStrategy();
-                        System.out.println("Up");
+                        //System.out.println("Up");
                         break;
                     default:
                         System.out.println("Nope");
@@ -321,7 +184,7 @@ public class GameScreenViewModel extends ViewModel {
 
                     for (Rect wall: walls) {
                         if (checkCollision(enemy, wall)) {
-                            System.out.println("Enemy collide with wall?");
+                            // System.out.println("Enemy collide with wall? " + enemy);
                             collisionObserver.collision(enemy, ms);
                             break;
                         }
@@ -337,13 +200,10 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     /* NEW checkCollision() method
-       Only major change is that instead of taking in an
-       ArrayList of Rect objects, it takes in a single
-       Rect object. As a result, I no longer needed the
-       for-loop (that looped thru the ArrayList).
-       Instead, I have the for-loop in the onKeyDown()
-       method (see above). Let me (yash) know if
-       something doesn't make sense.
+       Only major change is that instead of taking in an arrayList of Rect objects, it takes in a
+       single Rect object. As a result, I no longer needed the for-loop (that looped thru the
+       ArrayList). Instead, I have the for-loop in the onKeyDown() method (see above). Let Yash
+       know if something doesn't make sense.
      */
     public boolean checkCollision(Player player, Rect wall) {
         Rect r1 = new Rect((int) player.getX(),
@@ -422,6 +282,73 @@ public class GameScreenViewModel extends ViewModel {
     }
     public LiveData<Boolean> getIsGameOver() {
         return isGameOver;
+    }
+
+    public boolean attackAdj(Enemy view) {
+        // r1 is attacking border (1 surrounding tiles around player)
+        Rect r1 = new Rect((int) player.getX() - 160,
+                (int) player.getY() - 160,
+                (int) player.getX() + 320,
+                (int) player.getY() + 320);
+
+        // System.out.println("attackAdj: Attack border " + r1);
+        // r2 is the enemy region that is being checked
+        Rect r2 = new Rect((int) view.getX(),
+                (int) view.getY(),
+                (int) view.getX() + 160,
+                (int) view.getY() + 160);
+        return r1.intersect(r2);
+    }
+
+    public void checkAttackCollision(ConstraintLayout gameLayout, PlayerView view) {
+        System.out.println("Check attack collision");
+        attack(view);
+        // view.setAttacking(true);
+        // view.invalidate();
+        // view.setAttacking(false);
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                // System.out.println("ATTACKING");
+                ArrayList<Enemy> eListEnemies = eList.getEnemies();
+                for (int i = 0; i < eListEnemies.size(); i++) {
+                    Enemy enemy = eListEnemies.get(i);
+                    // System.out.print("In checkAttack: ");
+                    enemy.displayPosition();
+                    if (attackAdj(enemy)) {
+                        // System.out.println("TRYING TO DELETE");
+                        // System.out.println(eList.getEnemyViewMap().values());
+                        // System.out.println(eList.getEnemyViewMap().get(enemy));
+                        gameLayout.removeView(eList.getEnemyViewMap().get(enemy));
+                        // System.out.println("Removing: " + enemy);
+                        // eListEnemies.remove(i);
+                        eList.destroyEnemy(enemy);
+                        handler.postDelayed(this, 100);
+                    }
+                }
+            }
+        });
+    }
+
+
+    public void attack(PlayerView view) {
+        System.out.println("Attacking");
+        Runnable attacks = new Runnable() {
+            public void run() {
+                try {
+                    System.out.println("Invalidating");
+                    view.setAttacking(true);
+                    view.invalidate();
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                view.setAttacking(false);
+            }
+        };
+        Thread att = new Thread(attacks);
+        att.start();
     }
 
 }
