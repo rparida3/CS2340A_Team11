@@ -36,7 +36,7 @@ public class GameScreenViewModel extends ViewModel {
     private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
 
     private Handler handler = new Handler();
-    private boolean isTimerRunning = true;
+    private boolean scoreUpdate = false;
     private final int playerHp = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
     public GameScreenViewModel() {
@@ -78,24 +78,22 @@ public class GameScreenViewModel extends ViewModel {
         player.displayPosition();
     }
 
-    public void runTimer(TextView timeView) {
+    public void updateScore(TextView timeView) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                totalScore++;
-                player.setScore(totalScore);
+                if (scoreUpdate) {
+                    totalScore++;
+                    player.setScore(totalScore);
+                    scoreUpdate = false;
+                }
                 String score = Integer.toString(totalScore);
-                timeView.setText(score);
-                if (isTimerRunning) {
-                    handler.postDelayed(this, 1000);
+                timeView.setText("Score: " + score);
+                if (playerHp > 0) {
+                    handler.postDelayed(this, 10);
                 }
             }
         });
-    }
-
-    public void stopTimer() {
-        isTimerRunning = false;
-        handler.removeCallbacksAndMessages(null);
     }
 
     public void stopMovement() {
@@ -317,6 +315,7 @@ public class GameScreenViewModel extends ViewModel {
                     // System.out.print("In checkAttack: ");
                     enemy.displayPosition();
                     if (attackAdj(enemy)) {
+                        scoreUpdate = true;
                         // System.out.println("TRYING TO DELETE");
                         // System.out.println(eList.getEnemyViewMap().values());
                         // System.out.println(eList.getEnemyViewMap().get(enemy));

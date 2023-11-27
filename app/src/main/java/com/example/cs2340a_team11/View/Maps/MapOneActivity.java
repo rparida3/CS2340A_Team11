@@ -72,7 +72,7 @@ public class MapOneActivity extends AppCompatActivity {
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
-        gameScreenViewModel.runTimer(timeView);
+        gameScreenViewModel.updateScore(timeView);
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
@@ -103,7 +103,6 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
-                gameScreenViewModel.stopTimer();
                 endGame();
             }
         });
@@ -122,7 +121,6 @@ public class MapOneActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
-            gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
         return true;
