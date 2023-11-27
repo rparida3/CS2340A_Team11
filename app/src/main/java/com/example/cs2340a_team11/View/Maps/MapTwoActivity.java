@@ -56,6 +56,8 @@ public class MapTwoActivity extends AppCompatActivity {
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
+        diffView.setText("Difficulty: " + player.getDifficulty());
 
 
         nameView.setText(player.getName());

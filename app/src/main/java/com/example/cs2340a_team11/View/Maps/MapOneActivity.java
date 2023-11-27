@@ -50,7 +50,8 @@ public class MapOneActivity extends AppCompatActivity {
         setContentView(R.layout.map_one);
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
-
+        TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
+        diffView.setText("Difficulty: " + player.getDifficulty());
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);

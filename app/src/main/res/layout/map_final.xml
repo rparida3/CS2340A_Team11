@@ -81,5 +81,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/healthBar"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/difficultyDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:text="Difficulty: [Difficulty]"
+        app:layout_constraintTop_toTopOf="@id/healthBar"
+        app:layout_constraintStart_toEndOf="@+id/character_photo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
