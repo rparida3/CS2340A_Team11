@@ -144,7 +144,6 @@ public class MapOneActivity extends AppCompatActivity {
             // gameScreenViewModel.stopMovement();
             progressToNextMap();
         }
-
         if (gameScreenViewModel.checkPowerUp(healthIncreaseView)) {
             player.setHP(player.getHP() + 10);
             layout.removeView(healthIncreaseView);

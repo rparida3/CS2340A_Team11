@@ -35,6 +35,7 @@ public class GameScreenViewModel extends ViewModel {
     private Handler handler = new Handler();
     private boolean isTimerRunning = true;
     private final int playerHp = player.getInitialHP();
+    private int scoreMultiplier = 1;
     public GameScreenViewModel() {
 
     }
@@ -262,10 +263,9 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
-
-
-
-
+    public void setScoreMultiplier() {
+        scoreMultiplier = 2;
+    }
 
 
     /**
