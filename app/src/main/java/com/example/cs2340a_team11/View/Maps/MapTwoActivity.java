@@ -141,7 +141,8 @@ public class MapTwoActivity extends AppCompatActivity {
         }
 
         if (gameScreenViewModel.checkPowerUp(invincibilityView)) {
-            //player.setHP(player.getHP() + 10); ADD INVINCIBILITY
+            layout.removeView(banView);
+            layout.removeView(evView);
             layout.removeView(invincibilityView);
         }
 
