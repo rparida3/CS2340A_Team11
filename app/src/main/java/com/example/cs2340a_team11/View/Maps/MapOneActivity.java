@@ -14,7 +14,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.Nightborneidle;
 import com.example.cs2340a_team11.Model.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
@@ -27,7 +26,7 @@ import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.View.PowerUpViews.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.View.SkeletonView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
@@ -57,7 +56,7 @@ public class MapOneActivity extends AppCompatActivity {
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
 
-    ConstraintLayout layout;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

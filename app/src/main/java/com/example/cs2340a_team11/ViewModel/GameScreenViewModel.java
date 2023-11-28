@@ -1,30 +1,24 @@
 package com.example.cs2340a_team11.ViewModel;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
-import com.example.cs2340a_team11.Model.Enemy;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EvilWizardView;
-import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.View.PowerUpViews.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.View.SkeletonView;
-import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 
 import java.util.ArrayList;
 
