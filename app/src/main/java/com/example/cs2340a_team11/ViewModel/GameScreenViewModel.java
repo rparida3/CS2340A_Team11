@@ -18,6 +18,7 @@ import com.example.cs2340a_team11.View.EvilWizardView;
 import com.example.cs2340a_team11.View.NightborneidleView;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
 import com.example.cs2340a_team11.View.SkeletonView;
 
 import java.util.ArrayList;
@@ -254,7 +255,15 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
-    
+
+    public boolean checkPowerUp(InvincibilityView invincibilityView) {
+        if (player.getX() == invincibilityView.getX() && player.getY() == invincibilityView.getY()) {
+            return true;
+        }
+        return false;
+    }
+
+
 
 
 

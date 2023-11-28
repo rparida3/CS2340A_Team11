@@ -20,12 +20,15 @@ import com.example.cs2340a_team11.Model.BanditFactory;
 import com.example.cs2340a_team11.Model.EvilWizard;
 import com.example.cs2340a_team11.Model.EvilWizardFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.PowerUpModels.Invincibility;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.GameOverActivity;
 import com.example.cs2340a_team11.View.PlayerView;
 import com.example.cs2340a_team11.View.BanditView;
 import com.example.cs2340a_team11.View.EvilWizardView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class MapTwoActivity extends AppCompatActivity {
@@ -42,6 +45,12 @@ public class MapTwoActivity extends AppCompatActivity {
     private Wall walls = Wall.getWall();
     private final int playerInitialHP = player.getInitialHP();
 
+    private InvincibilityView invincibilityView;
+
+    private Invincibility invincibility;
+
+    ConstraintLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +61,7 @@ public class MapTwoActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        layout = findViewById(R.id.backgroundLayout);
 
 
         nameView.setText(player.getName());
@@ -73,6 +82,16 @@ public class MapTwoActivity extends AppCompatActivity {
 
         TextView timeView = findViewById(R.id.scoreUpdate);
         gameScreenViewModel.runTimer(timeView);
+
+
+        invincibilityView = new InvincibilityView(this,
+                player.getX() + 1 * BitmapInterface.TILE_SIZE,
+                player.getY() + 1 * BitmapInterface.TILE_SIZE, invincibility);
+        layout.addView(invincibilityView);
+        invincibilityView.bringToFront();
+
+
+
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(2);
@@ -120,6 +139,14 @@ public class MapTwoActivity extends AppCompatActivity {
             gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
+
+        if (gameScreenViewModel.checkPowerUp(invincibilityView)) {
+            layout.removeView(banView);
+            layout.removeView(evView);
+            layout.removeView(invincibilityView);
+        }
+
+
         return true;
     }
     public void endGame() {
