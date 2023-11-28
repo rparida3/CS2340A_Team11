@@ -43,7 +43,7 @@ public class EnemyList {
         // cannot use for loop during thread
         // for (Enemy enemy : enemies) {
         //    enemies.remove(enemy);
-            // enemy = null;
+        //    enemy = null;
         // }
         enemies = new ArrayList<>();
     }

@@ -2,10 +2,8 @@ package com.example.cs2340a_team11.View.EntityViews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
 
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
-import com.example.cs2340a_team11.View.Characters.SkeletonSprite;
 
 public class SkeletonView extends EnemyView {
     private String dir = "R";

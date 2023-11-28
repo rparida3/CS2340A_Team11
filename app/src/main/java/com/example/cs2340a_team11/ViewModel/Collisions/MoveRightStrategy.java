@@ -6,8 +6,6 @@ import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
-import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
-
 public class MoveRightStrategy implements MovementStrategy {
 
     @Override

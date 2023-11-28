@@ -28,7 +28,6 @@ import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
