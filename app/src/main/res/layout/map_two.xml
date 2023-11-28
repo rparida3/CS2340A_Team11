@@ -61,24 +61,32 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/scoreLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Score:"
-        app:layout_constraintStart_toEndOf="@+id/character_photo"
-        app:layout_constraintTop_toBottomOf="@+id/healthBar" />
-
-    <TextView
         android:id="@+id/scoreUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="260dp"
-        android:text="0"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart= "10dp"
+        android:text="Score: 0"
+        app:layout_constraintStart_toEndOf="@+id/character_photo"
+        app:layout_constraintTop_toTopOf="@+id/healthBar" />
+    <Button
+        android:id="@+id/attackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="19dp"
+        android:text="Attack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/scoreLabel"
-        app:layout_constraintTop_toBottomOf="@+id/healthBar" />
-
+        app:layout_constraintStart_toEndOf="@+id/healthBar"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/difficultyDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:text="Difficulty: [Difficulty]"
+        app:layout_constraintTop_toTopOf="@id/healthBar"
+        app:layout_constraintStart_toEndOf="@+id/character_photo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

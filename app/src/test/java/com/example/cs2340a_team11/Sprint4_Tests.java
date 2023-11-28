@@ -3,12 +3,8 @@ package com.example.cs2340a_team11;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
-import com.example.cs2340a_team11.Model.Nightborneidle;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.Model.Skeleton;
-import com.example.cs2340a_team11.View.NightborneidleView;
-import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 import org.junit.Test;
 
