@@ -57,6 +57,8 @@ public class MapOneActivity extends AppCompatActivity {
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
 
+    ConstraintLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class MapOneActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        layout = findViewById(R.id.backgroundLayout);
 
         nameView.setText(player.getName());
 
@@ -146,6 +148,7 @@ public class MapOneActivity extends AppCompatActivity {
 
         if (gameScreenViewModel.checkPowerUp(healthIncreaseView)) {
             player.setHP(player.getHP() + 10);
+            layout.removeView(healthIncreaseView);
         }
 
         return true;
