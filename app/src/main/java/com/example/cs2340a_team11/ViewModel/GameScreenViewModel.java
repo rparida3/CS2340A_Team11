@@ -27,6 +27,8 @@ import com.example.cs2340a_team11.ViewModel.Collisions.MoveUpStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
@@ -36,7 +38,7 @@ public class GameScreenViewModel extends ViewModel {
     private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
 
     private Handler handler = new Handler();
-    private boolean isTimerRunning = true;
+    private boolean scoreAtkUpdate = false;
     private final int playerHp = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
     public GameScreenViewModel() {
@@ -78,24 +80,26 @@ public class GameScreenViewModel extends ViewModel {
         player.displayPosition();
     }
 
-    public void runTimer(TextView timeView) {
+    public void updateScore(TextView timeView) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                totalScore++;
-                player.setScore(totalScore);
+                HashMap<String, Integer> diffMP = new HashMap<>(3);
+                diffMP.put("Easy", 1);
+                diffMP.put("Medium", 2);
+                diffMP.put("Hard", 3);
+                if (scoreAtkUpdate) {
+                    totalScore += diffMP.get(player.getDifficulty());
+                    player.setScore(totalScore);
+                    scoreAtkUpdate = false;
+                }
                 String score = Integer.toString(totalScore);
-                timeView.setText(score);
-                if (isTimerRunning) {
-                    handler.postDelayed(this, 1000);
+                timeView.setText("Score: " + score);
+                if (playerHp > 0) {
+                    handler.postDelayed(this, 10);
                 }
             }
         });
-    }
-
-    public void stopTimer() {
-        isTimerRunning = false;
-        handler.removeCallbacksAndMessages(null);
     }
 
     public void stopMovement() {
@@ -317,6 +321,7 @@ public class GameScreenViewModel extends ViewModel {
                     // System.out.print("In checkAttack: ");
                     enemy.displayPosition();
                     if (attackAdj(enemy)) {
+                        scoreAtkUpdate = true;
                         // System.out.println("TRYING TO DELETE");
                         // System.out.println(eList.getEnemyViewMap().values());
                         // System.out.println(eList.getEnemyViewMap().get(enemy));

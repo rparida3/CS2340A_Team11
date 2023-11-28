@@ -56,6 +56,8 @@ public class MapTwoActivity extends AppCompatActivity {
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
         ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
+        diffView.setText("Difficulty: " + player.getDifficulty());
 
 
         nameView.setText(player.getName());
@@ -75,7 +77,7 @@ public class MapTwoActivity extends AppCompatActivity {
         mapViewItem.setY(offsetY);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
-        gameScreenViewModel.runTimer(timeView);
+        gameScreenViewModel.updateScore(timeView);
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(2);
@@ -106,7 +108,6 @@ public class MapTwoActivity extends AppCompatActivity {
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
-                gameScreenViewModel.stopTimer();
                 endGame();
             }
         });
@@ -137,7 +138,6 @@ public class MapTwoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
-            gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
         return true;
