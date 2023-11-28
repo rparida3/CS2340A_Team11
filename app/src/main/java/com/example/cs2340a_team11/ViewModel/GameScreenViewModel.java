@@ -304,6 +304,10 @@ public class GameScreenViewModel extends ViewModel {
         return r1.intersect(r2);
     }
 
+    public boolean attackAdj(Enemy enemy, Player player) {
+        return (enemy.getX() == player.getX() && enemy.getY() == player.getY());
+    }
+
     public void checkAttackCollision(ConstraintLayout gameLayout, PlayerView view) {
         System.out.println("Check attack collision");
         attack(view);
