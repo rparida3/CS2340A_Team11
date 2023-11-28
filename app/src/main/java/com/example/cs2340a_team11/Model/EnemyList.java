@@ -27,6 +27,9 @@ public class EnemyList {
         enemyViewMap.put(enemy, view);
     }
 
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }

@@ -122,9 +122,8 @@ public class UnitTests {
     }
 
     // Rick's Tests for Sprint 5!!!
-
     /**
-     * Check if enemy is within range of player attack
+     * Check if enemy is within range of player attack is valid
      */
     @Test
     public void testEnemyKill() {
@@ -139,15 +138,14 @@ public class UnitTests {
     }
 
     /**
-     * Check if all enemies are deleted when triggered
+     * Check if all enemies are properly deleted in EnemyList
      */
     @Test
     public void testEnemyRemoved() {
         EnemyList eList = EnemyList.getEList();
-        ArrayList<Enemy> enemies = eList.getEnemies();
-        enemies.add(new Skeleton());
-        enemies.add(new Bandit());
+        eList.addEnemy(new Skeleton());
+        eList.addEnemy(new Bandit());
         eList.resetEnemies();
-        assertEquals(enemies.size(), 0);
+        assertEquals(0, eList.getEnemies().size());
     }
 }
