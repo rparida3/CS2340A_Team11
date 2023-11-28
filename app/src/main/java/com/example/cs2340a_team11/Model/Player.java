@@ -1,6 +1,8 @@
 package com.example.cs2340a_team11.Model;
 
 
+import android.graphics.Rect;
+
 import com.example.cs2340a_team11.R;
 
 public class Player {
