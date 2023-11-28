@@ -1,12 +1,11 @@
-package com.example.cs2340a_team11.View.PowerUpViews;
+package com.example.cs2340a_team11.View.PowerUpViews.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import com.example.cs2340a_team11.Model.Nightborneidle;
 import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
-import com.example.cs2340a_team11.View.Characters.NightborneidleSprite;
+import com.example.cs2340a_team11.View.PowerUpViews.Sprites.HealthSprite;
 
 public class HealthIncreaseView extends View {
 
