@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.ViewModel;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,8 +26,17 @@ import com.example.cs2340a_team11.ViewModel.Collisions.MoveLeftStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveRightStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveUpStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
+import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
+import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
@@ -36,9 +46,12 @@ public class GameScreenViewModel extends ViewModel {
     private MutableLiveData<Boolean> isGameOver = new MutableLiveData<>();
 
     private Handler handler = new Handler();
-    private boolean isTimerRunning = true;
+    private boolean scoreAtkUpdate = false;
+    private boolean scorePowerUpUpdate = false;
     private final int playerHp = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
+    private int[] scoreMultiplier = {1, 0};
+    private boolean stopMovement = false;
     public GameScreenViewModel() {
 
     }
@@ -78,35 +91,47 @@ public class GameScreenViewModel extends ViewModel {
         player.displayPosition();
     }
 
-    public void runTimer(TextView timeView) {
+    public void updateScore(TextView timeView) {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                totalScore++;
+                HashMap<String, Integer> diffMP = new HashMap<>(3);
+                diffMP.put("Easy", 1);
+                diffMP.put("Medium", 2);
+                diffMP.put("Hard", 3);
+                if (scoreAtkUpdate) {
+                    if (scoreMultiplier[1] == 3) {
+                        scoreMultiplier[0] = 1;
+                    }
+                    totalScore += scoreMultiplier[0] * diffMP.get(player.getDifficulty());
+                    scoreMultiplier[1] += 1;
+                    scoreAtkUpdate = false;
+                }
+                if (scorePowerUpUpdate) {
+                    totalScore += 1;
+                    scorePowerUpUpdate = false;
+                }
                 player.setScore(totalScore);
                 String score = Integer.toString(totalScore);
-                timeView.setText(score);
-                if (isTimerRunning) {
-                    handler.postDelayed(this, 1000);
+                timeView.setText("Score: " + score);
+                if (playerHp > 0) {
+                    handler.postDelayed(this, 10);
                 }
             }
         });
     }
 
-    public void stopTimer() {
-        isTimerRunning = false;
-        handler.removeCallbacksAndMessages(null);
-    }
-
     public void stopMovement() {
         eList.resetEnemies();
         handler.removeCallbacksAndMessages(null);
+        stopMovement = true;
     }
 
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         // player.displayPosition();
         MovementStrategy movementStrategy = null;
         CollisionObserver collisionObserver = new CollisionHandler();
+
 
         switch (keyCode) {
         case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -193,7 +218,9 @@ public class GameScreenViewModel extends ViewModel {
                     view.updatePosition(enemy.getX(), enemy.getY());
                 }
                 // view.updatePosition();
-                handler.postDelayed(this, 1200);
+                if (!stopMovement) {
+                    handler.postDelayed(this, 1200);
+                }
                 // System.out.println("Enemy still running");
             }
         });
@@ -248,6 +275,19 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
+
+    public boolean checkPowerUp(View powerUpView) {
+        if (player.getX() == powerUpView.getX() && player.getY() == powerUpView.getY()) {
+            scorePowerUpUpdate = true;
+            return true;
+        }
+        return false;
+    }
+    public void setScoreMultiplier() {
+        scoreMultiplier[0] = 2;
+        scoreMultiplier[1] = 0;
+    }
+
 
     /**
      * The bottom two methods are used ONLY for testing purposes. Do not do anything with them!
@@ -317,6 +357,7 @@ public class GameScreenViewModel extends ViewModel {
                     // System.out.print("In checkAttack: ");
                     enemy.displayPosition();
                     if (attackAdj(enemy)) {
+                        scoreAtkUpdate = true;
                         // System.out.println("TRYING TO DELETE");
                         // System.out.println(eList.getEnemyViewMap().values());
                         // System.out.println(eList.getEnemyViewMap().get(enemy));
