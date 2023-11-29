@@ -28,6 +28,9 @@ public class EnemyList {
         enemyViewMap.put(enemy, view);
     }
 
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
@@ -43,6 +46,7 @@ public class EnemyList {
         // for (Enemy enemy : enemies) {
         //    enemies.remove(enemy);
         // enemy = null;
+        //    enemy = null;
         // }
         enemies = new ArrayList<>();
     }
