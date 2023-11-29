@@ -61,13 +61,12 @@ public class GameScreenActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                gameScreenViewModel.stopTimer();
                 progressToMapOne();
             }
         });
 
         TextView timeView = findViewById(R.id.scoreUpdate);
-        gameScreenViewModel.runTimer(timeView);
+        gameScreenViewModel.updateScore(timeView);
     }
 
 
