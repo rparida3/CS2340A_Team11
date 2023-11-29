@@ -16,7 +16,7 @@ public class MapView extends View {
     private CreatedMap testMap;
     private Wall walls = Wall.getWall();
     private Paint color = new Paint();
-    private GameScreenViewModel gameScreenViewModel;
+
     public MapView(Context context, int mapValue) {
         super(context);
         color.setColor(Color.BLACK);

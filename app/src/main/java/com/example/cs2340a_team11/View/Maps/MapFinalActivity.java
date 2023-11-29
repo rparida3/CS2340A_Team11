@@ -29,8 +29,8 @@ import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
-import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+import com.example.cs2340a_team11.View.Activities.PauseScreen;
 import com.example.cs2340a_team11.View.PowerUpViews.Views.CoinView;
 public class MapFinalActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -130,6 +130,17 @@ public class MapFinalActivity extends AppCompatActivity {
                 gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });
+
+        // Pause button
+        Button pauseBtn = (Button) findViewById(R.id.pauseBtn);
+
+        // Pause button listener
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToPauseScreen();
+            }
+        });
     }
 
 
@@ -144,6 +155,7 @@ public class MapFinalActivity extends AppCompatActivity {
         gameScreenViewModel.stopMovement();
         startActivity(progressToEndIntent);
     }
+
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
@@ -155,6 +167,7 @@ public class MapFinalActivity extends AppCompatActivity {
         }
         return true;
     }
+
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();
@@ -162,5 +175,14 @@ public class MapFinalActivity extends AppCompatActivity {
         gameScreenViewModel.stopMovement();
         startActivity(progressToGameOverScreen);
         finish();
+    }
+
+    // Method for moving to pause screen activity
+    public void moveToPauseScreen() {
+        gameScreenViewModel.stopMovement();
+
+        Intent pauseGameIntent = new Intent(this, PauseScreen.class);
+        pauseGameIntent.putExtra("activity", "mapFinal");
+        startActivity(pauseGameIntent);
     }
 }
