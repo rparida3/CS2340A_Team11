@@ -169,6 +169,9 @@ public class MapFinalActivity extends AppCompatActivity {
 
     // Method for moving to pause screen activity
     public void moveToPauseScreen() {
+        gameScreenViewModel.stopTimer();
+        gameScreenViewModel.stopMovement();
+
         Intent pauseGameIntent = new Intent(this, PauseScreen.class);
         pauseGameIntent.putExtra("activity", "mapFinal");
         startActivity(pauseGameIntent);
