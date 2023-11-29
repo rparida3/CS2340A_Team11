@@ -19,11 +19,22 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
+import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
+import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
 import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.Activities.GameOverActivity;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
@@ -40,10 +51,19 @@ public class MapOneActivity extends AppCompatActivity {
     private Nightborneidle nightborne = (Nightborneidle) nbFactory.createEnemy();
     private SkeletonFactory skFactory = new SkeletonFactory();
     private Skeleton skeleton = (Skeleton) skFactory.createEnemy();
+
+    private BanditView banditView;
+
+    private HealthIncrease healthIncrease;
+    private HealthIncreaseView healthIncreaseView;
+
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
     private EnemyList eList = EnemyList.getEList();
+
+    private ConstraintLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +75,7 @@ public class MapOneActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        layout = findViewById(R.id.backgroundLayout);
 
         nameView.setText(player.getName());
         characterView.setImageResource(gameScreenViewModel.getImg());
@@ -93,6 +113,22 @@ public class MapOneActivity extends AppCompatActivity {
         nightborne.setX(player.getX() - 2 * BitmapInterface.TILE_SIZE);
         nightborne.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
         nbView = new NightborneidleView(this, nightborne.getX(), nightborne.getY(), nightborne);
+        healthIncreaseView = new HealthIncreaseView(this,
+                player.getX() + 1 * BitmapInterface.TILE_SIZE,
+                player.getY() + 1 * BitmapInterface.TILE_SIZE, healthIncrease);
+        layout.addView(healthIncreaseView);
+        healthIncreaseView.bringToFront();
+
+
+
+
+
+
+
+
+        nbView = new NightborneidleView(this,
+                player.getX() - 2 * BitmapInterface.TILE_SIZE,
+                player.getY() - 2 * BitmapInterface.TILE_SIZE, nightborne);
         layout.addView(nbView);
         System.out.println("Nb view added");
         nbView.bringToFront();
@@ -124,6 +160,11 @@ public class MapOneActivity extends AppCompatActivity {
         if (gameScreenViewModel.checkDoor()) {
             progressToNextMap();
         }
+        if (gameScreenViewModel.checkPowerUp(healthIncreaseView)) {
+            player.setHP(player.getHP() + 10);
+            layout.removeView(healthIncreaseView);
+        }
+
         return true;
     }
 

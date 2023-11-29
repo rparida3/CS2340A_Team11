@@ -3,6 +3,7 @@ package com.example.cs2340a_team11.ViewModel;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,6 +26,13 @@ import com.example.cs2340a_team11.ViewModel.Collisions.MoveLeftStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveRightStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MoveUpStrategy;
 import com.example.cs2340a_team11.ViewModel.Collisions.MovementStrategy;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
+import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
+import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +49,8 @@ public class GameScreenViewModel extends ViewModel {
     private boolean scoreAtkUpdate = false;
     private final int playerHp = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
+    private int[] scoreMultiplier = {1, 0};
+    private boolean stopMovement = false;
     public GameScreenViewModel() {
 
     }
@@ -89,7 +99,11 @@ public class GameScreenViewModel extends ViewModel {
                 diffMP.put("Medium", 2);
                 diffMP.put("Hard", 3);
                 if (scoreAtkUpdate) {
-                    totalScore += diffMP.get(player.getDifficulty());
+                    if (scoreMultiplier[1] == 3) {
+                        scoreMultiplier[0] = 1;
+                    }
+                    totalScore += scoreMultiplier[0] * diffMP.get(player.getDifficulty());
+                    scoreMultiplier[1] += 1;
                     player.setScore(totalScore);
                     scoreAtkUpdate = false;
                 }
@@ -105,12 +119,14 @@ public class GameScreenViewModel extends ViewModel {
     public void stopMovement() {
         eList.resetEnemies();
         handler.removeCallbacksAndMessages(null);
+        stopMovement = true;
     }
 
     public void onKeyDown(int keyCode, KeyEvent event, PlayerView view, ArrayList<Rect> walls) {
         // player.displayPosition();
         MovementStrategy movementStrategy = null;
         CollisionObserver collisionObserver = new CollisionHandler();
+
 
         switch (keyCode) {
         case KeyEvent.KEYCODE_DPAD_LEFT:
@@ -197,7 +213,9 @@ public class GameScreenViewModel extends ViewModel {
                     view.updatePosition(enemy.getX(), enemy.getY());
                 }
                 // view.updatePosition();
-                handler.postDelayed(this, 1200);
+                if (!stopMovement) {
+                    handler.postDelayed(this, 1200);
+                }
                 // System.out.println("Enemy still running");
             }
         });
@@ -252,6 +270,15 @@ public class GameScreenViewModel extends ViewModel {
         }
         return false;
     }
+
+    public boolean checkPowerUp(View powerUpView) {
+        return (player.getX() == powerUpView.getX() && player.getY() == powerUpView.getY());
+    }
+    public void setScoreMultiplier() {
+        scoreMultiplier[0] = 2;
+        scoreMultiplier[1] = 0;
+    }
+
 
     /**
      * The bottom two methods are used ONLY for testing purposes. Do not do anything with them!
