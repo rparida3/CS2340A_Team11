@@ -22,12 +22,19 @@ import com.example.cs2340a_team11.Model.Factories.BanditFactory;
 import com.example.cs2340a_team11.Model.Enemies.EvilWizard;
 import com.example.cs2340a_team11.Model.Factories.EvilWizardFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.PowerUpModels.Invincibility;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
+import com.example.cs2340a_team11.View.Activities.GameOverActivity;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 import com.example.cs2340a_team11.View.Activities.PauseScreen;
 
@@ -46,6 +53,12 @@ public class MapTwoActivity extends AppCompatActivity {
     private EnemyList eList = EnemyList.getEList();
     private final int playerInitialHP = player.getInitialHP();
 
+    private InvincibilityView invincibilityView;
+
+    private Invincibility invincibility;
+
+    private ConstraintLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +69,9 @@ public class MapTwoActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
+        diffView.setText("Difficulty: " + player.getDifficulty());
+        layout = findViewById(R.id.backgroundLayout);
 
 
         nameView.setText(player.getName());
@@ -76,7 +91,17 @@ public class MapTwoActivity extends AppCompatActivity {
         mapViewItem.setY(offsetY);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
-        gameScreenViewModel.runTimer(timeView);
+        gameScreenViewModel.updateScore(timeView);
+
+
+        invincibilityView = new InvincibilityView(this,
+                player.getX() + 1 * BitmapInterface.TILE_SIZE,
+                player.getY() + 1 * BitmapInterface.TILE_SIZE, invincibility);
+        layout.addView(invincibilityView);
+        invincibilityView.bringToFront();
+
+
+
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(2);
@@ -107,17 +132,17 @@ public class MapTwoActivity extends AppCompatActivity {
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
-                gameScreenViewModel.stopTimer();
                 endGame();
             }
         });
         gameScreenViewModel.checkGameOver();
 
         Button attackBtn = (Button) findViewById(R.id.attackBtn);
+        ConstraintLayout finalLayout = layout;
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameScreenViewModel.checkAttackCollision(layout, playerView);
+                gameScreenViewModel.checkAttackCollision(finalLayout, playerView);
             }
         });
 
@@ -149,11 +174,21 @@ public class MapTwoActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
-            gameScreenViewModel.stopTimer();
             progressToNextMap();
+        }
+
+        if (gameScreenViewModel.checkPowerUp(invincibilityView)) {
+            this.removeAllEnemies();
         }
         return true;
     }
+
+    public void removeAllEnemies() {
+        layout.removeView(banView);
+        layout.removeView(evView);
+        layout.removeView(invincibilityView);
+    }
+
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();

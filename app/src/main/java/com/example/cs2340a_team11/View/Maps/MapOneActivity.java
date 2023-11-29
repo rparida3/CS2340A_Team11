@@ -19,13 +19,24 @@ import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
 import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
+import com.example.cs2340a_team11.Model.Enemies.Nightborneidle;
+import com.example.cs2340a_team11.Model.Factories.NightborneidleFactory;
 import com.example.cs2340a_team11.Model.Player;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
+import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
 import com.example.cs2340a_team11.Model.Enemies.Skeleton;
 import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.Activities.PauseScreen;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
+import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
+import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
@@ -41,21 +52,31 @@ public class MapOneActivity extends AppCompatActivity {
     private Nightborneidle nightborne = (Nightborneidle) nbFactory.createEnemy();
     private SkeletonFactory skFactory = new SkeletonFactory();
     private Skeleton skeleton = (Skeleton) skFactory.createEnemy();
+
+    private BanditView banditView;
+
+    private HealthIncrease healthIncrease;
+    private HealthIncreaseView healthIncreaseView;
+
     private GameScreenViewModel gameScreenViewModel;
     private KeyEvent keyEvent;
     private Wall walls = Wall.getWall();
     private EnemyList eList = EnemyList.getEList();
+
+    private ConstraintLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_one);
         gameContext = this;
         gameScreenViewModel = new ViewModelProvider(this).get(GameScreenViewModel.class);
-
+        TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
+        diffView.setText("Difficulty: " + player.getDifficulty());
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        layout = findViewById(R.id.backgroundLayout);
 
         nameView.setText(player.getName());
         characterView.setImageResource(gameScreenViewModel.getImg());
@@ -73,7 +94,7 @@ public class MapOneActivity extends AppCompatActivity {
         mapViewItems.setY(BitmapInterface.TILE_SIZE * 2);
 
         TextView timeView = findViewById(R.id.scoreUpdate);
-        gameScreenViewModel.runTimer(timeView);
+        gameScreenViewModel.updateScore(timeView);
 
         // render playerView
         gameScreenViewModel.setPlayerStarting(1);
@@ -93,6 +114,22 @@ public class MapOneActivity extends AppCompatActivity {
         nightborne.setX(player.getX() - 2 * BitmapInterface.TILE_SIZE);
         nightborne.setY(player.getY() - 2 * BitmapInterface.TILE_SIZE);
         nbView = new NightborneidleView(this, nightborne.getX(), nightborne.getY(), nightborne);
+        healthIncreaseView = new HealthIncreaseView(this,
+                player.getX() + 1 * BitmapInterface.TILE_SIZE,
+                player.getY() + 1 * BitmapInterface.TILE_SIZE, healthIncrease);
+        layout.addView(healthIncreaseView);
+        healthIncreaseView.bringToFront();
+
+
+
+
+
+
+
+
+        nbView = new NightborneidleView(this,
+                player.getX() - 2 * BitmapInterface.TILE_SIZE,
+                player.getY() - 2 * BitmapInterface.TILE_SIZE, nightborne);
         layout.addView(nbView);
         System.out.println("Nb view added");
         nbView.bringToFront();
@@ -104,7 +141,6 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.updatePlayerHealth(healthBar);
         gameScreenViewModel.getIsGameOver().observe(this, isGameOver -> {
             if (isGameOver) {
-                gameScreenViewModel.stopTimer();
                 endGame();
             }
         });
@@ -134,9 +170,13 @@ public class MapOneActivity extends AppCompatActivity {
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
-            gameScreenViewModel.stopTimer();
             progressToNextMap();
         }
+        if (gameScreenViewModel.checkPowerUp(healthIncreaseView)) {
+            player.setHP(player.getHP() + 10);
+            layout.removeView(healthIncreaseView);
+        }
+
         return true;
     }
 
