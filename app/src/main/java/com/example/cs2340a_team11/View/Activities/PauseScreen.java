@@ -13,7 +13,6 @@ import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Maps.MapFinalActivity;
 import com.example.cs2340a_team11.View.Maps.MapOneActivity;
 import com.example.cs2340a_team11.View.Maps.MapTwoActivity;
-import com.example.cs2340a_team11.View.Maps.MapView;
 import com.example.cs2340a_team11.ViewModel.PauseScreenViewModel;
 
 public class PauseScreen extends AppCompatActivity {
@@ -51,14 +50,13 @@ public class PauseScreen extends AppCompatActivity {
         // Set the map activity according to current map
         if (map.equals("mapOne")) {
             resume = new Intent(this, MapOneActivity.class);
-        }
-
-        else if (map.equals("mapTwo")) {
+        } else if (map.equals("mapTwo")) {
             resume = new Intent(this, MapTwoActivity.class);
-        }
-
-        else if (map.equals("mapFinal")){
+        } else if (map.equals("mapFinal")) {
             resume = new Intent(this, MapFinalActivity.class);
+        } else {
+            // If no map selected, default to first map
+            resume = new Intent(this, MapOneActivity.class);
         }
         // Set screen to game screen
         startActivity(resume);

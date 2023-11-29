@@ -162,6 +162,7 @@ public class MapTwoActivity extends AppCompatActivity {
         startActivity(progressToGameOverScreen);
         finish();
     }
+    // Method for moving to pause screen activity
     public void moveToPauseScreen() {
         Intent pauseGameIntent = new Intent(this, PauseScreen.class);
         pauseGameIntent.putExtra("activity", "mapTwo");

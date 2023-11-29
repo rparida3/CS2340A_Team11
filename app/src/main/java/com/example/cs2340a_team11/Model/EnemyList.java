@@ -11,6 +11,7 @@ public class EnemyList {
     private static EnemyList eList;
     private ArrayList<Enemy> enemies;
     private Map<Enemy, EnemyView> enemyViewMap = new HashMap<>();
+
     private EnemyList() {
         enemies = new ArrayList<Enemy>();
     }
@@ -36,11 +37,12 @@ public class EnemyList {
         System.out.println("Removing: " + enemy);
         enemy = null;
     }
+
     public void resetEnemies() {
         // cannot use for loop during thread
         // for (Enemy enemy : enemies) {
         //    enemies.remove(enemy);
-            // enemy = null;
+        // enemy = null;
         // }
         enemies = new ArrayList<>();
     }

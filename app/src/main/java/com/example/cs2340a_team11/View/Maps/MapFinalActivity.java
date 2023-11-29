@@ -148,6 +148,7 @@ public class MapFinalActivity extends AppCompatActivity {
         gameScreenViewModel.stopMovement();
         startActivity(progressToEndIntent);
     }
+
     public boolean onKeyDown(int keycode, KeyEvent event) {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
@@ -156,6 +157,7 @@ public class MapFinalActivity extends AppCompatActivity {
         }
         return true;
     }
+
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();
@@ -165,6 +167,7 @@ public class MapFinalActivity extends AppCompatActivity {
         finish();
     }
 
+    // Method for moving to pause screen activity
     public void moveToPauseScreen() {
         Intent pauseGameIntent = new Intent(this, PauseScreen.class);
         pauseGameIntent.putExtra("activity", "mapFinal");
