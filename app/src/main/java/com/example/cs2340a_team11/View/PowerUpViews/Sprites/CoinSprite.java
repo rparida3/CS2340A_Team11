@@ -4,7 +4,7 @@ import android.content.res.Resources;
 
 import com.example.cs2340a_team11.R;
 
-public class CoinSprite extends PowerUpSprite {
+public class CoinSprite extends PowerUpSpriteDecorator {
     public CoinSprite(Resources resource) {
         super(resource, R.drawable.coin);
         this.setWidth(160);

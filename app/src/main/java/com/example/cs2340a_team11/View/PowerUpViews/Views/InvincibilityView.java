@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 
-import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
 import com.example.cs2340a_team11.Model.PowerUpModels.Invincibility;
-import com.example.cs2340a_team11.View.PowerUpViews.Sprites.HealthSprite;
 import com.example.cs2340a_team11.View.PowerUpViews.Sprites.InvincibilitySprite;
 
 public class InvincibilityView extends View {

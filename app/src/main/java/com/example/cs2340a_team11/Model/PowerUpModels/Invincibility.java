@@ -5,6 +5,5 @@ import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 
 public class Invincibility extends PowerUp {
     public void powerUpAbility() {
-
     }
 }
