@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import com.example.cs2340a_team11.Model.PowerUpModels.HealthIncrease;
-import com.example.cs2340a_team11.View.PowerUpViews.Sprites.HealthSpriteDecorator;
+import com.example.cs2340a_team11.View.PowerUpViews.Sprites.HealthSprite;
 
 public class HealthIncreaseView extends View {
 
         private float x;
         private float y;
-        private HealthSpriteDecorator healthSprite;
+        private HealthSprite healthSprite;
         private HealthIncrease healthIncrease;
         private int move = 0;
 
@@ -20,7 +20,7 @@ public class HealthIncreaseView extends View {
             this.x = x;
             this.y = y;
             this.healthIncrease = healthIncrease;
-            healthSprite = new HealthSpriteDecorator(getResources());
+            healthSprite = new HealthSprite(getResources());
         }
 
         @Override

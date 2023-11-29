@@ -4,10 +4,10 @@ import android.content.res.Resources;
 
 import com.example.cs2340a_team11.R;
 
-public class HealthSpriteDecorator extends PowerUpSpriteDecorator {
+public class HealthSprite extends PowerUpSpriteDecorator {
 
 
-    public HealthSpriteDecorator(Resources resource) {
+    public HealthSprite(Resources resource) {
         super(resource, R.drawable.heart_sprite);
     }
 }

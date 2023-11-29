@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.view.View;
 
 import com.example.cs2340a_team11.Model.PowerUpModels.Invincibility;
-import com.example.cs2340a_team11.View.PowerUpViews.Sprites.InvincibilitySpriteDecorator;
+import com.example.cs2340a_team11.View.PowerUpViews.Sprites.InvincibilitySprite;
 
 public class InvincibilityView extends View {
     private float x;
     private float y;
-    private InvincibilitySpriteDecorator invincibilitySprite;
+    private InvincibilitySprite invincibilitySprite;
     private Invincibility invincibility;
     private int move = 0;
 
@@ -19,7 +19,7 @@ public class InvincibilityView extends View {
         this.x = x;
         this.y = y;
         this.invincibility = invincibility;
-        invincibilitySprite = new InvincibilitySpriteDecorator(getResources());
+        invincibilitySprite = new InvincibilitySprite(getResources());
     }
 
     @Override

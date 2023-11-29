@@ -11,7 +11,7 @@ public abstract class PowerUpSpriteDecorator extends PowerUp {
     private int height;
 
     private int id;
-
+    private PowerUp powerUp;
     private Bitmap sprite;
 
     public PowerUpSpriteDecorator(Resources resource, int id) {
