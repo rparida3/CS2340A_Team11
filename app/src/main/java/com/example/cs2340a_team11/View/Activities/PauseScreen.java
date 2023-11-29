@@ -10,10 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.View.Maps.MapFinalActivity;
+import com.example.cs2340a_team11.View.Maps.MapOneActivity;
+import com.example.cs2340a_team11.View.Maps.MapTwoActivity;
+import com.example.cs2340a_team11.View.Maps.MapView;
 import com.example.cs2340a_team11.ViewModel.PauseScreenViewModel;
 
 public class PauseScreen extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         PauseScreenViewModel pauseScreenViewModel;
@@ -40,7 +43,23 @@ public class PauseScreen extends AppCompatActivity {
     public void resumeGame() {
         // Resume game as-is
         // Get state of game screen
-        Intent resume = new Intent(this, GameScreenActivity.class);
+        Intent resume = getIntent();
+
+        // Get the current map
+        String map = resume.getStringExtra("activity");
+
+        // Set the map activity according to current map
+        if (map.equals("mapOne")) {
+            resume = new Intent(this, MapOneActivity.class);
+        }
+
+        else if (map.equals("mapTwo")) {
+            resume = new Intent(this, MapTwoActivity.class);
+        }
+
+        else if (map.equals("mapFinal")){
+            resume = new Intent(this, MapFinalActivity.class);
+        }
         // Set screen to game screen
         startActivity(resume);
     }

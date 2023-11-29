@@ -29,6 +29,7 @@ import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
+import com.example.cs2340a_team11.View.Activities.PauseScreen;
 
 public class MapTwoActivity extends AppCompatActivity {
     private static Context gameContext;
@@ -119,6 +120,17 @@ public class MapTwoActivity extends AppCompatActivity {
                 gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });
+
+        // Pause button
+        Button pauseBtn = (Button) findViewById(R.id.pauseBtn);
+
+        // Pause button listener
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToPauseScreen();
+            }
+        });
     }
 
 
@@ -149,6 +161,11 @@ public class MapTwoActivity extends AppCompatActivity {
         gameScreenViewModel.stopMovement();
         startActivity(progressToGameOverScreen);
         finish();
+    }
+    public void moveToPauseScreen() {
+        Intent pauseGameIntent = new Intent(this, PauseScreen.class);
+        pauseGameIntent.putExtra("activity", "mapTwo");
+        startActivity(pauseGameIntent);
     }
 }
 

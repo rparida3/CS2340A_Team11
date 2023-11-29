@@ -25,6 +25,7 @@ import com.example.cs2340a_team11.Model.Factories.SkeletonFactory;
 import com.example.cs2340a_team11.Model.Wall;
 import com.example.cs2340a_team11.R;
 import com.example.cs2340a_team11.View.Activities.GameOverActivity;
+import com.example.cs2340a_team11.View.Activities.PauseScreen;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
@@ -117,6 +118,17 @@ public class MapOneActivity extends AppCompatActivity {
                 gameScreenViewModel.checkAttackCollision(layout, playerView);
             }
         });
+
+        // Pause button
+        Button pauseBtn = (Button) findViewById(R.id.pauseBtn);
+
+        // Pause button listener
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToPauseScreen();
+            }
+        });
     }
 
     public boolean onKeyDown(int keycode, KeyEvent event) {
@@ -148,5 +160,11 @@ public class MapOneActivity extends AppCompatActivity {
         gameScreenViewModel.stopMovement();
         startActivity(progressToGameOverScreen);
         finish();
+    }
+
+    public void moveToPauseScreen() {
+        Intent pauseGameIntent = new Intent(this, PauseScreen.class);
+        pauseGameIntent.putExtra("activity", "mapOne");
+        startActivity(pauseGameIntent);
     }
 }

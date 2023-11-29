@@ -44,7 +44,6 @@ public class GameScreenActivity extends AppCompatActivity {
         characterView.setImageResource(gameScreenViewModel.getImg());
 
 
-
         TextView healthText = findViewById(R.id.healthText);
         TextView healthPercentage = findViewById(R.id.healthPercentage);
 
@@ -57,7 +56,6 @@ public class GameScreenActivity extends AppCompatActivity {
 
         int percentage = (int) ((newHealth / (float) maxHealth) * 100);
         healthPercentage.setText(percentage + "%");
-
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
 
