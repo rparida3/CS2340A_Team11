@@ -47,6 +47,7 @@ public class GameScreenViewModel extends ViewModel {
 
     private Handler handler = new Handler();
     private boolean scoreAtkUpdate = false;
+    private boolean scorePowerUpUpdate = false;
     private final int playerHp = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
     private int[] scoreMultiplier = {1, 0};
@@ -104,9 +105,13 @@ public class GameScreenViewModel extends ViewModel {
                     }
                     totalScore += scoreMultiplier[0] * diffMP.get(player.getDifficulty());
                     scoreMultiplier[1] += 1;
-                    player.setScore(totalScore);
                     scoreAtkUpdate = false;
                 }
+                if (scorePowerUpUpdate) {
+                    totalScore += 1;
+                    scorePowerUpUpdate = false;
+                }
+                player.setScore(totalScore);
                 String score = Integer.toString(totalScore);
                 timeView.setText("Score: " + score);
                 if (playerHp > 0) {
@@ -272,7 +277,11 @@ public class GameScreenViewModel extends ViewModel {
     }
 
     public boolean checkPowerUp(View powerUpView) {
-        return (player.getX() == powerUpView.getX() && player.getY() == powerUpView.getY());
+        if (player.getX() == powerUpView.getX() && player.getY() == powerUpView.getY()) {
+            scorePowerUpUpdate = true;
+            return true;
+        }
+        return false;
     }
     public void setScoreMultiplier() {
         scoreMultiplier[0] = 2;

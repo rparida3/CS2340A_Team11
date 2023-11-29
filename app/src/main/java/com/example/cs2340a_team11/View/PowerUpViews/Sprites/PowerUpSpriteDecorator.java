@@ -4,9 +4,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.cs2340a_team11.R;
+import com.example.cs2340a_team11.Model.PowerUpModels.PowerUp;
 
-public class PowerUpSprite {
+public abstract class PowerUpSpriteDecorator extends PowerUp {
     private int width;
     private int height;
 
@@ -14,7 +14,7 @@ public class PowerUpSprite {
 
     private Bitmap sprite;
 
-    public PowerUpSprite (Resources resource, int id) {
+    public PowerUpSpriteDecorator(Resources resource, int id) {
         sprite = BitmapFactory.decodeResource(resource, id);
         width = 80;
         height = 80;
