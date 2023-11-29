@@ -166,15 +166,17 @@ public class MapTwoActivity extends AppCompatActivity {
         }
 
         if (gameScreenViewModel.checkPowerUp(invincibilityView)) {
-            layout.removeView(banView);
-            layout.removeView(evView);
-            layout.removeView(invincibilityView);
-
+            this.removeAllEnemies();
         }
-
-
         return true;
     }
+
+    public void removeAllEnemies() {
+        layout.removeView(banView);
+        layout.removeView(evView);
+        layout.removeView(invincibilityView);
+    }
+
     public void endGame() {
         Intent progressToGameOverScreen = new Intent(this, GameOverActivity.class);
         walls.resetWalls();
