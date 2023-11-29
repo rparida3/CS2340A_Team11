@@ -21,7 +21,8 @@ public class EvilWizardView extends EnemyView {
         canvas.drawBitmap(enemySprite.getSprite(), x, y, null);
         //Paint paint = new Paint();
         //paint.setColor(Color.GREEN);
-        //canvas.drawRect(evilWizard.getX(), evilWizard.getY(), evilWizard.getX() + 160, evilWizard.getY() + 160, paint);
+        //canvas.drawRect(evilWizard.getX(), evilWizard.getY(),
+        // evilWizard.getX() + 160, evilWizard.getY() + 160, paint);
     }
 
     public void updatePosition(float newX, float newY) {

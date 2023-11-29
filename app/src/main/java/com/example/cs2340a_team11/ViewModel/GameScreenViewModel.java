@@ -36,7 +36,6 @@ import com.example.cs2340a_team11.View.EntityViews.SkeletonView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class GameScreenViewModel extends ViewModel {
     private Player player = Player.getPlayer();
@@ -338,6 +337,10 @@ public class GameScreenViewModel extends ViewModel {
                 (int) view.getX() + 160,
                 (int) view.getY() + 160);
         return r1.intersect(r2);
+    }
+
+    public boolean attackAdj(Enemy enemy, Player player) {
+        return (enemy.getX() == player.getX() && enemy.getY() == player.getY());
     }
 
     public void checkAttackCollision(ConstraintLayout gameLayout, PlayerView view) {

@@ -2,15 +2,13 @@ package com.example.cs2340a_team11.Model.Enemies;
 
 import com.example.cs2340a_team11.Environment.BitmapInterface;
 import com.example.cs2340a_team11.Model.Player;
-import com.example.cs2340a_team11.R;
 
 public abstract class Enemy {
     private float x;
     private float y;
     private Player player = Player.getPlayer();
 
-    int charId; // 0 = Bandit, 1 = EvilWizard,
-                // 2 = Nightborneidle, 3 = Skeleton
+    private int charId; // 0 = Bandit, 1 = EvilWizard, 2 = Nightborneidle, 3 = Skeleton
 
     public float getX() {
         return x;
