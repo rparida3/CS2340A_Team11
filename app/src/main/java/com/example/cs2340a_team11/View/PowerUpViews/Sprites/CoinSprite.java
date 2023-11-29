@@ -7,5 +7,7 @@ import com.example.cs2340a_team11.R;
 public class CoinSprite extends PowerUpSprite {
     public CoinSprite(Resources resource) {
         super(resource, R.drawable.coin);
+        this.setWidth(160);
+        this.setHeight(160);
     }
 }

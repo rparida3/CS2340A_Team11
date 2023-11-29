@@ -25,5 +25,13 @@ public class PowerUpSprite {
     public Bitmap getSprite() {
         return sprite;
     }
+    public void setWidth(int width) {
+        this.width = width;
+        sprite = Bitmap.createScaledBitmap(sprite, this.width, height, false);
+    }
+    public void setHeight(int height) {
+        this.height = height;
+        sprite = Bitmap.createScaledBitmap(sprite, this.width, this.height, false);
+    }
 
 }

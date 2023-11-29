@@ -29,10 +29,10 @@ import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
 import com.example.cs2340a_team11.View.EntityViews.BanditView;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
-import com.example.cs2340a_team11.View.GameOverActivity;
-import com.example.cs2340a_team11.View.PlayerView;
-import com.example.cs2340a_team11.View.BanditView;
-import com.example.cs2340a_team11.View.EvilWizardView;
+import com.example.cs2340a_team11.View.Activities.GameOverActivity;
+import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.EntityViews.BanditView;
+import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.View.PowerUpViews.Views.InvincibilityView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
@@ -56,7 +56,7 @@ public class MapTwoActivity extends AppCompatActivity {
 
     private Invincibility invincibility;
 
-    ConstraintLayout layout;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,6 @@ public class MapTwoActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
         TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
         diffView.setText("Difficulty: " + player.getDifficulty());
         layout = findViewById(R.id.backgroundLayout);
@@ -138,10 +137,11 @@ public class MapTwoActivity extends AppCompatActivity {
         gameScreenViewModel.checkGameOver();
 
         Button attackBtn = (Button) findViewById(R.id.attackBtn);
+        ConstraintLayout finalLayout = layout;
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameScreenViewModel.checkAttackCollision(layout, playerView);
+                gameScreenViewModel.checkAttackCollision(finalLayout, playerView);
             }
         });
     }
@@ -169,6 +169,7 @@ public class MapTwoActivity extends AppCompatActivity {
             layout.removeView(banView);
             layout.removeView(evView);
             layout.removeView(invincibilityView);
+
         }
 
 

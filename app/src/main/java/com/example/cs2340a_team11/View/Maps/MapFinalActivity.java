@@ -29,8 +29,9 @@ import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
+import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
-
+import com.example.cs2340a_team11.View.PowerUpViews.Views.CoinView;
 public class MapFinalActivity extends AppCompatActivity {
     private static Context gameContext;
     private Player player = Player.getPlayer();
@@ -43,6 +44,8 @@ public class MapFinalActivity extends AppCompatActivity {
     private Wall walls = Wall.getWall();
     private final int playerInitialHP = player.getInitialHP();
     private EnemyList eList = EnemyList.getEList();
+    private CoinView coinView;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class MapFinalActivity extends AppCompatActivity {
         ImageView characterView = (ImageView) findViewById(R.id.character_photo);
         TextView nameView = (TextView) findViewById(R.id.name);
         ProgressBar healthBar = (ProgressBar) findViewById(R.id.healthBar);
-        ConstraintLayout layout = findViewById(R.id.backgroundLayout);
+        layout = findViewById(R.id.backgroundLayout);
         TextView diffView = (TextView) findViewById(R.id.difficultyDisplay);
         diffView.setText("Difficulty: " + player.getDifficulty());
 
@@ -115,7 +118,11 @@ public class MapFinalActivity extends AppCompatActivity {
             }
         });
         gameScreenViewModel.checkGameOver();
-
+        coinView = new CoinView(this,
+                player.getX() + BitmapInterface.TILE_SIZE,
+                player.getY() + BitmapInterface.TILE_SIZE);
+        layout.addView(coinView);
+        coinView.bringToFront();
         Button attackBtn = (Button) findViewById(R.id.attackBtn);
         attackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +148,10 @@ public class MapFinalActivity extends AppCompatActivity {
         gameScreenViewModel.onKeyDown(keycode, event, playerView, walls.getWalls());
         if (gameScreenViewModel.checkDoor()) {
             progressToEndScreen();
+        }
+        if (gameScreenViewModel.checkPowerUp(coinView)) {
+            gameScreenViewModel.setScoreMultiplier();
+            layout.removeView(coinView);
         }
         return true;
     }
