@@ -6,16 +6,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-
-
-
-
+import com.example.cs2340a_team11.Model.Enemies.Bandit;
+import com.example.cs2340a_team11.Model.Enemies.Enemy;
+import com.example.cs2340a_team11.Model.Enemies.Skeleton;
+import com.example.cs2340a_team11.Model.EnemyList;
 import com.example.cs2340a_team11.Model.Player;
 
 import com.example.cs2340a_team11.ViewModel.EndScreenViewModel;
+import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 import com.example.cs2340a_team11.ViewModel.InitialConfigViewModel;
 
-
+import java.util.ArrayList;
 
 
 public class UnitTests {
@@ -118,5 +119,33 @@ public class UnitTests {
         float initialY = Player.getPlayer().getY();
         Player.getPlayer().moveUp();
         assertEquals(initialY - 160, Player.getPlayer().getY(), 0.01);
+    }
+
+    // Rick's Tests for Sprint 5!!!
+    /**
+     * Check if enemy is within range of player attack is valid
+     */
+    @Test
+    public void testEnemyKill() {
+        Player player = Player.getPlayer();
+        player.setX(0);
+        player.setY(0);
+        Enemy skeleton = new Skeleton();
+        skeleton.setX(player.getX());
+        skeleton.setY(player.getY());
+        GameScreenViewModel viewModel = new GameScreenViewModel();
+        assertTrue(viewModel.attackAdj(skeleton, player));
+    }
+
+    /**
+     * Check if all enemies are properly deleted in EnemyList
+     */
+    @Test
+    public void testEnemyRemoved() {
+        EnemyList eList = EnemyList.getEList();
+        eList.addEnemy(new Skeleton());
+        eList.addEnemy(new Bandit());
+        eList.resetEnemies();
+        assertEquals(0, eList.getEnemies().size());
     }
 }
