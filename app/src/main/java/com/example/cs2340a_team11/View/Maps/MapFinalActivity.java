@@ -29,7 +29,6 @@ import com.example.cs2340a_team11.View.Activities.GameOverActivity;
 import com.example.cs2340a_team11.View.EntityViews.EvilWizardView;
 import com.example.cs2340a_team11.View.EntityViews.NightborneidleView;
 import com.example.cs2340a_team11.View.EntityViews.PlayerView;
-import com.example.cs2340a_team11.View.PowerUpViews.Views.HealthIncreaseView;
 import com.example.cs2340a_team11.ViewModel.GameScreenViewModel;
 import com.example.cs2340a_team11.View.Activities.PauseScreen;
 import com.example.cs2340a_team11.View.PowerUpViews.Views.CoinView;
@@ -180,7 +179,6 @@ public class MapFinalActivity extends AppCompatActivity {
 
     // Method for moving to pause screen activity
     public void moveToPauseScreen() {
-        gameScreenViewModel.stopTimer();
         gameScreenViewModel.stopMovement();
 
         Intent pauseGameIntent = new Intent(this, PauseScreen.class);
